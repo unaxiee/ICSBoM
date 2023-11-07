@@ -26,9 +26,9 @@ def dump_function_details(ea):
             cnt += 1
 
     if cnt > 5:
-        return cnt, disasm
+        return disasm
     else:
-        return cnt, []
+        return []
 
 
 disasm_dic = {}
@@ -39,24 +39,15 @@ if 'src' in file_name:
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
-            cnt, disasm = dump_function_details(ea)
-            func_disasm_dic = {
-                'size': cnt,
-                'disasm': disasm
-            }
-            disasm_dic[name] = func_disasm_dic
+            disasm_dic[name] = dump_function_details(ea)
             print(name, 'done')
 else:
     func_cnt = 0
     for ea in Functions():
         name = get_func_name(ea)
-        cnt, disasm = dump_function_details(ea)
+        disasm = dump_function_details(ea)
         if len(disasm) > 0:
-            func_disasm_dic = {
-                'size': cnt,
-                'disasm': disasm
-            }
-            disasm_dic[name] = func_disasm_dic
+            disasm_dic[name] = disasm
             func_cnt += 1
     print(func_cnt, 'done')
 
