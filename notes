@@ -1,0 +1,8 @@
+9 target functions (~2000 functions in binary from firmware)
+
+    - 5 located by fuzzy hashing as Top-1
+
+    - 7 located by fuzzy hashing as Top-10
+
+    - 8 located by fuzzy hashing as Top-25
+        - all can be located by hashing of basic block
