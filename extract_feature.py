@@ -6,7 +6,7 @@ import json
 
 def get_func_for_src():
     func_name = []
-    with open('func_list_src.csv', 'r') as f:
+    with open('func_list.csv', 'r') as f:
         r = csv.reader(f, delimiter=',')
         for row in r:
             for item in row:
@@ -34,13 +34,17 @@ def dump_function_details(ea):
 disasm_dic = {}
 file_name = get_root_filename()
 
-if 'src' in file_name:
+if 'build' in file_name:
     func_name = get_func_for_src()
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
-            disasm_dic[name] = dump_function_details(ea)
-            print(name, 'done')
+            disasm = dump_function_details(ea)
+            if len(disasm) > 0:
+                disasm_dic[name] = disasm
+                print(name, 'done')
+            else:
+                print('skip', name, 'for few basic blocks')
 else:
     func_cnt = 0
     for ea in Functions():
@@ -52,5 +56,5 @@ else:
     print(func_cnt, 'done')
 
 disasm_json = json.dumps(disasm_dic)
-with open('output/' + file_name + '_disasm.json', 'w') as f:
+with open('../output/' + file_name + '_disasm.json', 'w') as f:
     f.write(disasm_json)
