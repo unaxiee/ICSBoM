@@ -1,18 +1,7 @@
 from tlsh import diff
 import json
-
-dir = 'disasm_hash/'
-
-lib_name = 'libssh2'
-
-firmware_fam = 'pfc'
-
-with open(dir + lib_name + '-build_hash.json', 'r') as f:
-    build_j = json.load(f)
-
-with open(dir + lib_name +'-fw-' + firmware_fam + '_hash.json', 'r') as f:
-    fw_j = json.load(f)
-
+import pandas as pd
+from openpyxl import load_workbook
 
 def create_select_list(num):
     select_list = []
@@ -35,48 +24,89 @@ def get_max_diff_sel(select_list):
             idx_tmp = i
     return idx_tmp, diff_max_tmp
 
+def match_function(ref, build_dic, fw_j):
+    list_len_list = [1, 25]
+    found = False
 
-tar_func = 'packet_ask'
-tar_addr = '28098'
-
-for key, value in build_j.items():
-    if tar_func not in key:
-        continue
-    print(key)
-    list_len = 100
-    select_list = create_select_list(list_len)
+    for list_len in list_len_list:
+        select_list = create_select_list(list_len)
     
-    for key_can, value_can in fw_j.items():
+        for key, value in fw_j.items():
+            idx_sel, diff_sel = get_max_diff_sel(select_list)
+            diff_tmp = diff(build_dic['func_hash'], value['func_hash'])
+            
+            if diff_tmp < diff_sel:
+                select_list[idx_sel]['func'] = key
+                select_list[idx_sel]['diff'] = diff_tmp
+                select_list[idx_sel]['bb_hash'] = value['bb_hash']
 
-        idx_sel, diff_sel = get_max_diff_sel(select_list)
-
-        diff_tmp = diff(value['func_hash'], value_can['func_hash'])
+        for select_item in select_list:
+            if select_item['func'] == ref:
+                print('Found in Top-', list_len)
+                found = True
+                break
         
-        if diff_tmp < diff_sel:
-            select_list[idx_sel]['func'] = key_can
-            select_list[idx_sel]['diff'] = diff_tmp
-            select_list[idx_sel]['bb_hash'] = value_can['bb_hash']
+        if found:
+            break
 
-    
-    for select_item in select_list:
-        # if key == select_item['func']:
-        if tar_addr in select_item['func']:
-            print('Found in Top-', list_len)
-
+    if not found:
+        print('Not found in Top-', list_len, '\n')
+        return ''
 
     max_sim_bb = 0
-    select = 'none'
+    select = []
     for select_item in select_list:
         sim_bb = 0
-        for bb_hash in value['bb_hash']:
+        for bb_hash in build_dic['bb_hash']:
             for bb_hash_sel in select_item['bb_hash']:
                 if bb_hash == bb_hash_sel:
                     sim_bb += 1
                     break
-        # print(select_item['func'], select_item['diff'], sim_bb)
+
         if sim_bb > max_sim_bb:
             max_sim_bb = sim_bb
-            select = select_item['func']
-        if tar_addr in select_item['func']:
-            print(select_item['func'], select_item['diff'], sim_bb)
-    print(select, max_sim_bb, '\n')
+            select = []
+            select.append(select_item['func'])
+        elif sim_bb == max_sim_bb:
+            select.append(select_item['func'])
+        
+    for func in select:
+        if func == ref:
+            if list_len == 1:
+                print(ref, "has bb_hash", max_sim_bb, '\n')
+                return 'Top-1 (' + str(max_sim_bb) + ')'
+            elif list_len == 25:
+                if len(select) > 1:
+                    print(ref, "has the most bb_hash", max_sim_bb, "with tie\n")
+                    return 'Top-25 (' + str(max_sim_bb) + ') (tie)'
+                else:
+                    print(ref, "has the most bb_hash", max_sim_bb, '\n')
+                    return 'Top-25+bb_hash (' + str(max_sim_bb) + ')'
+            return
+        
+    print(ref, "doesn't have the most bb_hash\n")
+    return 'Top-25 (not max)'
+
+def evaluate(lib_name, fw):
+    with open('disasm_hash/' + lib_name + '-build_hash.json', 'r') as f:
+        build_j = json.load(f)
+    with open('disasm_hash/' + lib_name +'-fw-' + fw + '_hash.json', 'r') as f:
+        fw_j = json.load(f)
+
+    excel = 'func_match.xlsx'
+    data = pd.read_excel(excel, sheet_name=lib_name, skiprows=[0])
+
+    with pd.ExcelWriter(excel, mode='a', if_sheet_exists='overlay') as writer:
+    
+        for index, row in data.iterrows():
+
+            if row['function'] not in build_j.keys():
+                print("No function", row['function'], "in build\n")
+                continue
+
+            print(row['function'])
+            result = match_function(row['reference'], build_j[row['function']], fw_j)
+            df = pd.DataFrame([result])
+            df.to_excel(writer, sheet_name=lib_name, startrow=index+2, startcol=3, header=False, index=False)
+
+evaluate('libssh2', 'pfc')
