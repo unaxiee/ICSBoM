@@ -4,7 +4,7 @@ import csv
 import json
 
 
-def get_func_for_src():
+def get_func_for_build():
     func_name = []
     with open('func_list.csv', 'r') as f:
         r = csv.reader(f, delimiter=',')
@@ -31,11 +31,13 @@ def dump_function_details(ea):
         return []
 
 
-disasm_dic = {}
 file_name = get_root_filename()
 
+procname = get_inf_structure().procname.lower()
+disasm_dic = {'arch': procname}
+
 if 'build' in file_name:
-    func_name = get_func_for_src()
+    func_name = get_func_for_build()
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
@@ -44,7 +46,7 @@ if 'build' in file_name:
                 disasm_dic[name] = disasm
                 print(name, 'done')
             else:
-                print('skip', name, 'for few basic blocks')
+                print('skip', name, 'less than five basic blocks')
 else:
     func_cnt = 0
     for ea in Functions():
