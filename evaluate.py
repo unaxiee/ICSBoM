@@ -87,26 +87,35 @@ def match_function(ref, build_dic, fw_j):
     print(ref, "doesn't have the most bb_hash\n")
     return 'Top-25 (not max)'
 
-def evaluate(lib_name, fw):
-    with open('disasm_hash/' + lib_name + '-build_hash.json', 'r') as f:
-        build_j = json.load(f)
-    with open('disasm_hash/' + lib_name +'-fw-' + fw + '_hash.json', 'r') as f:
-        fw_j = json.load(f)
-
+def evaluate(package, fw):
     excel = 'func_match.xlsx'
-    data = pd.read_excel(excel, sheet_name=lib_name, skiprows=[0])
+    data = pd.read_excel(excel, sheet_name=package, skiprows=[0])
+
+    if fw == 'pfc':
+        col = 3
+    elif fw == 'cc':
+        col = 5
+    else:
+        print("Don't support family", fw)
+        return
 
     with pd.ExcelWriter(excel, mode='a', if_sheet_exists='overlay') as writer:
     
         for index, row in data.iterrows():
 
+            with open('disasm_hash/' + row['lib'] + '-build_hash.json', 'r') as f:
+                build_j = json.load(f)
+            
             if row['function'] not in build_j.keys():
-                print("No function", row['function'], "in build\n")
+                print("Don't find function", row['function'], "in", row['lib'])
                 continue
 
+            with open('disasm_hash/' + row['lib'] +'-fw-' + fw + '_hash.json', 'r') as f:
+                fw_j = json.load(f)
+
             print(row['function'])
-            result = match_function(row['reference'], build_j[row['function']], fw_j)
+            result = match_function(row[fw + '-reference'], build_j[row['function']], fw_j)
             df = pd.DataFrame([result])
-            df.to_excel(writer, sheet_name=lib_name, startrow=index+2, startcol=3, header=False, index=False)
+            df.to_excel(writer, sheet_name=package, startrow=index+2, startcol=col, header=False, index=False)
 
 evaluate('libssh2', 'pfc')
