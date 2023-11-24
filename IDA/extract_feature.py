@@ -9,8 +9,7 @@ def get_func_for_build():
     with open('func_list.csv', 'r') as f:
         r = csv.reader(f, delimiter=',')
         for row in r:
-            for item in row:
-                func_name.append(item)
+            func_name.append(row[-1])
     return func_name
 
 def dump_function_details(ea):
@@ -46,7 +45,7 @@ if 'build' in file_name:
                 disasm_dic[name] = disasm
                 print(name, 'done')
             else:
-                print('skip', name, 'less than five basic blocks')
+                print('Skip', name, 'less than five basic blocks')
 else:
     func_cnt = 0
     for ea in Functions():
@@ -55,6 +54,7 @@ else:
         if len(disasm) > 0:
             disasm_dic[name] = disasm
             func_cnt += 1
+    disasm_dic['num'] = func_cnt
     print(func_cnt, 'done')
 
 disasm_json = json.dumps(disasm_dic)

@@ -3,11 +3,10 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-dir_raw = 'disasm_raw/'
-dir_norm = 'disasm_hash/'
+lib_name = 'dbus'
 
-lib_name = 'libdbus'
-
+dir_raw = 'disasm_raw/' + lib_name +'/'
+dir_norm = 'disasm_hash/' + lib_name + '/'
 
 def sanitize_arm(disasm_dic):
     hash_dic = {}
@@ -113,10 +112,7 @@ for file_name in os.listdir(dir_raw):
 
     hash_dic = {}
 
-    if lib_name not in file_name:
-        continue
-
-    if 'x86' not in file_name and 'iot' not in file_name:
+    if 'daemon' not in file_name:
         continue
 
     print(file_name)
@@ -126,11 +122,18 @@ for file_name in os.listdir(dir_raw):
 
     arch = contents_j['arch']
     del contents_j['arch']
+    
+    if 'fw' in file_name:
+        num = contents_j['num']
+        del contents_j['num']
 
     if arch == 'arm':
         hash_dic = sanitize_arm(contents_j)
     else:
         hash_dic = sanitize_x86(contents_j)
+
+    if 'fw' in file_name:
+        hash_dic['num'] = num
 
     hash_json = json.dumps(hash_dic)
     with open(dir_norm + file_name.split('_')[0] + '_hash.json', 'w') as f:
