@@ -1,0 +1,11 @@
+forward_query,dnsmasq,Top-1 (11)
+parse_server,dnsmasq,Not Found
+pre_allocate_sfds,dnsmasq,Top-25 (not max)
+check_servers,dnsmasq,Not Found
+local_bind,dnsmasq,Top-1 (4)
+send_from,dnsmasq,Top-1 (1)
+check_dns_listeners,dnsmasq,Not Found
+tcp_interface,dnsmasq,Top-25 (3) (tie)
+receive_query,dnsmasq,Top-25+bb_hash (16)
+set_dns_listeners,dnsmasq,Not Found
+add_resource_record,dnsmasq,Not Found

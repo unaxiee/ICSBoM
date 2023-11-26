@@ -1,6 +1,7 @@
 from tlsh import diff
 import json
 import pandas as pd
+import csv
 
 def create_select_list(num):
     select_list = []
@@ -50,7 +51,7 @@ def match_function(ref, build_dic, fw_j):
 
     if not found:
         print('Not found in Top-', list_len, '\n')
-        return ''
+        return 'Not Found'
 
     max_sim_bb = 0
     select = []
@@ -91,14 +92,18 @@ def evaluate(package, fw, ver):
         return
     arch = fw_config_dic[fw]
     
-    data = pd.read_csv('test.csv')
+    data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + str(ver) + '_func_lib.csv')
 
     for idx, row in data.iterrows():
+        if row['lib'] == 'not found':
+            print(row['function'], 'not found in firmware\n')
+            continue
 
         with open('disasm_hash/' + package + '/' + row['lib'] + '-build-' + arch + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
+            print(row['function'], 'not found in build', row['lib'], '\n')
             continue
     
         with open('disasm_hash/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + str(ver) + '_hash.json', 'r') as f:
@@ -108,14 +113,16 @@ def evaluate(package, fw, ver):
         print(row['function'])
 
         result = match_function(row['function'], build_j[row['function']], fw_j)
-        df = pd.DataFrame([result])
-        df.to_csv('test_1.csv', index=False, header=False, mode='a')
 
+        with open('output/' + package + '/' + package + '_' + fw + '_' + str(ver) + '_result.csv', 'a') as f:
+            wr = csv.writer(f)
+            wr.writerow([row['function'], row['lib'], result])
 
 fw_config_dic = {
     'pfc': 'arm',
     'cc': 'arm',
+    'tp': 'arm',
     'iot2000': 'x86'
 }
 
-evaluate('dbus', 'pfc', 26)
+evaluate('openssl', 'iot2000', 3)

@@ -1,0 +1,24 @@
+ec_scalar_mul_ladder,libcrypto,Top-1 (13)
+EC_GROUP_set_generator,libcrypto,Top-25+bb_hash (6)
+level_add_node,libcrypto,Not Found
+BIO_new_NDEF,libcrypto,Not Found
+EVP_DecryptUpdate,libcrypto,Not Found
+sm2_verify,libcrypto,Not Found
+ndef_suffix,libcrypto,Top-25 (2) (tie)
+PKCS7_dataDecode,libcrypto,Top-25+bb_hash (13)
+chacha20_poly1305_ctrl,libcrypto,Top-25+bb_hash (8)
+GENERAL_NAME_cmp,libcrypto,Top-1 (2)
+X509_issuer_and_serial_hash,libcrypto,Not Found
+GENERAL_NAME_get0_value,libcrypto,Not Found
+EC_GROUP_new_from_ecparameters,libcrypto,Top-25+bb_hash (26)
+pkcs7_decrypt_rinfo,libcrypto,Not Found
+OBJ_obj2txt,libcrypto,Not Found
+evp_EncryptDecryptUpdate,libcrypto,Top-25+bb_hash (7)
+check_policy,libcrypto,Not Found
+level_find_node,libcrypto,Top-1 (1)
+DH_check,libcrypto,Top-1 (13)
+CMS_decrypt,libcrypto,Top-1 (6)
+PEM_read_bio_ex,libcrypto,Top-25 (6) (tie)
+rsa_ossl_private_decrypt,libcrypto,Top-1 (17)
+BN_mod_sqrt,libcrypto,Not Found
+RAND_DRBG_generate,libcrypto,Not Found

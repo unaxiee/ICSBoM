@@ -3,7 +3,7 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-lib_name = 'dbus'
+lib_name = 'openssl'
 
 dir_raw = 'disasm_raw/' + lib_name +'/'
 dir_norm = 'disasm_hash/' + lib_name + '/'
@@ -111,9 +111,6 @@ def sanitize_x86(disasm_dic):
 for file_name in os.listdir(dir_raw):
 
     hash_dic = {}
-
-    if 'daemon' not in file_name:
-        continue
 
     print(file_name)
 

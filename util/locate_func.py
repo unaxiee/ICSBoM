@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'dbus'
+lib = 'openssl'
 fw = 'fw-iot2000-3'
 
 func_set = set()
@@ -11,6 +11,7 @@ with open('../IDA/func_list/' + lib + '_func_list.csv', 'r') as f:
     for line in lines:
         line = line[:-1].split(',')
         func_set.add(line[-1])
+print(len(func_set))
 
 func_dic = {}
 for func in func_set:
@@ -20,6 +21,7 @@ path = '../select_lib/' + fw + '/'
 for lib_ver in os.listdir(path):
     if lib in lib_ver:
         print(lib_ver)
+
         # path += lib_ver + '/usr/'
         # for dir in os.listdir(path):
         #     if dir in ['bin', 'lib']:
@@ -30,6 +32,7 @@ for lib_ver in os.listdir(path):
         #                 for func in func_set:
         #                     if func in strings_out:
         #                         func_dic[func].append(bin)
+
         path += lib_ver
         for bin in os.listdir(path):
             strings_out = subprocess.run(['strings', path + '/' + bin], capture_output=True, text=True).stdout.split('\n')
@@ -40,13 +43,12 @@ for lib_ver in os.listdir(path):
 for key, value in func_dic.items():
     print(key, value)
 
-with open('test.csv', 'w') as f:
+with open('func_lib/' + lib + '/' + lib + '_' + fw + '_func_lib.csv', 'w') as f:
     wr = csv.writer(f)
     wr.writerow(['function', 'lib'])
 
     for key, value in func_dic.items():
-        print(key, value)
         if len(value) > 0:
             wr.writerow([key, value[0].split('.')[0]])
         else:
-            wr.writerow([key])
+            wr.writerow([key, 'not found'])
