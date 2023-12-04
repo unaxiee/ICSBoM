@@ -1,0 +1,55 @@
+function,lib
+test_alt_chains_cert_forgery,not found
+PEM_read_bio_ex,libcrypto
+GENERAL_NAME_dup,libcrypto
+ERR_load_EVP_strings,libcrypto
+level_add_node,libcrypto
+rand_drbg_cleanup_additional_data,libcrypto
+pkey_sm2_decrypt,libcrypto
+DH_check,libcrypto
+PKCS7_dataDecode,libcrypto
+EVP_DecryptUpdate,libcrypto
+chacha20_poly1305_ctrl,libcrypto
+init_sig_algs,libssl
+ndef_suffix,libcrypto
+rsa_ossl_private_decrypt,libcrypto
+BIO_new_NDEF,libcrypto
+cms_RecipientInfo_ktri_decrypt,libcrypto
+tree_link_matching_nodes,libcrypto
+OPENSSL_fork_parent,libcrypto
+EC_GROUP_set_generator,libcrypto
+RAND_DRBG_generate,libcrypto
+pkcs7_decrypt_rinfo,libcrypto
+check_chain_extensions,libcrypto
+ec_field_size,libcrypto
+GENERAL_NAME_get0_value,libcrypto
+test_modexp_mont5,not found
+tree_find_sk,libcrypto
+tree_add_unmatched,libcrypto
+tree_init,libcrypto
+test_rand_drbg_reseed,not found
+sm2_verify,libcrypto
+evp_EncryptDecryptUpdate,libcrypto
+GENERAL_NAME_cmp,libcrypto
+test_sm2_crypt,not found
+openssl_init_fork_handlers,libcrypto
+BN_mod_sqrt,libcrypto
+EC_GROUP_new_from_ecparameters,libcrypto
+GENERAL_NAME_set0_value,libcrypto
+level_find_node,libcrypto
+ec_scalar_mul_ladder,libcrypto
+tls1_check_sig_alg,libssl
+rand_drbg_new,libcrypto
+pkcs7_encode_rinfo,libcrypto
+dsa_sign_setup,not found
+test_drbg_reseed,not found
+check_policy,not found
+CMS_decrypt,libcrypto
+tree_link_nodes,libcrypto
+OBJ_obj2txt,libcrypto
+ossl_bn_rsa_do_unblind,not found
+X509_issuer_and_serial_hash,libcrypto
+tree_link_any,libcrypto
+tree_calculate_user_set,libcrypto
+tree_evaluate,libcrypto
+EC_METHOD_get_field_type,libcrypto

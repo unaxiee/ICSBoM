@@ -1,0 +1,6 @@
+function,lib
+rpcapd_recv,not found
+create_ring,libpcap
+daemon_AuthUserPwd,not found
+daemon_msg_findallif_req,not found
+pcap_ng_check_header,libpcap

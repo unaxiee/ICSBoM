@@ -1,0 +1,4 @@
+function,lib
+__svc_destroy_idle,not found
+rendezvous_request,libtirpc
+svc_open_fds,not found

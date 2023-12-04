@@ -1,0 +1,21 @@
+function,lib
+START_TEST,not found
+prologProcessor,libexpat
+externalParEntProcessor,libexpat
+make_suite,not found
+XML_ExternalEntityParserCreate,libexpat
+internalEntityProcessor,libexpat
+processInternalEntity,libexpat
+nextScaffoldPart,libexpat
+doProlog,libexpat
+setElementTypePrefix,libexpat
+build_model,libexpat
+initializeEncoding,libexpat
+addBinding,libexpat
+storeAtts,libexpat
+XML_GetBuffer,libexpat
+defineAttribute,libexpat
+PREFIX,not found
+parserCreate,libexpat
+lookup,libexpat
+XML_ParserCreate,libexpat

@@ -1,0 +1,55 @@
+function,lib
+ERR_load_EVP_strings,libcrypto
+GENERAL_NAME_set0_value,libcrypto
+level_find_node,libcrypto
+tree_find_sk,libcrypto
+sm2_verify,libcrypto
+DH_check,libcrypto
+X509_issuer_and_serial_hash,libcrypto
+tree_add_unmatched,not found
+EC_METHOD_get_field_type,libcrypto
+BIO_new_NDEF,libcrypto
+pkcs7_encode_rinfo,libcrypto
+EVP_DecryptUpdate,libcrypto
+check_policy,libcrypto
+GENERAL_NAME_get0_value,libcrypto
+rsa_ossl_private_decrypt,libcrypto
+rand_drbg_new,not found
+test_sm2_crypt,not found
+evp_EncryptDecryptUpdate,libcrypto
+tree_evaluate,not found
+PEM_read_bio_ex,libcrypto
+init_sig_algs,libssl
+RAND_DRBG_generate,libcrypto
+EC_GROUP_set_generator,libcrypto
+tree_link_nodes,not found
+GENERAL_NAME_cmp,libcrypto
+OBJ_obj2txt,libcrypto
+ec_field_size,libcrypto
+tree_link_matching_nodes,not found
+ossl_bn_rsa_do_unblind,not found
+tree_link_any,not found
+CMS_decrypt,libcrypto
+GENERAL_NAME_dup,libcrypto
+ndef_suffix,libcrypto
+pkey_sm2_decrypt,libcrypto
+OPENSSL_fork_parent,libcrypto
+dsa_sign_setup,not found
+tls1_check_sig_alg,not found
+tree_calculate_user_set,not found
+EC_GROUP_new_from_ecparameters,libcrypto
+test_alt_chains_cert_forgery,not found
+PKCS7_dataDecode,libcrypto
+rand_drbg_cleanup_additional_data,libcrypto
+openssl_init_fork_handlers,libcrypto
+test_rand_drbg_reseed,not found
+chacha20_poly1305_ctrl,libcrypto
+cms_RecipientInfo_ktri_decrypt,libcrypto
+pkcs7_decrypt_rinfo,libcrypto
+BN_mod_sqrt,libcrypto
+test_modexp_mont5,not found
+check_chain_extensions,not found
+tree_init,libcrypto
+test_drbg_reseed,not found
+ec_scalar_mul_ladder,libcrypto
+level_add_node,libcrypto

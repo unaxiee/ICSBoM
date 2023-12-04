@@ -1,0 +1,35 @@
+function,lib
+safe_strncpy,dnsmasq
+forward_query,dnsmasq
+parse_server,dnsmasq
+check_date_range,not found
+pre_allocate_sfds,dnsmasq
+check_servers,dnsmasq
+local_bind,dnsmasq
+dhcp6_maybe_relay,not found
+send_from,dnsmasq
+dhcp6_reply,not found
+hostname_cmp,not found
+check_tftp_listeners,not found
+sort_rrset,not found
+tftp_request,not found
+dnssec_generate_query,not found
+check_dns_listeners,dnsmasq
+tcp_interface,dnsmasq
+receive_query,dnsmasq
+prove_non_existence_nsec3,not found
+enumerate_interfaces,dnsmasq
+prove_non_existence,not found
+parse_dhcp_opt,not found
+do_options,not found
+add_options,not found
+from_wire,not found
+get_rdata,not found
+validate_rrset,not found
+set_dns_listeners,dnsmasq
+prove_non_existence_nsec,not found
+dhcp6_no_relay,not found
+check_for_ignored_address,dnsmasq
+join_multicast,not found
+add_resource_record,dnsmasq
+process_reply,dnsmasq

@@ -1,0 +1,55 @@
+function,lib
+pkey_sm2_decrypt,libcrypto
+PKCS7_dataDecode,libcrypto
+tree_add_unmatched,not found
+level_add_node,libcrypto
+ec_scalar_mul_ladder,libcrypto
+evp_EncryptDecryptUpdate,libcrypto
+ndef_suffix,libcrypto
+rsa_ossl_private_decrypt,libcrypto
+test_sm2_crypt,not found
+X509_issuer_and_serial_hash,libcrypto
+GENERAL_NAME_set0_value,libcrypto
+tree_evaluate,not found
+tree_find_sk,libcrypto
+ossl_bn_rsa_do_unblind,not found
+GENERAL_NAME_get0_value,libcrypto
+EC_METHOD_get_field_type,libcrypto
+CMS_decrypt,libcrypto
+openssl_init_fork_handlers,libcrypto
+EC_GROUP_new_from_ecparameters,libcrypto
+pkcs7_encode_rinfo,libcrypto
+tree_init,libcrypto
+chacha20_poly1305_ctrl,libcrypto
+test_rand_drbg_reseed,not found
+ec_field_size,libcrypto
+init_sig_algs,libssl
+ERR_load_EVP_strings,libcrypto
+tree_calculate_user_set,not found
+BIO_new_NDEF,libcrypto
+dsa_sign_setup,not found
+EVP_DecryptUpdate,libcrypto
+sm2_verify,libcrypto
+tree_link_nodes,not found
+PEM_read_bio_ex,libcrypto
+GENERAL_NAME_cmp,libcrypto
+rand_drbg_new,not found
+BN_mod_sqrt,libcrypto
+test_alt_chains_cert_forgery,not found
+DH_check,libcrypto
+pkcs7_decrypt_rinfo,libcrypto
+rand_drbg_cleanup_additional_data,libcrypto
+test_drbg_reseed,not found
+tls1_check_sig_alg,not found
+test_modexp_mont5,not found
+level_find_node,libcrypto
+check_policy,libcrypto
+GENERAL_NAME_dup,libcrypto
+tree_link_any,not found
+cms_RecipientInfo_ktri_decrypt,libcrypto
+EC_GROUP_set_generator,libcrypto
+check_chain_extensions,not found
+tree_link_matching_nodes,not found
+RAND_DRBG_generate,libcrypto
+OPENSSL_fork_parent,libcrypto
+OBJ_obj2txt,libcrypto
