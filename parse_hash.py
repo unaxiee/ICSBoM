@@ -3,7 +3,7 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-lib_name = 'openssl'
+lib_name = 'curl'
 
 dir_raw = 'disasm_raw/' + lib_name +'/'
 dir_norm = 'disasm_hash/' + lib_name + '/'

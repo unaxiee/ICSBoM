@@ -125,4 +125,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('openssl', 'iot2000', 3)
+evaluate('curl', 'pfc', 26)

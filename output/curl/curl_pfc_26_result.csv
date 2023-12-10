@@ -1,0 +1,59 @@
+ftp_parse_url_path,libcurl,Top-25 (2) (tie)
+Curl_follow,libcurl,Not Found
+curl_share_cleanup,libcurl,Top-25 (0) (tie)
+ssh_statemach_act,libcurl,Top-1 (3)
+Curl_strerror,libcurl,Not Found
+ossl_new_session_cb,libcurl,Not Found
+Curl_add_custom_headers,libcurl,Not Found
+smtp_done,libcurl,Top-25 (0) (tie)
+Curl_http_output_auth,libcurl,Top-25 (0) (tie)
+Curl_ssl_delsessionid,libcurl,Not Found
+servercert,libcurl,Top-25 (0) (tie)
+Curl_auth_create_plain_message,libcurl,Not Found
+hsts_create,libcurl,Not Found
+Curl_retry_request,libcurl,Not Found
+Curl_http,libcurl,Top-25 (not max)
+Curl_resolv,libcurl,Not Found
+hsts_pull,libcurl,Not Found
+Curl_http_host,libcurl,Top-25 (0) (tie)
+smtp_endofresp,libcurl,Not Found
+Curl_http_header,libcurl,Top-25 (not max)
+Curl_hostcache_prune,libcurl,Top-25 (0) (tie)
+Curl_open,libcurl,Not Found
+curl_url_set,libcurl,Not Found
+Curl_http_done,libcurl,Not Found
+Curl_strntolower,libcurl,Not Found
+Curl_clone_primary_ssl_config,libcurl,Top-25 (0) (tie)
+tftp_connect,libcurl,Not Found
+curl_easy_duphandle,libcurl,Not Found
+Curl_smtp_escape_eob,libcurl,Top-25 (0) (tie)
+curl_multi_add_handle,libcurl,Top-25 (0) (tie)
+Curl_http_bodysend,libcurl,Top-25 (not max)
+Curl_hsts,libcurl,Not Found
+Curl_vsetopt,libcurl,Top-25 (6) (tie)
+Curl_ssl_addsessionid,libcurl,Top-25 (0) (tie)
+Curl_pretransfer,libcurl,Not Found
+curl_easy_unescape,libcurl,Not Found
+Curl_http_readwrite_headers,libcurl,Top-25 (not max)
+Curl_pp_readresp,libcurl,Top-25 (0) (tie)
+curl_share_setopt,libcurl,Not Found
+close_connect_only,libcurl,Not Found
+ossl_connect_step1,libcurl,Top-25 (5) (tie)
+Curl_ssl_config_matches,libcurl,Not Found
+dprintf_formatf,libcurl,Top-25 (not max)
+Curl_getconnectinfo,libcurl,Top-25 (not max)
+ftp_do_more,libcurl,Top-25 (0) (tie)
+multi_done,libcurl,Not Found
+Curl_http_auth_act,libcurl,Not Found
+Curl_close,libcurl,Not Found
+Curl_cert_hostcheck,libcurl,Not Found
+Curl_http_body,libcurl,Not Found
+ftp_state_prepare_transfer,libcurl,Not Found
+Curl_build_unencoding_stack,libcurl,Not Found
+Curl_setstropt,libcurl,Not Found
+Curl_urldecode,libcurl,Not Found
+curl_multi_remove_handle,libcurl,Not Found
+tftp_send_first,libcurl,Not Found
+ftp_statemachine,libcurl,Top-25 (not max)
+Curl_http_method,libcurl,Not Found
+Curl_ssl_getsessionid,libcurl,Top-25 (0) (tie)
