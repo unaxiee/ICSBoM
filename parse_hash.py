@@ -3,7 +3,7 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-lib_name = 'curl'
+lib_name = 'ncurses'
 
 dir_raw = 'disasm_raw/' + lib_name +'/'
 dir_norm = 'disasm_hash/' + lib_name + '/'

@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import csv
 
-lib = 'curl'
+lib = 'ncurses'
 
 client = MongoClient('localhost', 27017)
 db = client['lib_vul_db']
