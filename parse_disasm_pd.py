@@ -61,55 +61,43 @@ def sanitize_arm(disasm_dic):
 
 
 def sanitize_x86(disasm_dic):
-    func_dic = {}
-
     # for each function
     for key_func, value_func in disasm_dic.items():
-        disasm_norm = ''
-        bb_dic = dict()
+        
         # for each basic block
-        for key, value in value_func.items():
-            if key == 'preds':
-                preds = value
-            elif key == 'succs':
-                succs = value
-            else:
-                bb_disasm_norm = []
-                for ins_disasm in value:                              # type: str
-                    if ';' in ins_disasm:
-                        ins_disasm = ins_disasm[:ins_disasm.index(';')]
+        for key_bb, value_bb in value_func.items():
+            bb_disasm_norm = []
+            bb_disasm = value_bb['disasm']
 
-                    ins_disasm = ins_disasm.replace(',', '').split()      # type: list
-                    
-                    for op in ins_disasm:
-                        if op.endswith('h') and len(op)!=4:
-                            ins_disasm[ins_disasm.index(op)] = 'imm'
-                        elif len(op)==1 and op.isnumeric():
-                            ins_disasm[ins_disasm.index(op)] = 'imm'
-                        elif op.startswith('loc'):
-                            ins_disasm[ins_disasm.index(op)] = 'addr'
-                        elif '+' in op and ']' in op:
-                            op_new = op[:op.index('+')] + '+imm]'
-                            ins_disasm[ins_disasm.index(op)] = op_new
-                        elif '-' in op and ']' in op:
-                            op_new = op[:op.index('-')] + '-imm]'
-                            ins_disasm[ins_disasm.index(op)] = op_new
-                        elif '_' in op:
-                            ins_disasm[ins_disasm.index(op)] = 'func'
-                    
-                    ins_disasm = ' '.join(ins_disasm)
-                        
-                    bb_disasm_norm.append(ins_disasm)                 # type: list
+            for ins_disasm in bb_disasm:                              # type: str
+                if ';' in ins_disasm:
+                    ins_disasm = ins_disasm[:ins_disasm.index(';')]
 
-                bb_dic[key] = bb_disasm_norm
+                ins_disasm = ins_disasm.replace(',', '').split()      # type: list
                 
-        func_dic[key_func] = {
-            'disasm': bb_dic,
-            'preds': preds,
-            'succs': succs
-        }
+                for op in ins_disasm:
+                    if op.endswith('h') and len(op)!=4:
+                        ins_disasm[ins_disasm.index(op)] = 'imm'
+                    elif len(op)==1 and op.isnumeric():
+                        ins_disasm[ins_disasm.index(op)] = 'imm'
+                    elif op.startswith('loc'):
+                        ins_disasm[ins_disasm.index(op)] = 'addr'
+                    elif '+' in op and ']' in op:
+                        op_new = op[:op.index('+')] + '+imm]'
+                        ins_disasm[ins_disasm.index(op)] = op_new
+                    elif '-' in op and ']' in op:
+                        op_new = op[:op.index('-')] + '-imm]'
+                        ins_disasm[ins_disasm.index(op)] = op_new
+                    elif '_' in op:
+                        ins_disasm[ins_disasm.index(op)] = 'func'
+                
+                ins_disasm = ' '.join(ins_disasm)
+                    
+                bb_disasm_norm.append(ins_disasm)                 # type: list
 
-    return func_dic
+            disasm_dic[key_func][key_bb]['disasm'] = bb_disasm_norm
+
+    return disasm_dic
 
 
 for file_name in os.listdir(dir_raw):

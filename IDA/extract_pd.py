@@ -21,22 +21,25 @@ def dump_function_details(ea):
             bb_disasm = []
             for head in Heads(bb.start_ea, bb.end_ea):
                 bb_disasm.append(GetDisasm(head))
-            disasm[bb.start_ea] = bb_disasm
+
+            preds_list = []
+            if bb.preds():
+                for preds_bb in bb.preds():
+                    preds_list.append(preds_bb.start_ea)
+
+            succs_list = []
+            if bb.succs():
+                for succs_bb in bb.succs():
+                    succs_list.append(succs_bb.start_ea)
+
+            disasm[bb.start_ea] = {
+                'disasm': bb_disasm,
+                'preds': preds_list,
+                'succs': succs_list
+            }
             cnt += 1
 
     if cnt > 5:
-        preds_list = []
-        if bb.preds():
-            for preds_bb in bb.preds():
-                preds_list.append(preds_bb.start_ea)
-            print(preds_list)
-        disasm['preds'] = preds_list
-        succs_list = []
-        if bb.succs():
-            for succs_bb in bb.succs():
-                succs_list.append(succs_bb.start_ea)
-            print(succs_list)
-        disasm['succs'] = succs_list
         return disasm
     else:
         return None
