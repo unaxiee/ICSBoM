@@ -47,7 +47,7 @@ file_name = get_root_filename()
 procname = get_inf_structure().procname.lower()
 disasm_dic = {'arch': procname}
 
-if 'build' in file_name:
+if 'fw' not in file_name:
     func_name = get_func_for_build()
     for ea in Functions():
         name = get_func_name(ea)
