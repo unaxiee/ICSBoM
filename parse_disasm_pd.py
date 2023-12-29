@@ -96,6 +96,8 @@ def sanitize_x86(disasm_dic):
                 bb_disasm_norm.append(ins_disasm)                 # type: list
 
             disasm_dic[key_func][key_bb]['disasm'] = bb_disasm_norm
+            bb_disasm_norm_str = ''.join(ins for ins in bb_disasm_norm)
+            disasm_dic[key_func][key_bb]['hash'] = md5(bb_disasm_norm_str.encode()).hexdigest()
 
     return disasm_dic
 
