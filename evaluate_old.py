@@ -57,9 +57,9 @@ def match_function(ref, build_dic, fw_j):
     select = []
     for select_item in select_list:
         sim_bb = 0
-        for key_build, value_bb_hash in build_dic['bb_hash'].items():
-            for key_sel, value_bb_hash_sel in select_item['bb_hash'].items():
-                if value_bb_hash == value_bb_hash_sel:
+        for bb_hash in build_dic['bb_hash']:
+            for bb_hash_sel in select_item['bb_hash']:
+                if bb_hash == bb_hash_sel:
                     sim_bb += 1
                     break
 
@@ -125,4 +125,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('expat', 'iot2000', 3)
+evaluate('ncurses', 'tp', 26)

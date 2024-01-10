@@ -1,0 +1,13 @@
+processInternalEntity,libexpat,Top-1 (5)
+internalEntityProcessor,libexpat,Top-1 (7)
+defineAttribute,libexpat,Top-25+bb_hash (3)
+parserCreate,libexpat,Top-1 (3)
+lookup,libexpat,Top-1 (4)
+XML_ExternalEntityParserCreate,libexpat,Top-25+bb_hash (17)
+storeAtts,libexpat,Top-1 (38)
+setElementTypePrefix,libexpat,Top-1 (8)
+nextScaffoldPart,libexpat,Top-25+bb_hash (2)
+doProlog,libexpat,Top-1 (131)
+addBinding,libexpat,Top-25+bb_hash (6)
+externalParEntProcessor,libexpat,Top-1 (0)
+XML_GetBuffer,libexpat,Not Found

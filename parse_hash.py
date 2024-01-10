@@ -3,21 +3,22 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-lib_name = 'ncurses'
+pkg_name = 'expat'
 
-dir_raw = 'disasm_raw/' + lib_name +'/'
-dir_norm = 'disasm_hash/' + lib_name + '/'
+dir_raw = 'disasm_raw/' + pkg_name +'/'
+dir_norm = 'disasm_hash/' + pkg_name + '/'
 
 def sanitize_arm(disasm_dic):
     hash_dic = {}
 
-    for key, value in disasm_dic.items():
+    # for each function
+    for key_func, value_func in disasm_dic.items():
         disasm_norm = ''
-        bb_hash = []
-
-        for bb_disasm in value:
+        bb_hash = {}
+        # for each basic_block
+        for key_bb, value_bb in value_func.items():
+            bb_disasm = value_bb['disasm']
             bb_disasm_norm = []
-
             for ins_disasm in bb_disasm:                              # type: str
                 if ';' in ins_disasm:
                     ins_disasm = ins_disasm[:ins_disasm.index(';')]
@@ -47,12 +48,11 @@ def sanitize_arm(disasm_dic):
                 bb_disasm_norm += ins_disasm + ['\n']                 # type: list
 
             bb_disasm_norm = ''.join(op for op in bb_disasm_norm)     # type: str
-            # print(bb_disasm_norm)
-            bb_hash.append(md5(bb_disasm_norm.encode()).hexdigest())
+            bb_hash[key_bb] = md5(bb_disasm_norm.encode()).hexdigest()
 
             disasm_norm += bb_disasm_norm                             # type: str
             
-        hash_dic[key] = {
+        hash_dic[key_func] = {
             'func_hash': hash(disasm_norm.encode()),
             'bb_hash': bb_hash 
         }
@@ -63,13 +63,14 @@ def sanitize_arm(disasm_dic):
 def sanitize_x86(disasm_dic):
     hash_dic = {}
 
-    for key, value in disasm_dic.items():
+    # for each function
+    for key_func, value_func in disasm_dic.items():
         disasm_norm = ''
-        bb_hash = []
-
-        for bb_disasm in value:
+        bb_hash = dict()
+        # for each basic block
+        for key_bb, value_bb in value_func.items():
+            bb_disasm = value_bb['disasm']
             bb_disasm_norm = []
-
             for ins_disasm in bb_disasm:                              # type: str
                 if ';' in ins_disasm:
                     ins_disasm = ins_disasm[:ins_disasm.index(';')]
@@ -95,14 +96,13 @@ def sanitize_x86(disasm_dic):
                 bb_disasm_norm += ins_disasm + ['\n']                 # type: list
 
             bb_disasm_norm = ''.join(op for op in bb_disasm_norm)     # type: str
-            # print(bb_disasm_norm)
-            bb_hash.append(md5(bb_disasm_norm.encode()).hexdigest())
+            bb_hash[key_bb] = md5(bb_disasm_norm.encode()).hexdigest()
 
             disasm_norm += bb_disasm_norm                             # type: str
-            
-        hash_dic[key] = {
+                
+        hash_dic[key_func] = {
             'func_hash': hash(disasm_norm.encode()),
-            'bb_hash': bb_hash 
+            'bb_hash': bb_hash,
         }
 
     return hash_dic

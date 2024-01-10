@@ -5,29 +5,44 @@ import json
 
 
 def get_func_for_build():
-    func_name = []
+    func_name = set()
     with open('func_list.csv', 'r') as f:
         r = csv.reader(f, delimiter=',')
         for row in r:
-            func_name.append(row[-1])
+            func_name.add(row[-1])
     return func_name
 
 def dump_function_details(ea):
-    disasm = []
+    disasm = dict()
     cnt = 0
 
-    for bb in FlowChart(get_func(ea)):
+    for bb in FlowChart(get_func(ea), flags=FC_PREDS):
         if bb.start_ea != bb.end_ea:
             bb_disasm = []
             for head in Heads(bb.start_ea, bb.end_ea):
                 bb_disasm.append(GetDisasm(head))
-            disasm.append(bb_disasm)
+
+            preds_list = []
+            if bb.preds():
+                for preds_bb in bb.preds():
+                    preds_list.append(preds_bb.start_ea)
+
+            succs_list = []
+            if bb.succs():
+                for succs_bb in bb.succs():
+                    succs_list.append(succs_bb.start_ea)
+
+            disasm[bb.start_ea] = {
+                'disasm': bb_disasm,
+                'preds': preds_list,
+                'succs': succs_list
+            }
             cnt += 1
 
     if cnt > 5:
         return disasm
     else:
-        return []
+        return None
 
 
 file_name = get_root_filename()
@@ -35,23 +50,26 @@ file_name = get_root_filename()
 procname = get_inf_structure().procname.lower()
 disasm_dic = {'arch': procname}
 
-if 'build' in file_name:
+if 'fw' not in file_name:
     func_name = get_func_for_build()
+    found_func = set()
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
+            found_func.add(name)
             disasm = dump_function_details(ea)
-            if len(disasm) > 0:
+            if disasm:
                 disasm_dic[name] = disasm
                 print(name, 'done')
             else:
                 print('Skip', name, 'less than five basic blocks')
+    print('Cannot find', func_name - found_func)
 else:
     func_cnt = 0
     for ea in Functions():
         name = get_func_name(ea)
         disasm = dump_function_details(ea)
-        if len(disasm) > 0:
+        if disasm:
             disasm_dic[name] = disasm
             func_cnt += 1
     disasm_dic['num'] = func_cnt

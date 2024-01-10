@@ -5,44 +5,29 @@ import json
 
 
 def get_func_for_build():
-    func_name = set()
+    func_name = []
     with open('func_list.csv', 'r') as f:
         r = csv.reader(f, delimiter=',')
         for row in r:
-            func_name.add(row[-1])
+            func_name.append(row[-1])
     return func_name
 
 def dump_function_details(ea):
-    disasm = dict()
+    disasm = []
     cnt = 0
 
-    for bb in FlowChart(get_func(ea), flags=FC_PREDS):
+    for bb in FlowChart(get_func(ea)):
         if bb.start_ea != bb.end_ea:
             bb_disasm = []
             for head in Heads(bb.start_ea, bb.end_ea):
                 bb_disasm.append(GetDisasm(head))
-
-            preds_list = []
-            if bb.preds():
-                for preds_bb in bb.preds():
-                    preds_list.append(preds_bb.start_ea)
-
-            succs_list = []
-            if bb.succs():
-                for succs_bb in bb.succs():
-                    succs_list.append(succs_bb.start_ea)
-
-            disasm[bb.start_ea] = {
-                'disasm': bb_disasm,
-                'preds': preds_list,
-                'succs': succs_list
-            }
+            disasm.append(bb_disasm)
             cnt += 1
 
     if cnt > 5:
         return disasm
     else:
-        return None
+        return []
 
 
 file_name = get_root_filename()
@@ -50,13 +35,13 @@ file_name = get_root_filename()
 procname = get_inf_structure().procname.lower()
 disasm_dic = {'arch': procname}
 
-if 'fw' not in file_name:
+if 'build' in file_name:
     func_name = get_func_for_build()
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
             disasm = dump_function_details(ea)
-            if disasm:
+            if len(disasm) > 0:
                 disasm_dic[name] = disasm
                 print(name, 'done')
             else:
@@ -66,7 +51,7 @@ else:
     for ea in Functions():
         name = get_func_name(ea)
         disasm = dump_function_details(ea)
-        if disasm:
+        if len(disasm) > 0:
             disasm_dic[name] = disasm
             func_cnt += 1
     disasm_dic['num'] = func_cnt
