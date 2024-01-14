@@ -125,4 +125,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('expat', 'pfc', 26)
+evaluate('expat', 'iot2000', 3)

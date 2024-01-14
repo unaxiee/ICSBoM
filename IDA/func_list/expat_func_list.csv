@@ -54,4 +54,4 @@ CVE-2022-25314,2.4.5,getElementType
 CVE-2022-25315,2.4.5,storeRawNames
 CVE-2022-40674,2.4.9,START_TEST
 CVE-2022-40674,2.4.9,make_suite
-CVE-2022-43680,2,parserCreate
+CVE-2022-43680,2.5.0,parserCreate

@@ -6,17 +6,16 @@ from hashlib import md5
 pkg_name = 'expat'
 
 dir_raw = 'disasm_raw/' + pkg_name +'/'
-dir_pd = 'disasm_pd/' + pkg_name + '/'
+dir_pd = 'disasm_norm/' + pkg_name + '/'
 
 def sanitize_arm(disasm_dic):
-    hash_dic = {}
-
-    for key, value in disasm_dic.items():
-        disasm_norm = ''
-        bb_hash = []
-
-        for bb_disasm in value:
+    # for each function
+    for key_func, value_func in disasm_dic.items():
+        
+        # for each basic block
+        for key_bb, value_bb in value_func.items():        
             bb_disasm_norm = []
+            bb_disasm = value_bb['disasm']
 
             for ins_disasm in bb_disasm:                              # type: str
                 if ';' in ins_disasm:
@@ -43,21 +42,16 @@ def sanitize_arm(disasm_dic):
                         ins_disasm[ins_disasm.index(op)] = 'func'
                     elif op.startswith('=(a'):
                         ins_disasm[ins_disasm.index(op)] = 'func'
+                    
+                ins_disasm = ' '.join(ins_disasm)
 
-                bb_disasm_norm += ins_disasm + ['\n']                 # type: list
+                bb_disasm_norm.append(ins_disasm)               # type: list
 
-            bb_disasm_norm = ''.join(op for op in bb_disasm_norm)     # type: str
-            # print(bb_disasm_norm)
-            bb_hash.append(md5(bb_disasm_norm.encode()).hexdigest())
+            disasm_dic[key_func][key_bb]['disasm'] = bb_disasm_norm
+            bb_disasm_norm_str = ''.join(ins for ins in bb_disasm_norm)
+            disasm_dic[key_func][key_bb]['hash'] = md5(bb_disasm_norm_str.encode()).hexdigest()
 
-            disasm_norm += bb_disasm_norm                             # type: str
-            
-        hash_dic[key] = {
-            'func_hash': hash(disasm_norm.encode()),
-            'bb_hash': bb_hash 
-        }
-
-    return hash_dic
+    return disasm_dic
 
 
 def sanitize_x86(disasm_dic):

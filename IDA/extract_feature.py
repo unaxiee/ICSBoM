@@ -50,20 +50,23 @@ file_name = get_root_filename()
 procname = get_inf_structure().procname.lower()
 disasm_dic = {'arch': procname}
 
+# for reference
 if 'fw' not in file_name:
     func_name = get_func_for_build()
     found_func = set()
     for ea in Functions():
         name = get_func_name(ea)
         if name in func_name:
-            found_func.add(name)
             disasm = dump_function_details(ea)
             if disasm:
                 disasm_dic[name] = disasm
+                found_func.add(name)
                 print(name, 'done')
             else:
                 print('Skip', name, 'less than five basic blocks')
-    print('Cannot find', func_name - found_func)
+    print('Extracted', len(found_func), '/', len(func_name))
+    print('Cannot extract', func_name - found_func)
+# for firmware
 else:
     func_cnt = 0
     for ea in Functions():

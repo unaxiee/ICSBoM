@@ -1,21 +1,23 @@
 function,lib
-XML_ParserCreate,libexpat
-build_model,libexpat
-initializeEncoding,libexpat
-PREFIX,not found
-externalParEntProcessor,libexpat
-storeAtts,libexpat
-doProlog,libexpat
 internalEntityProcessor,libexpat
 defineAttribute,libexpat
-XML_GetBuffer,libexpat
-lookup,libexpat
-parserCreate,libexpat
-processInternalEntity,libexpat
-addBinding,libexpat
-prologProcessor,libexpat
-START_TEST,not found
 XML_ExternalEntityParserCreate,libexpat
-make_suite,not found
+START_TEST,not found
 nextScaffoldPart,libexpat
 setElementTypePrefix,libexpat
+XML_GetBuffer,libexpat
+externalParEntProcessor,libexpat
+initializeEncoding,libexpat
+prologProcessor,libexpat
+storeAtts,libexpat
+PREFIX,not found
+parserCreate,libexpat
+build_model,libexpat
+make_suite,not found
+storeRawNames,libexpat
+getElementType,libexpat
+lookup,libexpat
+processInternalEntity,libexpat
+doProlog,libexpat
+addBinding,libexpat
+XML_ParserCreate,libexpat
