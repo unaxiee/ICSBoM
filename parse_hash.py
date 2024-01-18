@@ -110,6 +110,9 @@ def sanitize_x86(disasm_dic):
 
 for file_name in os.listdir(dir_raw):
 
+    if 'fw' not in file_name and 'build' not in file_name:
+        continue
+
     hash_dic = {}
 
     print(file_name)
