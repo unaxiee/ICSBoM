@@ -1,0 +1,8 @@
+CVE-2016-6515,7.3,auth_password
+CVE-2016-8858,7.4,kex_input_kexinit
+CVE-2018-20685,8.0,sink
+CVE-2020-12062,8.3,sink
+CVE-2021-28041,8.5,reaper
+CVE-2023-25136,9.1,compat_banner
+CVE-2023-25136,9.1,compat_cipher_proposal
+CVE-2023-25136,9.1,compat_pkalg_proposal

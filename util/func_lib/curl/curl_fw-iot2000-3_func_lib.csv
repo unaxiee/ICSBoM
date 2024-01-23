@@ -1,0 +1,232 @@
+function,lib
+Curl_raw_toupper,libcurl
+Curl_output_ntlm,libcurl
+post_per_transfer,not found
+main,not found
+Curl_free_ssl_config,not found
+sanitize_cookie_path,libcurl
+myssh_statemach_act,not found
+imap_done,not found
+ftp_statemach_act,libcurl
+getparameter,not found
+hostmatch,not found
+failf,not found
+Curl_connect_done,not found
+cyassl_connect_step1,not found
+curl_mprintf,libcurl
+connect_prep,not found
+ftp_done,libcurl
+Curl_hostcache_prune,libcurl
+fix_hostname,not found
+Curl_input_negotiate,not found
+wssh_statemach_act,not found
+ftp_state_list,not found
+ourWriteOut,not found
+setup_connection_internals,not found
+Curl_ssl_addsessionid,libcurl
+tftp_parse_option_ack,not found
+Curl_cookie_clearall,libcurl
+check_include_file_concat,not found
+Curl_build_unencoding_stack,libcurl
+config_init,not found
+Curl_http_bodysend,not found
+hsts_create,not found
+polarssl_connect_step1,not found
+curl_share_setopt,libcurl
+Curl_strerror,libcurl
+check_telnet_options,not found
+ConnectionExists,not found
+curl_easy_setopt,libcurl
+Curl_multiplex_wanted,libcurl
+on_header,not found
+parsedate,not found
+Curl_vsetopt,libcurl
+prune_dead_connections,not found
+ldap_recv,not found
+asn1_output,not found
+test_curl_off_t_formatting,not found
+Curl_resolv,libcurl
+read_data,not found
+Curl_urldecode,libcurl
+Curl_cookie_getlist,libcurl
+mqtt_send,not found
+tool_header_cb,not found
+nss_setup_connect,not found
+telnet_done,not found
+Curl_retry_request,libcurl
+close_all_connections,not found
+check_symbol_exists,not found
+krb5_decode,not found
+status_line,not found
+cookie_output,not found
+dup_cookie,not found
+Curl_ssl_sessionid_unlock,libcurl
+Curl_open,libcurl
+Curl_setopt,not found
+pop3_state_starttls_resp,not found
+servercert,not found
+multi_done,libcurl
+Curl_getconnectinfo,libcurl
+operate_do,not found
+smb_connect,not found
+win32_init,not found
+pmatch,not found
+conn_shutdown,not found
+dprintf_formatf,libcurl
+Curl_add_custom_headers,libcurl
+create_conn,not found
+bearssl_connect_step3,not found
+mbed_connect_step1,not found
+readwrite_data,not found
+nss_do_connect,not found
+alloc_addbyter,libcurl
+override_login,not found
+Curl_pretransfer,libcurl
+Curl_http_cookies,not found
+curl_multi_add_handle,libcurl
+curl_share_cleanup,libcurl
+Curl_setstropt,libcurl
+ossl_new_session_cb,not found
+cyassl_connect_step3,not found
+smtp_done,not found
+elseif,not found
+ossl_get_ssl_conn_index,not found
+close_connect_only,libcurl
+parseurlandfillconn,not found
+Curl_ssl_getsessionid,libcurl
+pop3_state_capa_resp,not found
+bad_domain,not found
+printsub,not found
+blobcmp,not found
+Curl_connecthost,libcurl
+curl_multi_remove_handle,libcurl
+verify_certificate,not found
+recv_CONNECT_resp,not found
+Curl_ssl_false_start,libcurl
+setcharset,not found
+Curl_close,libcurl
+ftp_statemachine,not found
+Curl_gtls_connect,libcurl
+ssh_check_fingerprint,not found
+ftp_parse_url_path,libcurl
+display_cert_info,not found
+curl_connect,not found
+voutf,not found
+Curl_resolv_timeout,libcurl
+display_conn_info,not found
+remove_expired,libcurl
+bearssl_connect_step1,not found
+Curl_http_output_auth,libcurl
+parsenetrc,not found
+strlen,libcurl
+Curl_clone_primary_ssl_config,libcurl
+telnet_do,not found
+Curl_auth_create_plain_message,not found
+find_encoding,not found
+ossl_connect_step3,not found
+Curl_http_host,not found
+Curl_strntolower,libcurl
+Curl_pp_readresp,libcurl
+allocate_conn,not found
+AC_MSG_NOTICE,not found
+netware_init,not found
+file_connect,libcurl
+ossl_get_internals,not found
+llist_dtor,not found
+global_init,not found
+rtmp_connect,not found
+Curl_init_CONNECT,libcurl
+verifyhost,not found
+gtls_connect_step1,not found
+sectransp_connect_step1,not found
+ftp_state_prepare_transfer,libcurl
+tftp_connect,not found
+imap_state_fetch_resp,not found
+smtp_perform,not found
+verify_header,not found
+init_wc_data,not found
+smtp_endofresp,not found
+schannel_connect_step3,not found
+hashkey,not found
+test_weird_arguments,not found
+randit,not found
+Curl_attach_connnection,libcurl
+SelectClientCert,not found
+ossl_init,not found
+imap_perform,not found
+hsts_pull,not found
+imap_state_starttls_resp,not found
+hyper_each_header,not found
+__pragma,not found
+seturl,libcurl
+hostname_check,not found
+file_do,libcurl
+Curl_http_readwrite_headers,libcurl
+ftp_do_more,libcurl
+Curl_free_primary_ssl_config,libcurl
+Curl_cert_hostcheck,not found
+mbed_connect_step3,not found
+Curl_follow,libcurl
+Curl_http_method,not found
+Curl_hmac_md5,not found
+curl_url_set,libcurl
+Curl_smtp_escape_eob,not found
+verifystatus,not found
+Curl_input_ntlm,libcurl
+Curl_ssl_config_matches,libcurl
+Curl_http_auth_act,libcurl
+gtls_connect_step3,libcurl
+polarssl_connect_step3,not found
+imap_state_capability_resp,not found
+Curl_tftp_connect,not found
+mesalink_connect_step3,not found
+ftp_disconnect,libcurl
+Curl_hsts_loadcb,not found
+Curl_hsts,not found
+Curl_http,libcurl
+smb_request_state,not found
+Curl_ssl_delsessionid,libcurl
+smb_send_open,not found
+Curl_http_header,not found
+test,not found
+Curl_cookie_init,libcurl
+Curl_sspi_global_init,not found
+smtp_state_starttls_resp,not found
+tftp_send_first,not found
+Curl_cookie_cleanup,libcurl
+conn_free,libcurl
+parse_filename,not found
+cookie_sort,libcurl
+Curl_http_body,not found
+schannel_connect_step1,not found
+ssh_statemach_act,not found
+curl_easy_duphandle,libcurl
+connect_finish,not found
+Curl_http_done,libcurl
+if,not found
+AC_CHECK_DECLS,not found
+base64_encode,not found
+Curl_clone_ssl_config,not found
+ossl_connect_step1,not found
+unescape_word,not found
+glob_range,not found
+curl_easy_unescape,libcurl
+Curl_verify_certificate,not found
+_add_if,not found
+rtmp_do,not found
+get_alg_id_by_name,not found
+output_auth_headers,libcurl
+ntlm_decode_type2_target,not found
+Curl_cookie_add,libcurl
+Curl_ntlm_core_mk_ntlmv2_hash,libcurl
+Curl_init_userdefined,libcurl
+Curl_ntlm_core_mk_nt_hash,libcurl
+ftp_setup_connection,libcurl
+rtsp_do,not found
+Curl_ssl_cert_status_request,libcurl
+Curl_auth_create_ntlm_type3_message,libcurl
+CreateConnection,not found
+darwinssl_connect_step1,not found
+suboption,not found
+Curl_hsts_loadfile,not found
+mesalink_connect_step1,not found

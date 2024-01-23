@@ -2,6 +2,7 @@ from tlsh import diff
 import json
 import pandas as pd
 import csv
+import os
 
 def create_select_list(num):
     select_list = []
@@ -94,6 +95,10 @@ def evaluate(package, fw, ver):
     
     data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + str(ver) + '_func_lib.csv')
 
+    dir_output = 'output/' + package + '/'
+    if not os.path.isdir(dir_output):
+        os.makedirs(dir_output)
+
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':
             print(row['function'], 'not found in firmware\n')
@@ -114,7 +119,7 @@ def evaluate(package, fw, ver):
 
         result = match_function(row['function'], build_j[row['function']], fw_j)
 
-        with open('output/' + package + '/' + package + '_' + fw + '_' + str(ver) + '_result.csv', 'a') as f:
+        with open(dir_output + package + '_' + fw + '_' + str(ver) + '_result.csv', 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
@@ -125,4 +130,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('expat', 'iot2000', 3)
+evaluate('libxml2', 'iot2000', 3)

@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'expat'
+lib = 'zlib'
 fw = 'fw-iot2000-3'
 flag = 'locate'
 

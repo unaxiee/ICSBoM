@@ -3,10 +3,12 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'expat'
+pkg_name = 'libxml2'
 
 dir_raw = 'disasm_raw/' + pkg_name +'/'
-dir_norm = 'disasm_hash/' + pkg_name + '/'
+dir_hash = 'disasm_hash/' + pkg_name + '/'
+if not os.path.isdir(dir_hash):
+    os.makedirs(dir_hash)
 
 def sanitize_arm(disasm_dic):
     hash_dic = {}
@@ -136,5 +138,5 @@ for file_name in os.listdir(dir_raw):
         hash_dic['num'] = num
 
     hash_json = json.dumps(hash_dic)
-    with open(dir_norm + file_name.split('_')[0] + '_hash.json', 'w') as f:
+    with open(dir_hash + file_name.split('_')[0] + '_hash.json', 'w') as f:
         f.write(hash_json)

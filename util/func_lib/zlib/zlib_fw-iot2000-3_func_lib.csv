@@ -1,0 +1,12 @@
+function,lib
+deflate_fast,not found
+deflate_huff,not found
+_tr_flush_block,not found
+deflateCopy,libz
+deflate_slow,not found
+deflatePrime,libz
+compress_block,not found
+init_block,not found
+deflate_rle,not found
+deflateInit2_,libz
+_tr_tally,not found

@@ -19,7 +19,6 @@ xmlValidCtxtNormalizeAttributeValue,libxml2
 xmlBufAdd,libxml2
 xmlParsePEReference,libxml2
 xmlSchemaPreRun,libxml2
-xmlHTMLEncodeSend,xmllint
 xmlBufferCat,libxml2
 xmlParserEntityCheck,libxml2
 xmlBufferAdd,libxml2

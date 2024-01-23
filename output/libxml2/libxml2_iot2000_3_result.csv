@@ -1,0 +1,13 @@
+xmlBufResize,libxml2,Top-25+bb_hash (26)
+xmlBufGrowInternal,libxml2,Not Found
+xmlBufIsEmpty,libxml2,Top-1 (11)
+xmlBufCreateSize,libxml2,Top-25+bb_hash (3)
+xmlValidateAttributeValue2,libxml2,Top-1 (44)
+xmlBufAdd,libxml2,Top-1 (22)
+xmlBufResize,libxml2,Top-25+bb_hash (26)
+xmlBufGrowInternal,libxml2,Not Found
+xmlBufIsEmpty,libxml2,Top-1 (11)
+xmlBufCreateSize,libxml2,Top-25+bb_hash (3)
+xmlValidateAttributeValue2,libxml2,Top-1 (44)
+xmlBufAdd,libxml2,Top-1 (22)
+xmlBufCat,libxml2,Top-1 (13)
