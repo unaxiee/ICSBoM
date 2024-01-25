@@ -33,6 +33,8 @@ def match_function(ref, build_dic, fw_j):
         select_list = create_select_list(list_len)
     
         for key, value in fw_j.items():
+            if value['func_hash'] == 'TNULL':
+                continue
             idx_sel, diff_sel = get_max_diff_sel(select_list)
             diff_tmp = diff(build_dic['func_hash'], value['func_hash'])
             
@@ -130,4 +132,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('zlib', 'iot2000', 3)
+evaluate('openssh', 'iot2000', 3)

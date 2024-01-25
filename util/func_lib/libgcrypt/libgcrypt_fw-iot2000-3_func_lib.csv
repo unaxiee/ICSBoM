@@ -1,0 +1,11 @@
+function,lib
+decrypt,libgcrypt
+sign,libgcrypt
+do_ghash,libgcrypt
+do_encrypt,libgcrypt
+prefetch_table,libgcrypt
+prefetch_dec,libgcrypt
+prefetch_enc,libgcrypt
+gen_k,libgcrypt
+ghash_internal,libgcrypt
+do_prefetch_table,not found

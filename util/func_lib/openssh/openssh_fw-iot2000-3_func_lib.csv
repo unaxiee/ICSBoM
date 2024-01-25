@@ -1,4 +1,5 @@
 function,lib
-first_alg,ssh
-order_hostkeyalgs,ssh
+process_and_identity,not found
+_ssh_order_hostkeyalgs,ssh-keyscan
+first_alg,not found
 subprocess,sshd
