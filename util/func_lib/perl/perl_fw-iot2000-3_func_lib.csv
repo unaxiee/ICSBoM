@@ -1,0 +1,5 @@
+function,lib
+S_rck_elide_nothing,libperl
+Perl_re_printf,not found
+S_study_chunk,libperl
+Perl_re_op_compile,libperl

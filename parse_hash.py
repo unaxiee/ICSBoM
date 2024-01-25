@@ -3,7 +3,7 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'libxml2'
+pkg_name = 'zlib'
 
 dir_raw = 'disasm_raw/' + pkg_name +'/'
 dir_hash = 'disasm_hash/' + pkg_name + '/'
@@ -86,6 +86,12 @@ def sanitize_x86(disasm_dic):
                         ins_disasm[ins_disasm.index(op)] = 'imm'
                     elif op.startswith('loc'):
                         ins_disasm[ins_disasm.index(op)] = 'addr'
+                    elif '(' in op and ')' not in op:
+                        op_new = op[:op.index('(')] + '(func'
+                        ins_disasm[ins_disasm.index(op)] = op_new
+                    elif '(' not in op and ')' in op:
+                        op_new = 'imm' + op[op.index(')'):]
+                        ins_disasm[ins_disasm.index(op)] = op_new
                     elif '+' in op and ']' in op:
                         op_new = op[:op.index('+')] + '+imm]'
                         ins_disasm[ins_disasm.index(op)] = op_new

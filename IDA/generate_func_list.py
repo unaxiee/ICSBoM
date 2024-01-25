@@ -42,4 +42,4 @@ def calculate_statistics(lib):
     print(len(fix_ver), fix_ver)
     print(len(func_name), func_name)
 
-generate_func_list_for_string('libxml2')
+generate_func_list_for_list('perl')

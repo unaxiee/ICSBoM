@@ -130,4 +130,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('libxml2', 'iot2000', 3)
+evaluate('zlib', 'iot2000', 3)
