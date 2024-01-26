@@ -1,0 +1,9 @@
+function,lib
+get_sem_elements,ipcs
+mnt_optstr_get_uid,libmount
+shell_name_generator,not found
+shell_name_completion,not found
+is_fuse_usermount,libmount
+ask_new_field,not found
+mnt_parse_mountinfo_line,libmount
+ask_new_shell,not found

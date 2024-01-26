@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'openssh'
+lib = 'util-linux'
 fw = 'fw-iot2000-3'
 flag = 'locate'
 
@@ -26,7 +26,7 @@ for lib_ver in os.listdir(path):
         if flag == 'search':
             path += lib_ver + '/usr/'
             for dir in os.listdir(path):
-                if dir in ['lib']:
+                if dir in ['sbin']:
                     path_bin = path + dir + '/'
                     for bin in os.listdir(path_bin):
                         if os.path.isfile(path_bin + '/' + bin):

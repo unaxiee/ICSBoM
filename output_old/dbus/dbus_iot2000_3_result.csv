@@ -1,8 +1,0 @@
-bus_transaction_send_from_driver,dbus-daemon,Not Found
-_dbus_validate_signature_with_reason,libdbus,Top-25 (not max)
-_dbus_user_database_lookup_group,dbus-daemon,Not Found
-_dbus_read_socket_with_unix_fds,libdbus,Top-1 (1)
-_dbus_user_info_unref,libdbus,Not Found
-_dbus_user_database_new,libdbus,Not Found
-validate_body_helper,libdbus,Top-25 (30) (tie)
-byteswap_body_helper,libdbus,Top-25 (not max)

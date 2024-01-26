@@ -132,4 +132,4 @@ fw_config_dic = {
     'iot2000': 'x86'
 }
 
-evaluate('openssh', 'iot2000', 3)
+evaluate('util-linux', 'iot2000', 3)

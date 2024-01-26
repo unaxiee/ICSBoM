@@ -4,7 +4,7 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'openssh'
+pkg_name = 'util-linux'
 fw = 'iot2000'
 ver = '3'
 
