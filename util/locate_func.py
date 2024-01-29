@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'util-linux'
+lib = 'libxml2'
 fw = 'fw-iot2000-3'
 flag = 'locate'
 

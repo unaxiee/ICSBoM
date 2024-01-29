@@ -1,9 +1,13 @@
-Step 1: 'IDA/extract_feature.py' is executed by IDA Pro to generate assembly language for target functions given 'func_list.csv' for a specific package.
+Step 1: 'IDA/extract_feature.py' is executed by IDA Pro to collect assembly of target functions given 'func_list.csv' for a specific package.
         'IDA/func_list' folder contains .csv files for each package extracted from vulnerability database.
 
-Step 2: 'parse_harsh.py' is used to generate fuzzy hashing for assembly.
+Step 2: 'parse_hash.py' is used to generate fuzzy hash as well as crypto hash for assembly.
         It takes in one argument: package name.
         The inputs are from 'disasm_raw' and outputs are stored in 'disasm_hash'.
 
-Step 3: 'evcaluate.py' is used to locate target functions in firmware given reference library.
-        'util/func_lib' contains .csv files that map each function to a library in the package.
+Step 3: 'evcaluate.py' is used to locate target functions in firmware given reference binary.
+        'util/func_lib' contains .csv files that locate each function in a binary in the package.
+        Results are stored in 'output'.
+
+Step 4: 'parse_disasm' is used to generate sanitized hash (as input) for later patch detection.
+        The inputs are from 'disasm_raw' and outputs are stored in 'disasm_norm'.
