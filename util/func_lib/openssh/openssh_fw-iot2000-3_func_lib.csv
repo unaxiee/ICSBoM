@@ -1,5 +1,4 @@
 function,lib
-process_and_identity,not found
-_ssh_order_hostkeyalgs,ssh-keyscan
-first_alg,not found
+ssh_kex2,ssh
+handle_conn_read,ssh-agent
 subprocess,sshd

@@ -1,2 +1,5 @@
 _ssh_order_hostkeyalgs,ssh-keyscan,Top-1 (27)
 subprocess,sshd,Top-1 (35)
+ssh_kex2,ssh,Top-1 (20)
+handle_conn_read,ssh-agent,Top-1 (227)
+subprocess,sshd,Top-1 (35)

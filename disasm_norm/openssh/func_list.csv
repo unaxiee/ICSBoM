@@ -1,4 +1,3 @@
-CVE-2020-14145,8.5,not found,first_alg
-CVE-2020-14145,8.5,ssh-keyscan,_ssh_order_hostkeyalgs
-CVE-2020-28041,8.5,not found,process_and_identity
+CVE-2020-14145,8.5,ssh,ssh_kex2
+CVE-2020-28041,8.5,ssh-agent,handle_conn_read
 CVE-2021-41617,8.8,sshd,subprocess

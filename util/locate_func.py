@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'libxml2'
+lib = 'openssh'
 fw = 'fw-iot2000-3'
 flag = 'locate'
 

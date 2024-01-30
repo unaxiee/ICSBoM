@@ -3,7 +3,7 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'util-linux'
+pkg_name = 'openssh'
 
 dir_raw = 'disasm_raw/' + pkg_name +'/'
 dir_hash = 'disasm_hash/' + pkg_name + '/'
