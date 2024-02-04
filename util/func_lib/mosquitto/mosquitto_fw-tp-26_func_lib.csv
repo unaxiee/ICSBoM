@@ -1,2 +1,2 @@
-function,lib
-packet__write,libmosquitto
+function,lib,name
+packet__write,libmosquitto,packet__write

@@ -3,10 +3,13 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'openssh'
+pkg_name = 'mosquitto'
+pkg_ver = '1.6.7'
+fw = 'tp'
+ver = '26'
 
-dir_raw = 'disasm_raw/' + pkg_name +'/'
-dir_hash = 'disasm_hash/' + pkg_name + '/'
+dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
+dir_hash = 'disasm_hash/' + fw + '-' + ver + '/' + pkg_name + '/'
 if not os.path.isdir(dir_hash):
     os.makedirs(dir_hash)
 
@@ -118,7 +121,7 @@ def sanitize_x86(disasm_dic):
 
 for file_name in os.listdir(dir_raw):
 
-    if 'fw' not in file_name and 'build' not in file_name:
+    if 'fw' not in file_name and pkg_ver not in file_name:
         continue
 
     hash_dic = {}

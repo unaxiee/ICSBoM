@@ -1,8 +1,0 @@
-CVE-2021-37600,2.37.2,ipcs,get_sem_elements
-CVE-2021-3995,2.37.3,libmount,is_fuse_usermount
-CVE-2021-3995,2.37.3,libmount,mnt_optstr_get_uid
-CVE-2021-3996,2.37.3,libmount,mnt_parse_mountinfo_line
-CVE-2022-0563,2.37.4,not found,ask_new_field
-CVE-2022-0563,2.37.4,not found,shell_name_generator
-CVE-2022-0563,2.37.4,not found,shell_name_completion
-CVE-2022-0563,2.37.4,not found,ask_new_shell

@@ -1,0 +1,10 @@
+xmlSchemaFixupComplexType,libxml2,Top-100+bb_hash (247)
+xmlDictComputeFastKey,libxml2,Not Found
+xmlStringGetNodeList,libxml2,Not Found
+xmlParseReference,libxml2,Top-100+bb_hash (46)
+xmlSAX2ExternalSubset,libxml2,Top-100+bb_hash (8)
+xmlSkipBlankChars,libxml2,Top-1 (12)
+xmlNewDocNodeEatName,libxml2,Not Found
+xmlNewPropInternal,libxml2,Top-100+bb_hash (8)
+xmlCreatePushParserCtxt,libxml2,Top-100+bb_hash (4)
+xmlStaticCopyNodeList,libxml2,Not Found

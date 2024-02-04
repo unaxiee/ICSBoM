@@ -1,33 +1,3 @@
-function,lib
-diffie_hellman_sha1,libssh2
-sftp_readdir,libssh2
-sftp_fstat,libssh2
-sftp_packet_ask,libssh2
-userauth_password,libssh2
-sftp_packet_requirev,libssh2
-sftp_packet_require,libssh2
-_libssh2_userauth_publickey,libssh2
-kex_method_diffie_hellman_group_exchange_sha1_key_exchange,libssh2
-sftp_init,libssh2
-kex_method_diffie_hellman_group_exchange_sha256_key_exchange,libssh2
-sftp_open,libssh2
-sftp_rmdir,libssh2
-userauth_list,not found
-kex_agree_methods,libssh2
-userauth_keyboard_interactive,libssh2
-sftp_read,libssh2
-sftp_close_handle,libssh2
-_libssh2_packet_add,libssh2
-sftp_write,not found
-session_startup,not found
-sftp_packet_read,libssh2
-userauth_hostbased_fromfile,libssh2
-_libssh2_transport_read,libssh2
-sftp_rename,libssh2
-diffie_hellman_sha256,libssh2
-sftp_symlink,libssh2
-sftp_unlink,libssh2
-sftp_attr2bin,libssh2
-sftp_fstatvfs,not found
-sftp_mkdir,libssh2
-sftp_fsync,not found
+function,lib,name
+_libssh2_packet_add,libssh2,sub_1CB6C
+_libssh2_transport_read,libssh2,sub_35A14

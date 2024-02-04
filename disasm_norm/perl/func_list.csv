@@ -1,8 +1,0 @@
-CVE-2020-10543,5.30.3,libperl,S_study_chunk
-CVE-2020-10878,5.30.3,libperl,S_rck_elide_nothing
-CVE-2020-10878,5.30.3,libperl,S_study_chunk
-CVE-2020-10878,5.30.3,not found,Perl_re_printf
-CVE-2020-10878,5.30.3,libperl,Perl_re_op_compile
-CVE-2020-12723,5.30.3,libperl,S_study_chunk
-CVE-2020-12723,5.30.3,not found,Perl_re_printf
-CVE-2020-12723,5.30.3,libperl,Perl_re_op_compile

@@ -78,58 +78,50 @@ def match_function(ref, build_dic, fw_j):
             if list_len == 1:
                 print(ref, "has bb_hash", max_sim_bb, '\n')
                 return 'Top-1 (' + str(max_sim_bb) + ')'
-            elif list_len == 25:
+            elif list_len == list_len_list[-1]:
                 if len(select) > 1:
                     print(ref, "has the most bb_hash", max_sim_bb, "with tie\n")
-                    return 'Top-25 (' + str(max_sim_bb) + ') (tie)'
+                    return 'Top-' + str(list_len_list[-1]) + '(' + str(max_sim_bb) + ') (tie)'
                 else:
                     print(ref, "has the most bb_hash", max_sim_bb, '\n')
-                    return 'Top-25+bb_hash (' + str(max_sim_bb) + ')'
+                    return 'Top-' + str(list_len_list[-1]) + '+bb_hash (' + str(max_sim_bb) + ')'
         
     print(ref, "doesn't have the most bb_hash\n")
-    return 'Top-25 (not max)'
+    return 'Top-' + str(list_len_list[-1]) + '(not max)'
 
-def evaluate(package, fw, ver):
-    if fw not in fw_config_dic.keys():
-        print("Don't support family", fw)
-        return
-    arch = fw_config_dic[fw]
+def evaluate(package, pkg_ver, fw, ver):
     
-    data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + str(ver) + '_func_lib.csv')
+    data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
 
     dir_output = 'output/' + package + '/'
     if not os.path.isdir(dir_output):
         os.makedirs(dir_output)
+
+    if os.path.isfile(dir_output + package + '_' + fw + '_' + ver + '_result.csv'):
+        os.remove(dir_output + package + '_' + fw + '_' + ver + '_result.csv')
 
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':
             print(row['function'], 'not found in firmware\n')
             continue
 
-        with open('disasm_hash/' + package + '/' + row['lib'] + '-build-' + arch + '_hash.json', 'r') as f:
+        with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
-            print(row['function'], 'not found in build', row['lib'], '\n')
+            print(row['function'], 'not found in build package', row['lib'], '\n')
             continue
     
-        with open('disasm_hash/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + str(ver) + '_hash.json', 'r') as f:
+        with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
             del fw_j['num']
         
         print(row['function'])
 
-        result = match_function(row['function'], build_j[row['function']], fw_j)
+        result = match_function(row['name'], build_j[row['function']], fw_j)
 
-        with open(dir_output + package + '_' + fw + '_' + str(ver) + '_result.csv', 'a') as f:
+        with open(dir_output + package + '_' + fw + '_' + ver + '_result.csv', 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-fw_config_dic = {
-    'pfc': 'arm',
-    'cc': 'arm',
-    'tp': 'arm',
-    'iot2000': 'x86'
-}
-
-evaluate('openssh', 'iot2000', 3)
+evaluate('mosquitto', '1.6.7', 'tp', '26')
