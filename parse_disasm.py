@@ -4,8 +4,8 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'mosquitto'
-pkg_ver = '1.6.7'
+pkg_name = 'curl'
+pkg_ver = '8.0.1'
 fw = 'tp'
 ver = '26'
 

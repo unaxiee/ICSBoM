@@ -43,9 +43,14 @@ def generate_func_list_for_list_per_package(lib, ver):
                 print('error', doc['CVE'], 'has no function name')
             else:
                 build_version.add(doc['fixed_version'])
-                for func in doc['function_name']:
-                    print(doc['CVE'], doc['fixed_version'], func)
-                    wr.writerow([doc['CVE'], doc['fixed_version'], func])
+                if 'update_function_name' in doc.keys():
+                    for update_func in doc['update_function_name']:
+                        print(doc['CVE'], doc['fixed_version'], update_func)
+                        wr.writerow([doc['CVE'], doc['fixed_version'], update_func])
+                else:
+                    for func in doc['function_name']:
+                        print(doc['CVE'], doc['fixed_version'], func)
+                        wr.writerow([doc['CVE'], doc['fixed_version'], func])
     print(lib, list(build_version))
 
 # per package version (string)
@@ -66,7 +71,10 @@ def generate_func_list_for_string_per_package(lib, ver):
                 print('error', doc['CVE'], 'has no function name')
             else:
                 build_version.add(doc['fixed_version'])
-                funcs = doc['function_name'][1:-1].split(', ')
+                if 'update_function_name' in doc.keys():
+                    funcs = doc['update_function_name'][1:-1].split(', ')
+                else:
+                    funcs = doc['function_name'][1:-1].split(', ')
                 for func in funcs:
                     print(doc['CVE'], doc['fixed_version'], func)
                     wr.writerow([doc['CVE'], doc['fixed_version'], func[1:-1]])
@@ -93,8 +101,8 @@ lib_format_dic = {
     'util-linux': 'list'
 }
 
-lib = 'mosquitto'
-ver = '1.6.7'
+lib = 'curl'
+ver = '8.0.1'
 if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
 elif lib_format_dic[lib] == 'string':

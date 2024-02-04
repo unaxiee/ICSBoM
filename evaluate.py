@@ -26,6 +26,9 @@ def get_max_diff_sel(select_list):
     return idx_tmp, diff_max_tmp
 
 def match_function(ref, build_dic, fw_j):
+    if build_dic['func_hash'] == 'TNULL':
+        return 'Too few basic blocks'
+    
     list_len_list = [1, 25]
     found = False
 
@@ -102,14 +105,14 @@ def evaluate(package, pkg_ver, fw, ver):
 
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':
-            print(row['function'], 'not found in firmware\n')
+            print(row['function'], 'not found in binary\n')
             continue
 
         with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
-            print(row['function'], 'not found in build package', row['lib'], '\n')
+            print(row['function'], 'not found in built', row['lib'], pkg_ver, '\n')
             continue
     
         with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
@@ -124,4 +127,4 @@ def evaluate(package, pkg_ver, fw, ver):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('mosquitto', '1.6.7', 'tp', '26')
+evaluate('curl', '8.0.1', 'tp', '26')

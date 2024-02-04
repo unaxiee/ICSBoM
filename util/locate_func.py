@@ -2,8 +2,8 @@ import subprocess
 import os
 import csv
 
-lib = 'openssh'
-fw = 'fw-iot2000-3'
+lib = 'curl'
+fw = 'fw-tp-26'
 flag = 'locate'
 
 func_set = set()
@@ -26,7 +26,7 @@ for lib_ver in os.listdir(path):
         if flag == 'search':
             path += lib_ver + '/usr/'
             for dir in os.listdir(path):
-                if dir in ['sbin']:
+                if dir in ['lib']:
                     path_bin = path + dir + '/'
                     for bin in os.listdir(path_bin):
                         if os.path.isfile(path_bin + '/' + bin):
@@ -53,7 +53,7 @@ for lib_ver in os.listdir(path):
                 os.makedirs(dir_func_lib)
             with open('func_lib/' + lib + '/' + lib + '_' + fw + '_func_lib.csv', 'w') as f:
                 wr = csv.writer(f)
-                wr.writerow(['function', 'lib'])
+                wr.writerow(['function', 'lib', 'name'])
                 for key, value in func_dic.items():
                     if len(value) > 0:
                         wr.writerow([key, value[0].split('.')[0]])
