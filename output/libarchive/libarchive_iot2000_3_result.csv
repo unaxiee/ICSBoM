@@ -1,6 +1,2 @@
-process_head_file,libarchive,Top-1 (154)
-decode_code_length,libarchive,Not Found
-create_decode_tables,libarchive,Top-1 (31)
-parse_tables,libarchive,Top-1 (24)
-read_consume_bits,libarchive,Not Found
-parse_filter_data,libarchive,Not Found
+process_head_file,libarchive,Top-1 (100)
+archive_read_format_zip_read_data,libarchive,Top-1 (213)

@@ -1,5 +1,4 @@
-_nc_read_tic_entry,libtinfo,Top-1 (54)
 cvtchar,libtic,Top-1 (33)
-_nc_save_str,libtic,Top-1 (12)
 convert_strings,libtinfo,Top-25+bb_hash (5)
 _nc_init_entry,libtic,Top-1 (4)
+_nc_save_str,libtic,Top-1 (12)

@@ -127,4 +127,4 @@ def evaluate(package, pkg_ver, fw, ver):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('curl', '8.0.1', 'tp', '26')
+evaluate('perl', '5.30.1', 'iot2000', '3')

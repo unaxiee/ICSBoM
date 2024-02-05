@@ -4,10 +4,10 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'curl'
-pkg_ver = '8.0.1'
-fw = 'tp'
-ver = '26'
+pkg_name = 'perl'
+pkg_ver = '5.30.1'
+fw = 'iot2000'
+ver = '3'
 
 dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
 dir_pd = 'disasm_norm/' + fw + '-' + ver + '/' + pkg_name + '/'

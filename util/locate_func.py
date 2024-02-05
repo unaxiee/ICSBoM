@@ -2,9 +2,9 @@ import subprocess
 import os
 import csv
 
-lib = 'curl'
-fw = 'fw-tp-26'
-flag = 'locate'
+lib = 'ncurses'
+fw = 'fw-iot2000-3'
+flag = 'search'
 
 func_set = set()
 with open('../IDA/func_list/' + lib + '_func_list.csv', 'r') as f:

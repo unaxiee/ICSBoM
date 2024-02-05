@@ -1,5 +1,0 @@
-CVE-2021-39537,6.3,cvtchar
-CVE-2022029458,6.4,_nc_init_entry
-CVE-2022029458,6.4,_nc_save_str
-CVE-2022029458,6.4,convert_strings
-CVE-2022029458,6.4,_nc_read_tic_entry

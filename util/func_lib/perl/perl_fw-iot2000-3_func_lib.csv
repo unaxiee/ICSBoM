@@ -1,5 +1,4 @@
-function,lib
-S_rck_elide_nothing,libperl
-Perl_re_printf,not found
-S_study_chunk,libperl
-Perl_re_op_compile,libperl
+function,lib,name
+S_study_chunk.constprop.0,libperl,S_study_chunk.constprop.0
+S_rck_elide_nothing,libperl,S_rck_elide_nothing
+Perl_re_op_compile,libperl,Perl_re_op_compile

@@ -1,12 +1,5 @@
-function,lib
-do_uncompress_file,libarchive
-process_head_file,libarchive
-decode_code_length,libarchive
-create_decode_tables,libarchive
-parse_filter,libarchive
-read_bits_16,libarchive
-parse_tables,libarchive
-read_consume_bits,libarchive
-read_bits_32,libarchive
-parse_filter_data,libarchive
-do_uncompress_block,libarchive
+function,lib,name
+process_head_file,libarchive,process_head_file
+archive_read_format_zip_read_data,libarchive,archive_read_format_zip_read_data
+__archive_write_allocate_filter,libarchive,__archive_write_allocate_filter
+archive_write_open2,libarchive,archive_write_open2

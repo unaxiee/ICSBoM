@@ -1,11 +1,4 @@
-CVE-2021-36976,3.5.3,libarchive,read_bits_32
-CVE-2021-36976,3.5.3,libarchive,read_bits_16
-CVE-2021-36976,3.5.3,libarchive,read_consume_bits
-CVE-2021-36976,3.5.3,libarchive,create_decode_tables
-CVE-2021-36976,3.5.3,libarchive,parse_tables
-CVE-2021-36976,3.5.3,libarchive,parse_filter_data
-CVE-2021-36976,3.5.3,libarchive,parse_filter
-CVE-2021-36976,3.5.3,libarchive,decode_code_length
-CVE-2021-36976,3.5.3,libarchive,do_uncompress_block
-CVE-2021-36976,3.5.3,libarchive,process_head_file
-CVE-2021-36976,3.5.3,libarchive,do_uncompress_file
+CVE-2021-36976,3.4.2,3.6.0,libarchive,process_head_file,process_head_file
+CVE-2022-26280,3.4.2,3.6.1,libarchive,archive_read_format_zip_read_data,archive_read_format_zip_read_data
+CVE-2022-36227,3.4.2,3.6.2,libarchive,__archive_write_allocate_filter,__archive_write_allocate_filter
+CVE-2022-36227,3.4.2,3.6.2,libarchive,archive_write_open2,archive_write_open2

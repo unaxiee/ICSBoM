@@ -3,10 +3,10 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'curl'
-pkg_ver = '8.0.1'
-fw = 'tp'
-ver = '26'
+pkg_name = 'perl'
+pkg_ver = '5.30.1'
+fw = 'iot2000'
+ver = '3'
 
 dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
 dir_hash = 'disasm_hash/' + fw + '-' + ver + '/' + pkg_name + '/'

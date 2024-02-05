@@ -101,8 +101,8 @@ lib_format_dic = {
     'util-linux': 'list'
 }
 
-lib = 'curl'
-ver = '8.0.1'
+lib = 'perl'
+ver = '5.30.1'
 if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
 elif lib_format_dic[lib] == 'string':

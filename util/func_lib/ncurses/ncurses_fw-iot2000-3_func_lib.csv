@@ -1,6 +1,5 @@
-function,lib
-_nc_read_tic_entry,libtinfo
-cvtchar,libtic
-_nc_save_str,libtic
-convert_strings,libtinfo
-_nc_init_entry,libtic
+function,lib,name
+cvtchar,libtic,cvtchar
+convert_strings,libtinfo,convert_strings
+_nc_init_entry,libtic,_nc_init_entry
+_nc_save_str,libtic,_nc_save_str
