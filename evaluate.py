@@ -62,6 +62,8 @@ def match_function(ref, build_dic, fw_j):
     max_sim_bb = 0
     select = []
     for select_item in select_list:
+        if len(select_item['bb_hash']) == 0:
+            continue
         sim_bb = 0
         for key_build, value_bb_hash in build_dic['bb_hash'].items():
             for key_sel, value_bb_hash_sel in select_item['bb_hash'].items():
@@ -127,4 +129,4 @@ def evaluate(package, pkg_ver, fw, ver):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('perl', '5.30.1', 'iot2000', '3')
+evaluate('libxml2', '2.9.10', 'iot2000', '3')

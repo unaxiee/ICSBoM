@@ -1,9 +1,5 @@
-CVE-2019-12904,1.9.0,prefetch_table
-CVE-2019-12904,1.9.0,ghash_armv7_neon
-CVE-2021-3345,1.9.1,check_one_md
 CVE-2021-3345,1.9.1,_gcry_md_block_write
-CVE-2021-40528,1.9.4,sign
-CVE-2021-40528,1.9.4,test_keys
-CVE-2021-40528,1.9.4,gen_k
-CVE-2021-40528,1.9.4,do_encrypt
 CVE-2021-33560,1.9.3,decrypt
+CVE-2021-40528,1.9.4,sign_0
+CVE-2021-40528,1.9.4,gen_k
+CVE-2021-40528,1.9.4,do_encrypt_4

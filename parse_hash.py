@@ -3,8 +3,8 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'perl'
-pkg_ver = '5.30.1'
+pkg_name = 'libxml2'
+pkg_ver = '2.9.10'
 fw = 'iot2000'
 ver = '3'
 
@@ -122,6 +122,9 @@ def sanitize_x86(disasm_dic):
 for file_name in os.listdir(dir_raw):
 
     if 'fw' not in file_name and pkg_ver not in file_name:
+        continue
+
+    if 'complete' in file_name:
         continue
 
     hash_dic = {}

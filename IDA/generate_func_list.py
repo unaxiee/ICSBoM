@@ -101,8 +101,8 @@ lib_format_dic = {
     'util-linux': 'list'
 }
 
-lib = 'perl'
-ver = '5.30.1'
+lib = 'libxml2'
+ver = '2.9.10'
 if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
 elif lib_format_dic[lib] == 'string':

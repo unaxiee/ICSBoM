@@ -4,8 +4,8 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'perl'
-pkg_ver = '5.30.1'
+pkg_name = 'libxml2'
+pkg_ver = '2.9.10'
 fw = 'iot2000'
 ver = '3'
 
