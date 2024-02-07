@@ -98,11 +98,12 @@ lib_format_dic = {
     'openssh': 'string',
     'openssl': 'list',
     'perl': 'list',
-    'util-linux': 'list'
+    'util-linux': 'list',
+    'zlib': 'list'
 }
 
-lib = 'libxml2'
-ver = '2.9.10'
+lib = 'zlib'
+ver = '1.2.11'
 if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
 elif lib_format_dic[lib] == 'string':

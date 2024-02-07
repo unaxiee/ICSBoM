@@ -2,7 +2,7 @@ import subprocess
 import os
 import csv
 
-lib = 'libxml2'
+lib = 'zlib'
 fw = 'fw-iot2000-3'
 flag = 'search'
 
@@ -75,4 +75,4 @@ def generate_func_lib(func_lib):
             wr.writerow([func, func_lib, func])
 
 
-generate_func_lib('libxml2')
+generate_func_lib('libz')

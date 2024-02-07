@@ -1,4 +1,0 @@
-function,lib
-svc_open_fds,not found
-rendezvous_request,libtirpc
-__svc_destroy_idle,not found

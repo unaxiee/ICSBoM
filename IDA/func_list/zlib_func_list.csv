@@ -1,11 +1,9 @@
 CVE-2018-25032,1.2.12,deflate_slow
 CVE-2018-25032,1.2.12,deflateInit2_
-CVE-2018-25032,1.2.12,init_block
 CVE-2018-25032,1.2.12,deflate_fast
 CVE-2018-25032,1.2.12,compress_block
 CVE-2018-25032,1.2.12,_tr_flush_block
-CVE-2018-25032,1.2.12,deflate_rle
-CVE-2018-25032,1.2.12,deflate_huff
 CVE-2018-25032,1.2.12,deflatePrime
 CVE-2018-25032,1.2.12,deflateCopy
 CVE-2018-25032,1.2.12,_tr_tally
+CVE-2022-37434,1.2.13,inflate

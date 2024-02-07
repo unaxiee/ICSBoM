@@ -129,4 +129,4 @@ def evaluate(package, pkg_ver, fw, ver):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('libxml2', '2.9.10', 'iot2000', '3')
+evaluate('zlib', '1.2.11', 'iot2000', '3')

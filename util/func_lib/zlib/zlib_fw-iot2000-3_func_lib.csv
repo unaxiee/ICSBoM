@@ -1,12 +1,10 @@
-function,lib
-_tr_tally,libz
-deflate_huff,not found
-deflate_slow,libz
-deflateCopy,libz
-_tr_flush_block,libz
-deflatePrime,libz
-compress_block,libz
-init_block,not found
-deflate_rle,not found
-deflate_fast,libz
-deflateInit2_,libz
+function,lib,name
+deflateInit2_,libz,deflateInit2_
+deflate_slow,libz,deflate_slow
+compress_block,libz,compress_block
+_tr_tally,libz,_tr_tally
+_tr_flush_block,libz,_tr_flush_block
+deflate_fast,libz,deflate_fast
+deflatePrime,libz,deflatePrime
+inflate,libz,inflate
+deflateCopy,libz,deflateCopy
