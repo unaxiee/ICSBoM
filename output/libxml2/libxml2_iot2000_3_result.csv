@@ -10,11 +10,11 @@ xmlParseNCName,libxml2,Top-1 (54)
 xmlParseNmtoken,libxml2,Top-1 (59)
 xmlSAX2ExternalSubset,libxml2,Top-1 (25)
 xmlHTMLEncodeSend,xmllint,Top-25+bb_hash (2)
-xmlBufferAdd,libxml2,Not Found
+xmlBufferAdd,libxml2,Top-50+bb_hash (11)
 xmlXIncludeDoProcess,libxml2,Top-1 (168)
 xmlSkipBlankChars,libxml2,Top-1 (28)
 xmlParseComment,libxml2,Top-1 (187)
-xmlValidCtxtNormalizeAttributeValue,libxml2,Not Found
+xmlValidCtxtNormalizeAttributeValue,libxml2,libxml2,Top-400+bb_hash (10)
 xmlBufCat,libxml2,Top-1 (13)
 xmlSchemaPreRun,libxml2,Top-1 (16)
 xmlParserEntityCheck,libxml2,Top-1 (39)
