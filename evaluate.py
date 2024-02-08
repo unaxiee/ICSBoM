@@ -25,11 +25,11 @@ def get_max_diff_sel(select_list):
             idx_tmp = i
     return idx_tmp, diff_max_tmp
 
-def match_function(ref, build_dic, fw_j):
+def match_function(ref, build_dic, fw_j, max_num):
     if build_dic['func_hash'] == 'TNULL':
         return 'Too few basic blocks'
     
-    list_len_list = [1, 25]
+    list_len_list = [1, max_num]
     found = False
 
     for list_len in list_len_list:
@@ -94,7 +94,7 @@ def match_function(ref, build_dic, fw_j):
     print(ref, "doesn't have the most bb_hash\n")
     return 'Top-' + str(list_len_list[-1]) + '(not max)'
 
-def evaluate(package, pkg_ver, fw, ver):
+def evaluate(package, pkg_ver, fw, ver, max_num):
     
     data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
 
@@ -123,10 +123,10 @@ def evaluate(package, pkg_ver, fw, ver):
         
         print(row['function'])
 
-        result = match_function(row['name'], build_j[row['function']], fw_j)
+        result = match_function(row['name'], build_j[row['function']], fw_j, max_num)
 
         with open(dir_output + package + '_' + fw + '_' + ver + '_result.csv', 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('zlib', '1.2.11', 'iot2000', '3')
+evaluate('curl', '8.0.1', 'pfc', '26', 25)
