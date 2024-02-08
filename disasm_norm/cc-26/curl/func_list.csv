@@ -1,0 +1,24 @@
+CVE-2023-46219,8.0.1,8.5.0,libcurl,Curl_fopen,sub_13A1C
+CVE-2023-46218,8.0.1,8.5.0,not found,Curl_cookie_add,
+CVE-2023-38546,8.0.1,8.4.0,libcurl,curl_easy_duphandle,curl_easy_duphandle
+CVE-2023-38545,8.0.1,8.4.0,libcurl,socks_proxy_cf_connect,sub_34C14
+CVE-2023-38039,8.0.1,8.3.0,libcurl,Curl_bump_headersize,
+CVE-2023-38039,8.0.1,8.3.0,libcurl,Curl_http_readwrite_headers,sub_21178
+CVE-2023-38039,8.0.1,8.3.0,libcurl,Curl_pp_readresp,sub_2C240
+CVE-2023-38039,8.0.1,8.3.0,libcurl,Curl_http_auth_act,sub_1DBCC
+CVE-2023-28322,8.0.1,8.1.0,libcurl,ftp_state_prepare_transfer,sub_15574
+CVE-2023-28322,8.0.1,8.1.0,libcurl,ftp_done,sub_187E8
+CVE-2023-28322,8.0.1,8.1.0,libcurl,ftp_do_more,sub_17DFC
+CVE-2023-28322,8.0.1,8.1.0,libcurl,ftp_parse_url_path,sub_14D7C
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_http_method,sub_1ECB4
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_http_body,sub_1F268
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_vsetopt,sub_2EA90
+CVE-2023-28322,8.0.1,8.1.0,libcurl,smtp_done,sub_321C0
+CVE-2023-28322,8.0.1,8.1.0,libcurl,tftp_send_first,sub_369FC
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_init_CONNECT,sub_38E94
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_follow,sub_39270
+CVE-2023-28322,8.0.1,8.1.0,libcurl,Curl_retry_request,sub_39824
+CVE-2023-28322,8.0.1,8.1.0,libcurl,ssh_statemach_act,sub_4955C
+CVE-2023-28321,8.0.1,8.1.0,libcurl,Curl_cert_hostcheck,sub_4125C
+CVE-2023-28320,8.0.1,8.1.0,libcurl,Curl_resolv_timeout,sub_1BCF4
+CVE-2023-28319,8.0.1,8.1.0,libcurl,ssh_statemach_act,sub_4955C
