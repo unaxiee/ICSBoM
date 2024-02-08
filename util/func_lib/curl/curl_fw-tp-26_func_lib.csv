@@ -8,7 +8,7 @@ Curl_http_method,libcurl,sub_1EC94
 Curl_vsetopt,libcurl,sub_2EA70
 Curl_follow,libcurl,sub_39250
 ftp_done,libcurl,sub_187E0
-Curl_bump_headersize,libcurl,not found
+Curl_bump_headersize,libcurl,
 ftp_do_more,libcurl,sub_17DF4
 Curl_cookie_add,not found,
 Curl_pp_readresp,libcurl,sub_2C220

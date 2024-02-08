@@ -1,2 +1,2 @@
-function,lib
-DH_check,libcrypto
+function,lib,name
+DH_check,libcrypto,DH_check

@@ -1,0 +1,1 @@
+CVE-2023-5632,1.6.7,2.0.6,libmosquitto,packet__write,packet__write
