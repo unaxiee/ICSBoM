@@ -4,10 +4,18 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'zlib'
-pkg_ver = '1.2.11'
-fw = 'iot2000'
-ver = '3'
+pkg_name = 'e2fsprogs'
+pkg_ver = '1.43.8'
+fw = 'ac500'
+ver = 'hf5'
+
+fw_ven_dic = {
+    'pfc': 'wago',
+    'cc': 'wago',
+    'tp': 'wago',
+    'iot2000': 'siemens',
+    'ac500': 'abb'
+}
 
 dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
 dir_pd = 'disasm_norm/' + fw + '-' + ver + '/' + pkg_name + '/'
@@ -146,7 +154,7 @@ print(dic_func_lib)
 
 with open('disasm_norm/' + fw + '-' + ver + '/' + pkg_name + '/func_list.csv', 'w') as f:
     writer = csv.writer(f)
-    with open('IDA/func_list/' + pkg_name + '_func_list.csv', 'r') as f_func_list:
+    with open('IDA/func_list_' + fw_ven_dic[fw] + '/' + pkg_name + '_func_list.csv', 'r') as f_func_list:
         reader_func_list = csv.reader(f_func_list)
         for func_list in reader_func_list:
             writer.writerow([func_list[0], pkg_ver, func_list[1], dic_func_lib[func_list[2]][0], func_list[2], dic_func_lib[func_list[2]][1]])
