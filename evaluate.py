@@ -110,6 +110,10 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             print(row['function'], 'not found in binary\n')
             continue
 
+        if row['name'] == 'not match':
+            print(row['function'], 'not match in binary\n')
+            continue
+
         with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
@@ -129,4 +133,4 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('curl', '8.0.1', 'pfc', '26', 25)
+evaluate('zlib', '1.2.11', 'ac500', 'hf5', 25)

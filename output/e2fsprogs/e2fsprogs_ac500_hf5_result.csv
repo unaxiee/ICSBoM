@@ -1,5 +1,4 @@
 fill_dir_block,e2fsck,Top-25+bb_hash (4)
-v2_init_io,e2fsck,Not Found
 qtree_scan_dquots,e2fsck,Top-50(0) (tie)
 report_tree,e2fsck,Not Found
 ext2fs_extent_get,libext2fs,Top-25+bb_hash (22)
