@@ -25,7 +25,7 @@ def calculate_statistics(lib):
 def generate_func_list_for_list_per_package(lib, ver):
     collection = db[lib]
     build_version = {ver}
-    with open('func_list/' + lib + '_func_list.csv', 'w') as f:
+    with open('func_list_' + ven + '/' + lib + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
@@ -57,7 +57,7 @@ def generate_func_list_for_list_per_package(lib, ver):
 def generate_func_list_for_string_per_package(lib, ver):
     collection = db[lib]
     build_version = {ver}
-    with open('func_list/' + lib + '_func_list.csv', 'w') as f:
+    with open('func_list_' + ven + '/' + lib + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
@@ -102,8 +102,9 @@ lib_format_dic = {
     'zlib': 'list'
 }
 
-lib = 'zlib'
-ver = '1.2.11'
+ven = 'abb'
+lib = 'e2fsprogs'
+ver = '1.43.8'
 if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
 elif lib_format_dic[lib] == 'string':
