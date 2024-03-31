@@ -2,12 +2,13 @@ import subprocess
 import os
 import csv
 
-lib = 'zlib'
-fw = 'fw-iot2000-3'
+lib = 'openssl'
+vendor = 'abb'
+fw = 'fw-ac500-hf5'
 flag = 'search'
 
 func_set = set()
-with open('../IDA/func_list/' + lib + '_func_list.csv', 'r') as f:
+with open('../IDA/func_list_' + vendor + '/' + lib + '_func_list.csv', 'r') as f:
     lines = f.readlines()
     for line in lines:
         line = line[:-1].split(',')
@@ -28,7 +29,7 @@ def search_in_select_lib(flag):
             if flag == 'search':
                 path += lib_ver + '/usr/'
                 for dir in os.listdir(path):
-                    if dir in ['lib']:
+                    if dir in ['usr_sbin']:
                         path_bin = path + dir + '/'
                         for bin in os.listdir(path_bin):
                             if os.path.isfile(path_bin + '/' + bin):
@@ -75,4 +76,5 @@ def generate_func_lib(func_lib):
             wr.writerow([func, func_lib, func])
 
 
-generate_func_lib('libz')
+generate_func_lib('libcrypto')
+# search_in_select_lib(flag)

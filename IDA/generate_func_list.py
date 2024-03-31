@@ -25,7 +25,7 @@ def calculate_statistics(lib):
 def generate_func_list_for_list_per_package(lib, ver):
     collection = db[lib]
     build_version = {ver}
-    with open('func_list_' + ven + '/' + lib + '_func_list.csv', 'w') as f:
+    with open('func_list_' + ven + '/' + lib.split('_')[0] + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
@@ -103,11 +103,12 @@ lib_format_dic = {
 }
 
 ven = 'abb'
-lib = 'e2fsprogs'
-ver = '1.43.8'
-if lib_format_dic[lib] == 'list':
+lib = 'openssl_1.1.0'
+ver = '1.1.0i'
+lib_dic = lib.split('_')[0]
+if lib_format_dic[lib_dic] == 'list':
     generate_func_list_for_list_per_package(lib, ver)
-elif lib_format_dic[lib] == 'string':
+elif lib_format_dic[lib_dic] == 'string':
     generate_func_list_for_string_per_package(lib, ver)
 else:
     print('no package', lib)
