@@ -1,0 +1,46 @@
+CVE-2023-46219,7.87.0,8.5.0,libcurl,Curl_fopen,sub_10A74
+CVE-2023-46218,7.87.0,8.5.0,not found,Curl_cookie_add,
+CVE-2023-38546,7.87.0,8.4.0,libcurl,curl_easy_duphandle,curl_easy_duphandle
+CVE-2023-38545,7.87.0,8.4.0,libcurl,socks_proxy_cf_connect,sub_31840
+CVE-2023-38039,7.87.0,8.3.0,libcurl,Curl_bump_headersize,Curl_bump_headersize
+CVE-2023-38039,7.87.0,8.3.0,libcurl,Curl_http_readwrite_headers,sub_1DEFC
+CVE-2023-38039,7.87.0,8.3.0,libcurl,Curl_pp_readresp,sub_28B74
+CVE-2023-38039,7.87.0,8.3.0,libcurl,Curl_http_auth_act,sub_1A9E4
+CVE-2023-28322,7.87.0,8.1.0,libcurl,ftp_state_prepare_transfer,sub_124D4
+CVE-2023-28322,7.87.0,8.1.0,libcurl,ftp_done,sub_156A4
+CVE-2023-28322,7.87.0,8.1.0,libcurl,ftp_do_more,sub_14D30
+CVE-2023-28322,7.87.0,8.1.0,libcurl,ftp_parse_url_path,sub_11DE4
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_http_method,sub_1BA98
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_http_body,sub_1C04C
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_vsetopt,sub_2B740
+CVE-2023-28322,7.87.0,8.1.0,libcurl,smtp_done,sub_2EDF0
+CVE-2023-28322,7.87.0,8.1.0,libcurl,tftp_send_first,not match
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_init_CONNECT,not match
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_follow,sub_34744
+CVE-2023-28322,7.87.0,8.1.0,libcurl,Curl_retry_request,sub_34CFC
+CVE-2023-28322,7.87.0,8.1.0,libcurl,ssh_statemach_act,sub_44C5C
+CVE-2023-28321,7.87.0,8.1.0,libcurl,Curl_cert_hostcheck,sub_3C8A0
+CVE-2023-28320,7.87.0,8.1.0,libcurl,Curl_resolv_timeout,sub_18AF8
+CVE-2023-28319,7.87.0,8.1.0,libcurl,ssh_statemach_act,sub_44C5C
+CVE-2023-27538,7.87.0,8.0.0,libcurl,Curl_connect,sub_36910
+CVE-2023-27536,7.87.0,8.0.0,libcurl,Curl_connect,sub_36910
+CVE-2023-27535,7.87.0,8.0.0,libcurl,Curl_connect,sub_36910
+CVE-2023-27535,7.87.0,8.0.0,libcurl,Curl_vsetopt,sub_2B740
+CVE-2023-27535,7.87.0,8.0.0,libcurl,ftp_disconnect,sub_1230C
+CVE-2023-27535,7.87.0,8.0.0,libcurl,ftp_setup_connection,sub_121A0
+CVE-2023-27534,7.87.0,8.0.0,libcurl,Curl_getworkingpath,sub_E11C
+CVE-2023-27533,7.87.0,8.0.0,not found,check_telnet_options,
+CVE-2023-27533,7.87.0,8.0.0,not found,str_is_nonascii,
+CVE-2023-23916,7.87.0,7.88.0,libcurl,Curl_build_unencoding_stack,sub_D608
+CVE-2023-23915,7.87.0,7.88.0,libcurl,curl_share_setopt,curl_share_setopt
+CVE-2023-23915,7.87.0,7.88.0,libcurl,Curl_vsetopt,sub_2B740
+CVE-2023-23915,7.87.0,7.88.0,libcurl,Curl_pretransfer,sub_343BC
+CVE-2023-23915,7.87.0,7.88.0,libcurl,Curl_hsts_loadfiles,Curl_hsts_loadfiles
+CVE-2023-23915,7.87.0,7.88.0,libcurl,Curl_close,sub_35B34
+CVE-2023-23915,7.87.0,7.88.0,libcurl,curl_share_cleanup,curl_share_cleanup
+CVE-2023-23914,7.87.0,7.88.0,libcurl,curl_share_setopt,curl_share_setopt
+CVE-2023-23914,7.87.0,7.88.0,libcurl,Curl_vsetopt,sub_2B740
+CVE-2023-23914,7.87.0,7.88.0,libcurl,Curl_pretransfer,sub_343BC
+CVE-2023-23914,7.87.0,7.88.0,libcurl,Curl_hsts_loadfiles,Curl_hsts_loadfiles
+CVE-2023-23914,7.87.0,7.88.0,libcurl,Curl_close,sub_35B34
+CVE-2023-23914,7.87.0,7.88.0,libcurl,curl_share_cleanup,curl_share_cleanup
