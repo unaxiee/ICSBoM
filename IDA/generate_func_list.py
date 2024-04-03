@@ -25,20 +25,25 @@ def calculate_statistics(lib):
 def generate_func_list_for_list_per_package(lib, lib_ver, fw_ver):
     collection = db[lib]
     build_version = {lib_ver}
+    # for different openssl series
     with open('func_list_' + ven + '/' + lib.split('_')[0] + '_' + fw_ver + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
-                # if version.parse(ver) < version.parse(doc['affected_since_version']):
-                # for openssl only
-                if lib_ver < doc['affected_since_version']:
+                if 'openssl' not in lib and version.parse(lib_ver) < version.parse(doc['affected_since_version']):
                     print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
                     continue
-            # if version.parse(ver) >= version.parse(doc['fixed_version']):
-            # for openssl only
-            if lib_ver >= doc['fixed_version']:
+                elif 'openssl' in lib and lib_ver < doc['affected_since_version']:
+                    print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
+                    continue
+
+            if 'openssl' not in lib and version.parse(lib_ver) >= version.parse(doc['fixed_version']):
                 print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
                 continue
+            elif 'openssl' in lib and lib_ver >= doc['fixed_version']:
+                print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
+                continue
+            
             if 'function_name' not in doc.keys():
                 print('error', doc['CVE'], 'has no function name')
             else:
@@ -104,8 +109,8 @@ lib_format_dic = {
 
 ven = 'wago'
 fw_ver = '24'
-lib = 'openssl_1.1.1'
-lib_ver = '1.1.1q'
+lib = 'curl'
+lib_ver = '7.87.0'
 
 lib_dic_key = lib.split('_')[0]
 if lib_format_dic[lib_dic_key] == 'list':
