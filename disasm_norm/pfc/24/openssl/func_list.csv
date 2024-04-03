@@ -1,0 +1,13 @@
+CVE-2023-3817,1.1.1q,1.1.1v,libcrypto,DH_check,DH_check
+CVE-2023-3446,1.1.1q,1.1.1v,libcrypto,DH_check,DH_check
+CVE-2023-2650,1.1.1q,1.1.1u,libcrypto,OBJ_obj2txt,OBJ_obj2txt
+CVE-2023-0465,1.1.1q,1.1.1u,libcrypto,check_policy,sub_19B6A4
+CVE-2023-0464,1.1.1q,1.1.1u,libcrypto,level_find_node,sub_1A5D28
+CVE-2023-0464,1.1.1q,1.1.1u,libcrypto,level_add_node,sub_1A5DAC
+CVE-2023-0464,1.1.1q,1.1.1u,libcrypto,X509_policy_check,X509_policy_check
+CVE-2023-0286,1.1.1q,1.1.1t,libcrypto,GENERAL_NAME_cmp,GENERAL_NAME_cmp
+CVE-2023-0215,1.1.1q,1.1.1t,libcrypto,ndef_suffix,not match
+CVE-2023-0215,1.1.1q,1.1.1t,libcrypto,BIO_new_NDEF,BIO_new_NDEF
+CVE-2022-4450,1.1.1q,1.1.1t,libcrypto,PEM_read_bio_ex,PEM_read_bio_ex
+CVE-2022-4304,1.1.1q,1.1.1t,libcrypto,rsa_ossl_private_decrypt,sub_16CCDC
+CVE-2022-4304,1.1.1q,1.1.1t,libcrypto,ossl_bn_rsa_do_unblind,ossl_bn_rsa_do_unblind
