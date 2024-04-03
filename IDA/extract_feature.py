@@ -102,5 +102,5 @@ else:
     print(func_cnt, 'done')
 
 disasm_json = json.dumps(disasm_dic)
-with open('../output/' + file_name + '_disasm.json', 'w') as f:
+with open('../../output/' + file_name + '_disasm.json', 'w') as f:
     f.write(disasm_json)

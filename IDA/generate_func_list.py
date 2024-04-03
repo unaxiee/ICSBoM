@@ -22,21 +22,21 @@ def calculate_statistics(lib):
     print(len(func_name), func_name)
 
 # per package version (list)
-def generate_func_list_for_list_per_package(lib, ver):
+def generate_func_list_for_list_per_package(lib, lib_ver, fw_ver):
     collection = db[lib]
-    build_version = {ver}
-    with open('func_list_' + ven + '/' + lib.split('_')[0] + '_func_list.csv', 'w') as f:
+    build_version = {lib_ver}
+    with open('func_list_' + ven + '/' + lib.split('_')[0] + '_' + fw_ver + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
-                if version.parse(ver) < version.parse(doc['affected_since_version']):
+                # if version.parse(ver) < version.parse(doc['affected_since_version']):
                 # for openssl only
-                # if ver < doc['affected_since_version']:
+                if lib_ver < doc['affected_since_version']:
                     print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
                     continue
-            if version.parse(ver) >= version.parse(doc['fixed_version']):
+            # if version.parse(ver) >= version.parse(doc['fixed_version']):
             # for openssl only
-            # if ver >= doc['fixed_version']:
+            if lib_ver >= doc['fixed_version']:
                 print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
                 continue
             if 'function_name' not in doc.keys():
@@ -54,17 +54,17 @@ def generate_func_list_for_list_per_package(lib, ver):
     print(lib, list(build_version))
 
 # per package version (string)
-def generate_func_list_for_string_per_package(lib, ver):
+def generate_func_list_for_string_per_package(lib, lib_ver, fw_ver):
     collection = db[lib]
-    build_version = {ver}
-    with open('func_list_' + ven + '/' + lib + '_func_list.csv', 'w') as f:
+    build_version = {lib_ver}
+    with open('func_list_' + ven + '/' + lib + '_' + fw_ver + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
-                if version.parse(ver) < version.parse(doc['affected_since_version']):
+                if version.parse(lib_ver) < version.parse(doc['affected_since_version']):
                     print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
                     continue
-            if version.parse(ver) >= version.parse(doc['fixed_version']):
+            if version.parse(lib_ver) >= version.parse(doc['fixed_version']):
                 print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
                 continue
             if 'function_name' not in doc.keys():
@@ -102,13 +102,15 @@ lib_format_dic = {
     'zlib': 'list'
 }
 
-ven = 'abb'
-lib = 'openssl_1.1.0'
-ver = '1.1.0i'
-lib_dic = lib.split('_')[0]
-if lib_format_dic[lib_dic] == 'list':
-    generate_func_list_for_list_per_package(lib, ver)
-elif lib_format_dic[lib_dic] == 'string':
-    generate_func_list_for_string_per_package(lib, ver)
+ven = 'wago'
+fw_ver = '24'
+lib = 'openssl_1.1.1'
+lib_ver = '1.1.1q'
+
+lib_dic_key = lib.split('_')[0]
+if lib_format_dic[lib_dic_key] == 'list':
+    generate_func_list_for_list_per_package(lib, lib_ver, fw_ver)
+elif lib_format_dic[lib_dic_key] == 'string':
+    generate_func_list_for_string_per_package(lib, lib_ver, fw_ver)
 else:
     print('no package', lib)

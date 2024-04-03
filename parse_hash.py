@@ -3,13 +3,13 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'zlib'
-pkg_ver = '1.2.11'
-fw = 'iot2000'
-ver = '3'
+pkg_name = 'openssl'
+pkg_ver = '1.1.1q'
+fw = 'pfc'
+ver = '24'
 
-dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
-dir_hash = 'disasm_hash/' + fw + '-' + ver + '/' + pkg_name + '/'
+dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
+dir_hash = 'disasm_hash/' + fw + '/' + ver + '/' + pkg_name + '/'
 if not os.path.isdir(dir_hash):
     os.makedirs(dir_hash)
 

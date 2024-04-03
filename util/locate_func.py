@@ -3,12 +3,13 @@ import os
 import csv
 
 lib = 'openssl'
-vendor = 'abb'
-fw = 'fw-ac500-hf5'
+vendor = 'wago'
+fw = 'pfc'
+fw_ver = '24'
 flag = 'search'
 
 func_set = set()
-with open('../IDA/func_list_' + vendor + '/' + lib + '_func_list.csv', 'r') as f:
+with open('../IDA/func_list_' + vendor + '/' + lib + '_' + fw_ver + '_func_list.csv', 'r') as f:
     lines = f.readlines()
     for line in lines:
         line = line[:-1].split(',')
@@ -69,7 +70,7 @@ def generate_func_lib(func_lib):
     dir_func_lib = 'func_lib/' + lib + '/'
     if not os.path.isdir(dir_func_lib):
         os.makedirs(dir_func_lib)
-    with open('func_lib/' + lib + '/' + lib + '_' + fw + '_func_lib.csv', 'w') as f:
+    with open(dir_func_lib + lib + '_fw-' + fw + '-' + fw_ver + '_func_lib.csv', 'w') as f:
         wr = csv.writer(f)
         wr.writerow(['function', 'lib', 'name'])
         for func in func_set:

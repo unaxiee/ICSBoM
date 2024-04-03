@@ -102,8 +102,8 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
     if not os.path.isdir(dir_output):
         os.makedirs(dir_output)
 
-    if os.path.isfile(dir_output + package + '_' + fw + '_' + ver + '_result.csv'):
-        os.remove(dir_output + package + '_' + fw + '_' + ver + '_result.csv')
+    if os.path.isfile(dir_output + package + '_' + fw + '-' + ver + '_result.csv'):
+        os.remove(dir_output + package + '_' + fw + '-' + ver + '_result.csv')
 
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':
@@ -114,14 +114,14 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             print(row['function'], 'not match in binary\n')
             continue
 
-        with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
+        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
             print(row['function'], 'not found in built', row['lib'], pkg_ver, '\n')
             continue
     
-        with open('disasm_hash/' + fw + '-' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
+        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
             del fw_j['num']
         
@@ -129,8 +129,8 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
 
         result = match_function(row['name'], build_j[row['function']], fw_j, max_num)
 
-        with open(dir_output + package + '_' + fw + '_' + ver + '_result.csv', 'a') as f:
+        with open(dir_output + package + '_' + fw + '-' + ver + '_result.csv', 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('zlib', '1.2.11', 'ac500', 'hf5', 25)
+evaluate('openssl', '1.1.1q', 'pfc', '24', 25)

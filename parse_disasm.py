@@ -4,10 +4,10 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'e2fsprogs'
-pkg_ver = '1.43.8'
-fw = 'ac500'
-ver = 'hf5'
+pkg_name = 'openssl'
+pkg_ver = '1.1.1q'
+fw = 'pfc'
+ver = '24'
 
 fw_ven_dic = {
     'pfc': 'wago',
@@ -17,8 +17,8 @@ fw_ven_dic = {
     'ac500': 'abb'
 }
 
-dir_raw = 'disasm_raw/' + fw + '-' + ver + '/' + pkg_name +'/'
-dir_pd = 'disasm_norm/' + fw + '-' + ver + '/' + pkg_name + '/'
+dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
+dir_pd = 'disasm_norm/' + fw + '/' + ver + '/' + pkg_name + '/'
 if not os.path.isdir(dir_pd):
     os.makedirs(dir_pd)
 
@@ -152,9 +152,9 @@ with open('util/func_lib/' + pkg_name + '/' + pkg_name + '_fw-' + fw + '-' + ver
         dic_func_lib[func_lib[0]] = [func_lib[1], func_lib[2]]
 print(dic_func_lib)
 
-with open('disasm_norm/' + fw + '-' + ver + '/' + pkg_name + '/func_list.csv', 'w') as f:
+with open(dir_pd + 'func_list.csv', 'w') as f:
     writer = csv.writer(f)
-    with open('IDA/func_list_' + fw_ven_dic[fw] + '/' + pkg_name + '_func_list.csv', 'r') as f_func_list:
+    with open('IDA/func_list_' + fw_ven_dic[fw] + '/' + pkg_name + '_' + ver + '_func_list.csv', 'r') as f_func_list:
         reader_func_list = csv.reader(f_func_list)
         for func_list in reader_func_list:
             writer.writerow([func_list[0], pkg_ver, func_list[1], dic_func_lib[func_list[2]][0], func_list[2], dic_func_lib[func_list[2]][1]])
