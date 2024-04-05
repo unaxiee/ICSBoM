@@ -106,24 +106,28 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
         os.remove(dir_output + package + '_' + fw + '-' + ver + '_result.csv')
 
     for idx, row in data.iterrows():
-        if row['lib'] == 'not found':
-            print(row['function'], 'not found in binary\n')
+        if row['lib'] == 'not found':   # afftected function cannot be found in binary
+            print(row['function'], 'cannot be found in binary\n')
             continue
 
-        if row['name'] == 'not match':
-            print(row['function'], 'not match in binary\n')
+        if row['name'] == 'not match':   # stripped file cannot be matched by IDA
+            print(row['function'], 'cannot be matched in firmware binary\n')
             continue
 
+        if not os.path.isfile('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
+            print(row['lib'], 'cannot be found in firmware image\n')
+            continue
+
+        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
+            fw_j = json.load(f)
+            del fw_j['num']
+        
         with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
-            print(row['function'], 'not found in built', row['lib'], pkg_ver, '\n')
+            print(row['function'], 'is not extracted from built package\n')
             continue
-    
-        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
-            fw_j = json.load(f)
-            del fw_j['num']
         
         print(row['function'])
 
@@ -133,4 +137,4 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('libxml2', '2.9.14', 'pfc', '22', 450)
+evaluate('libxml2', '2.9.10', 'pfc', '21', 500)
