@@ -3,6 +3,11 @@ from idaapi import *
 import csv
 import json
 
+# 2.9.10, 2.9.11
+# libxml_special_func = ['xmlParsePEReference']
+
+# 2.9.13, 2.9.14
+libxml_special_func = ['xmlAddID', 'xmlParsePEReference']
 
 def get_func_for_build():
     func_name = set()
@@ -12,6 +17,9 @@ def get_func_for_build():
             func_name.add(row[-1])
             if 'libxml2' in file_name:
                 func_name.add(row[-1] + '__internal_alias')
+                if row[-1] in libxml_special_func:
+                    func_name.remove(row[-1] + '__internal_alias')
+                    func_name.add(row[-1] + '__internal_alias_0')
     return func_name
 
 
