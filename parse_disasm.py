@@ -4,10 +4,10 @@ from tlsh import hash
 from hashlib import md5
 import csv
 
-pkg_name = 'openssl'
-pkg_ver = '1.1.1q'
+pkg_name = 'libxml2'
+pkg_ver = '2.9.14'
 fw = 'pfc'
-ver = '24'
+ver = '22'
 
 fw_ven_dic = {
     'pfc': 'wago',

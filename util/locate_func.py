@@ -2,10 +2,10 @@ import subprocess
 import os
 import csv
 
-lib = 'openssl'
+lib = 'libxml2'
 vendor = 'wago'
 fw = 'pfc'
-fw_ver = '24'
+fw_ver = '22'
 flag = 'search'
 
 func_set = set()
@@ -77,5 +77,5 @@ def generate_func_lib(func_lib):
             wr.writerow([func, func_lib, func])
 
 
-generate_func_lib('libcrypto')
+generate_func_lib('libxml2')
 # search_in_select_lib(flag)

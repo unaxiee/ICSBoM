@@ -3,10 +3,10 @@ import json
 from tlsh import hash
 from hashlib import md5
 
-pkg_name = 'openssl'
-pkg_ver = '1.1.1q'
+pkg_name = 'libxml2'
+pkg_ver = '2.9.14'
 fw = 'pfc'
-ver = '24'
+ver = '22'
 
 dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
 dir_hash = 'disasm_hash/' + fw + '/' + ver + '/' + pkg_name + '/'

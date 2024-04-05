@@ -1,0 +1,4 @@
+cvtchar,libncursesw,Top-1 (30)
+convert_strings,libncursesw,Top-1 (16)
+_nc_init_entry,libncursesw,Top-50+bb_hash (2)
+_nc_save_str,libncursesw,Top-25+bb_hash (7)

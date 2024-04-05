@@ -1,0 +1,6 @@
+["CVE-2023-34969", "bus_transaction_send_from_driver", "1.12.28", "V 0.9411764705882353/0.5294117647058825, vul-tar: 1/1, patch-tar: 3/1"]
+["CVE-2023-34969", "_dbus_connection_get_next_client_serial", "1.12.28", "NA VP no diff"]
+["CVE-2022-42012", "byteswap_body_helper", "1.12.24", "V"]
+["CVE-2022-42011", "validate_body_helper", "1.12.24", "V"]
+["CVE-2022-42011", "dbus_message_demarshal", "1.12.24", "V 0.8461538461538461/0.5941095941095941, vul-tar: 1/1, patch-tar: 5/3"]
+["CVE-2022-42010", "_dbus_validate_signature_with_reason", "1.12.24", "V"]

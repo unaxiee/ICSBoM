@@ -1,0 +1,4 @@
+["CVE-2021-37600", "get_sem_elements", "2.37.2", "P"]
+["CVE-2021-3995", "mnt_context_prepare_umount", "2.37.3", "V 0.7118142351475686/5.454144822816652e-07, vul-tar: 20/16, patch-tar: 78/67"]
+["CVE-2021-3995", "mnt_optstr_get_uid", "2.37.3", "P function appears in target and patched version, but not in vulnerable"]
+["CVE-2021-3996", "__table_parse_stream", "2.37.3", "V function appears in target and vulnerable version, but not in patched"]

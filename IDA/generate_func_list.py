@@ -47,15 +47,19 @@ def generate_func_list_for_list_per_package(lib, lib_ver, fw_ver):
             if 'function_name' not in doc.keys():
                 print('error', doc['CVE'], 'has no function name')
             else:
-                build_version.add(doc['fixed_version'])
+                cnt = 0
                 if 'update_function_name' in doc.keys():
                     for update_func in doc['update_function_name']:
+                        cnt += 1
                         print(doc['CVE'], doc['fixed_version'], update_func)
                         wr.writerow([doc['CVE'], doc['fixed_version'], update_func])
                 else:
                     for func in doc['function_name']:
+                        cnt += 1
                         print(doc['CVE'], doc['fixed_version'], func)
                         wr.writerow([doc['CVE'], doc['fixed_version'], func])
+                if cnt > 0:
+                    build_version.add(doc['fixed_version'])
     print(lib, list(build_version))
 
 # per package version (string)
@@ -75,14 +79,17 @@ def generate_func_list_for_string_per_package(lib, lib_ver, fw_ver):
             if 'function_name' not in doc.keys():
                 print('error', doc['CVE'], 'has no function name')
             else:
-                build_version.add(doc['fixed_version'])
                 if 'update_function_name' in doc.keys():
                     funcs = doc['update_function_name'][1:-1].split(', ')
                 else:
                     funcs = doc['function_name'][1:-1].split(', ')
+                cnt = 0
                 for func in funcs:
+                    cnt += 1
                     print(doc['CVE'], doc['fixed_version'], func)
                     wr.writerow([doc['CVE'], doc['fixed_version'], func[1:-1]])
+                if cnt > 0:
+                    build_version.add(doc['fixed_version'])
     print(lib, list(build_version))
 
 lib_format_dic = {
@@ -108,9 +115,9 @@ lib_format_dic = {
 }
 
 ven = 'wago'
-fw_ver = '24'
-lib = 'curl'
-lib_ver = '7.87.0'
+fw_ver = '22'
+lib = 'libxml2'
+lib_ver = '2.9.14'
 
 lib_dic_key = lib.split('_')[0]
 if lib_format_dic[lib_dic_key] == 'list':

@@ -10,12 +10,10 @@ def get_func_for_build():
         r = csv.reader(f, delimiter=',')
         for row in r:
             func_name.add(row[-1])
-            # special case for libxml2
-            # func_name.add(row[-1] + '__internal_alias')
-            # if row[-1] == 'xmlParsePEReference':
-            #     func_name.add(row[-1] + '__internal_alias_0')
-            #     func_name.remove(row[-1] + '__internal_alias')
+            if 'libxml2' in file_name:
+                func_name.add(row[-1] + '__internal_alias')
     return func_name
+
 
 def dump_function_details(ea):
     disasm = dict()
@@ -65,25 +63,27 @@ if 'fw' not in file_name:
             disasm = dump_function_details(ea)
             if disasm:
                 # special case for libxml2
-                # if '__internal_alias' in name:
-                #     name = name[:name.index('__internal_alias')]
+                if 'libxml2' in file_name:
+                    if '__internal_alias' in name:
+                        found_func.add(name)
+                        name = name[:name.index('__internal_alias')]
+                    else:
+                        found_func.add(name + '__internal_alias')
                 disasm_dic[name] = disasm
                 found_func.add(name)
-                # found_func.add(name + '__internal_alias')
-                # if name == 'xmlParsePEReference':
-                #     found_func.remove(name + '__internal_alias')
-                #     found_func.add(name + '__internal_alias_0')
                 print(name, 'done')
             else:
                 print('Skip', name, 'less than five basic blocks')
-    print('Extracted', len(found_func), '/', len(func_name))
-    # print('Extracted', len(found_func) // 2, '/', len(func_name) // 2)
-    print('Cannot extract', func_name - found_func)
-    # print('Cannot extract')
-    # for func in func_name - found_func:
-    #     if '__internal_alias' in func:
-    #         continue
-    #     print(func)
+    if 'libxml2' not in file_name:
+        print('Extracted', len(found_func), '/', len(func_name))
+        print('Cannot extract', func_name - found_func)
+    else:
+        print('Extracted', len(found_func) // 2, '/', len(func_name) // 2)
+        print('Cannot extract')
+        for func in func_name - found_func:
+            if '__internal_alias' in func:
+                continue
+            print(func)
 # for firmware
 else:
     func_cnt = 0
@@ -91,11 +91,9 @@ else:
         name = get_func_name(ea)
         disasm = dump_function_details(ea)
         if disasm:
-            # special case for libxml2
-            # if '__internal_alias' in name:
-            #     if name == 'xmlParsePEReference__internal_alias':
-            #         continue
-            #     name = name[:name.index('__internal_alias')]
+            if 'libxml2' in file_name:
+                if '__internal_alias' in name:
+                    name = name[:name.index('__internal_alias')]
             disasm_dic[name] = disasm
             func_cnt += 1
     disasm_dic['num'] = func_cnt
