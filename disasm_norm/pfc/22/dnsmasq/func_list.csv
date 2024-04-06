@@ -1,0 +1,18 @@
+CVE-2022-0934,2.83,2.87,not found,dhcp6_maybe_relay,
+CVE-2022-0934,2.83,2.87,not found,dhcp6_no_relay,
+CVE-2022-0934,2.83,2.87,not found,dhcp6_reply,
+CVE-2021-3448,2.83,2.85,dnsmasq,forward_query,sub_27578
+CVE-2021-3448,2.83,2.85,dnsmasq,reply_query,sub_27E7C
+CVE-2021-3448,2.83,2.85,dnsmasq,random_sock,not match
+CVE-2021-3448,2.83,2.85,dnsmasq,allocate_rfd,sub_27228
+CVE-2021-3448,2.83,2.85,dnsmasq,free_rfds,free_rfds
+CVE-2021-3448,2.83,2.85,dnsmasq,free_rfd,sub_27330
+CVE-2021-3448,2.83,2.85,dnsmasq,resend_query,sub_28CCC
+CVE-2021-3448,2.83,2.85,dnsmasq,server_gone,sub_28D64
+CVE-2021-3448,2.83,2.85,dnsmasq,loop_send_probes,sub_464C0
+CVE-2021-3448,2.83,2.85,dnsmasq,enumerate_interfaces,sub_28DF0
+CVE-2021-3448,2.83,2.85,dnsmasq,local_bind,not match
+CVE-2021-3448,2.83,2.85,dnsmasq,pre_allocate_sfds,sub_2AEBC
+CVE-2021-3448,2.83,2.85,dnsmasq,check_servers,sub_2B32C
+CVE-2021-3448,2.83,2.85,dnsmasq,sockaddr_isequal,sub_1BB2C
+CVE-2021-3448,2.83,2.85,dnsmasq,parse_server,sub_1D030
