@@ -1,0 +1,6 @@
+CVE-2019-15161,1.9.1,daemon_msg_findallif_req
+CVE-2019-15162,1.9.1,daemon_AuthUserPwd
+CVE-2019-15163,1.9.1,daemon_AuthUserPwd
+CVE-2019-15164,1.9.1,daemon_serviceloop
+CVE-2019-15164,1.9.1,is_url
+CVE-2019-15165,1.9.1,pcap_ng_check_header
