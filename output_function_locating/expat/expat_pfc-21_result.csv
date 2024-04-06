@@ -1,0 +1,7 @@
+XML_ExternalEntityParserCreate,libexpat,Top-25(not max)
+addBinding,libexpat,Top-25(not max)
+nextScaffoldPart,libexpat,Top-50(not max)
+XML_GetBuffer,libexpat,Top-1 (25)
+doProlog,libexpat,Top-1 (139)
+internalEntityProcessor,libexpat,Top-25(0) (tie)
+storeRawNames,libexpat,Top-100(1) (tie)
