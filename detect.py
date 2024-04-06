@@ -464,13 +464,10 @@ def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, ta
 	sig = extract_sig(fw, ver, pkg, lib, function_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff]
 
 	target_func = load_target_func(fw, ver, pkg, lib, tar_func_name)
-	if not target_func:
-		print('no target function')
-		return ['E no vulnerable and patched version']
 
 	if len(sig) == 2:
 		if not sig[0] and not sig[1]:
-			print('no vulnerable or patched version')
+			print('no vulnerable and patched version')
 			return ['E no vulnerable and patched version']
 		elif not sig[0]:
 			if not target_func:
@@ -484,6 +481,10 @@ def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, ta
 			else:
 				return ['V function appears in target and vulnerable version, but not in patched']
 	
+	if not target_func:
+		print('no target function')
+		return ['E no target function']
+			
 	decision = match_decision(target_func, sig)
 
 	return decision
@@ -547,4 +548,4 @@ def detect_patch(fw, ver, pkg):
 if __name__ == '__main__':
 	
 	# arguments: firmware family, firmware version, package
-	detect_patch('pfc', '22', 'libxml2')
+	detect_patch('ac500', '3.4.0', 'util-linux')
