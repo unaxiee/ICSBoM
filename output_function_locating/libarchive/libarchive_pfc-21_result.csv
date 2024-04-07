@@ -1,0 +1,13 @@
+archive_string_append_from_wcs,libarchive,Top-25+bb_hash (1)
+read_header,libarchive,Top-1 (72)
+parse_codes,libarchive,Top-25+bb_hash (14)
+archive_wstring_append_from_mbs,libarchive,Top-25(1) (tie)
+archive_write_open,libarchive,Top-25(0) (tie)
+parse_rockridge,libarchive,Top-1 (85)
+_warc_read,libarchive,Top-25(0) (tie)
+archive_read_format_rar_read_data,libarchive,Not Found
+rar_read_ahead,libarchive,Top-25(0) (tie)
+get_uncompressed_data,libarchive,Top-25(1) (tie)
+archive_read_format_zip_cleanup,libarchive,Top-100(0) (tie)
+strncat_from_utf8_libarchive2,libarchive,Top-100(1) (tie)
+archive_acl_from_text_l,libarchive,Top-25+bb_hash (185)
