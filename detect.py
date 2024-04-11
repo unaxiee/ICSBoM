@@ -4,10 +4,11 @@ import csv
 from math import *
 import json
 import os
+from util import config
 
 
 def read_func_info(fw, ver, pkg, lib, function_name, version):
-	input_path = 'disasm_norm/' + fw + '/' + ver + '/' + pkg + '/' + lib + '-' + version + '_norm.json'
+	input_path = 'disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg + '/' + lib + '-' + version + '_norm.json'
 	func = None
 	try:
 		with open(input_path, 'r') as input:
@@ -492,7 +493,7 @@ def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, ta
 
 def detect_patch(fw, ver, pkg):
 	record_list = []
-	with open('disasm_norm/' + fw + '/' + ver + '/' + pkg +'/func_list.csv', 'r') as csvfile:
+	with open('disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg +'/func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
 		for row in r:
 			if len(row) == 6:
@@ -548,4 +549,4 @@ def detect_patch(fw, ver, pkg):
 if __name__ == '__main__':
 	
 	# arguments: firmware family, firmware version, package
-	detect_patch('ac500', '3.4.0', 'util-linux')
+	detect_patch(config.fw, config.fw_ver, config.lib)

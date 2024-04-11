@@ -18,6 +18,8 @@ OUT_DIR = f"firmware_out_{config.FW_NAME.rsplit('.', 1)[0]}"
 if os.path.isdir(f"{config.FW_DIR}/{OUT_DIR}"):
     print(f"[i] Extracted firmware directory found: {OUT_DIR}. Using this.")
     extract_fw = False
+else:
+    os.mkdir(f'{config.FW_DIR}/{OUT_DIR}')
 # If firmware needs to be extracted, use binwalk
 if extract_fw:
     print("[i] Extracting firmware using binwalk. This might take a few minutes.")
@@ -173,5 +175,5 @@ for binary in tqdm(binaries):
 
 
 # Save temporary results
-with open(f'util/fw_bin/bin_dic_{config.FW_NAME}.pkl', 'wb') as f:
+with open(f"util/fw_bin/bin_dic_{config.FW_NAME.rsplit('.', 1)[0]}.pkl", 'wb') as f:
     pickle.dump(binaries, f)

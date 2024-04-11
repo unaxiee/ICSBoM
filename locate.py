@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import csv
 import os
+from util import config
 
 def create_select_list(num):
     select_list = []
@@ -96,7 +97,7 @@ def match_function(ref, build_dic, fw_j, max_num):
 
 def evaluate(package, pkg_ver, fw, ver, max_num):
     
-    data = pd.read_csv('util/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
+    data = pd.read_csv('IDA/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
 
     dir_output = 'output_function_locating/' + package + '/'
     if not os.path.isdir(dir_output):
@@ -114,15 +115,15 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             print(row['function'], 'cannot be matched in firmware binary\n')
             continue
 
-        if not os.path.isfile('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
+        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
             print(row['lib'], 'cannot be found in firmware image\n')
             continue
 
-        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
+        with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
             del fw_j['num']
         
-        with open('disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
+        with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
@@ -137,4 +138,4 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate('libxml2', '2.9.10', 'pfc', '21', 500)
+evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 200)

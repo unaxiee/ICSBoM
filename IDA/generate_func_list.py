@@ -1,6 +1,9 @@
 from pymongo import MongoClient
 import csv
 from packaging import version
+import sys
+sys.path.append('/media/yongyu/Data/ICS/FSS')
+from util import config
 
 client = MongoClient('localhost', 27017)
 db = client['lib_vul_db']
@@ -114,10 +117,10 @@ lib_format_dic = {
     'zlib': 'list'
 }
 
-ven = 'wago'
-fw_ver = '22'
-lib = 'libxml2'
-lib_ver = '2.9.14'
+ven = config.ven
+fw_ver = config.fw_ver
+lib = config.lib
+lib_ver = config.lib_ver
 
 lib_dic_key = lib.split('_')[0]
 if lib_format_dic[lib_dic_key] == 'list':

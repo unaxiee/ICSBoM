@@ -1,15 +1,18 @@
 import subprocess
 import os
 import csv
+import sys
+sys.path.append('/media/yongyu/Data/ICS/FSS')
+from util import config
 
-lib = 'libxml2'
-vendor = 'wago'
-fw = 'pfc'
-fw_ver = '22'
-flag = 'search'
+lib = config.lib
+vendor = config.ven
+fw = config.fw
+fw_ver = config.fw_ver
+
 
 func_set = set()
-with open('../IDA/func_list_' + vendor + '/' + lib + '_' + fw_ver + '_func_list.csv', 'r') as f:
+with open('func_list_' + vendor + '/' + lib + '_' + fw_ver + '_func_list.csv', 'r') as f:
     lines = f.readlines()
     for line in lines:
         line = line[:-1].split(',')
@@ -22,7 +25,7 @@ def search_in_select_lib(flag):
     for func in func_set:
         func_dic[func] = []
 
-    path = '../select_lib/' + fw + '/'
+    path = 'select_lib/' + fw + '/'
     for lib_ver in os.listdir(path):
         if lib in lib_ver:
             print(lib_ver)
@@ -77,5 +80,5 @@ def generate_func_lib(func_lib):
             wr.writerow([func, func_lib, func])
 
 
-generate_func_lib('libxml2')
+generate_func_lib('libext2fs')
 # search_in_select_lib(flag)
