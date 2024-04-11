@@ -1,6 +1,0 @@
-CVE-2019-15161,1.8.1,1.9.1,not found,daemon_msg_findallif_req,
-CVE-2019-15162,1.8.1,1.9.1,not found,daemon_AuthUserPwd,
-CVE-2019-15163,1.8.1,1.9.1,not found,daemon_AuthUserPwd,
-CVE-2019-15164,1.8.1,1.9.1,not found,daemon_serviceloop,
-CVE-2019-15164,1.8.1,1.9.1,not found,is_url,
-CVE-2019-15165,1.8.1,1.9.1,libpcap,pcap_ng_check_header,sub_1BCE4

@@ -1,0 +1,9 @@
+CVE-2018-25032,1.2.11,1.2.12,libz,deflate_slow,not match
+CVE-2018-25032,1.2.11,1.2.12,libz,deflateInit2_,deflateInit2_
+CVE-2018-25032,1.2.11,1.2.12,libz,deflate_fast,not match
+CVE-2018-25032,1.2.11,1.2.12,libz,compress_block,not match
+CVE-2018-25032,1.2.11,1.2.12,libz,_tr_flush_block,not match
+CVE-2018-25032,1.2.11,1.2.12,libz,deflatePrime,deflatePrime
+CVE-2018-25032,1.2.11,1.2.12,libz,deflateCopy,deflateCopy
+CVE-2018-25032,1.2.11,1.2.12,libz,_tr_tally,sub_F554
+CVE-2022-37434,1.2.11,1.2.13,libz,inflate,inflate

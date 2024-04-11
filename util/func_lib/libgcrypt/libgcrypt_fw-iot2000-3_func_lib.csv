@@ -1,6 +1,0 @@
-function,lib,name
-decrypt,libgcrypt,decrypt
-sign_0,libgcrypt,sign_0
-do_encrypt_3,libgcrypt,do_encrypt_3
-gen_k,libgcrypt,gen_k
-_gcry_md_block_write,libgcrypt,_gcry_md_block_write

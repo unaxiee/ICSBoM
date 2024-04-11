@@ -1,0 +1,12 @@
+function,lib,name
+xmlSchemaFixupComplexType,libxml2,sub_C0138
+xmlDictComputeFastKey,libxml2,sub_EA26C
+xmlStringGetNodeList,libxml2,xmlStringGetNodeList
+xmlXIncludeAddNode,not found,
+xmlParseReference,libxml2,xmlParseReference
+xmlSAX2ExternalSubset,libxml2,xmlSAX2ExternalSubset
+xmlSkipBlankChars,libxml2,xmlSkipBlankChars
+xmlNewDocNodeEatName,libxml2,xmlNewDocNodeEatName
+xmlNewPropInternal,libxml2,sub_4937C
+xmlCreatePushParserCtxt,libxml2,xmlCreatePushParserCtxt
+xmlStaticCopyNodeList,libxml2,sub_4EC70

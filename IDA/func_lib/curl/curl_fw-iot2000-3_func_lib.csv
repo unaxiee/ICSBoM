@@ -1,0 +1,34 @@
+function,lib,name
+Curl_allow_auth_to_host,libcurl,allow_auth_to_host
+Curl_add_custom_headers,libcurl,Curl_add_custom_headers
+Curl_http_output_auth,libcurl,Curl_http_output_auth
+Curl_conncache_find_bundle,libcurl,Curl_conncache_find_bundle
+Curl_conncache_add_conn,libcurl,Curl_conncache_add_conn
+Curl_safecmp,libcurl,Curl_safecmp
+conn_free,libcurl,conn_free
+ftp_statemachine,libcurl,ftp_statemach_act
+Curl_free_primary_ssl_config,libcurl,Curl_free_primary_ssl_config
+Curl_clone_primary_ssl_config,libcurl,Curl_clone_primary_ssl_config
+Curl_ssl_config_matches,libcurl,Curl_ssl_config_matches
+safecmp,libcurl,Curl_safecmp
+tool_version_info,curl,tool_version_info
+post_per_transfer,curl,post_per_transfer
+suboption,not found,
+Curl_ssl_getsessionid,libcurl,Curl_ssl_getsessionid
+Curl_ssl_addsessionid,libcurl,Curl_ssl_addsessionid
+Curl_follow,libcurl,Curl_follow
+verifystatus,not found,
+ftp_do,libcurl,ftp_do
+config_init,curl,config_init
+Curl_init_userdefined,libcurl,Curl_init_userdefined
+curl_easy_duphandle,libcurl,curl_easy_duphandle
+curl_multi_add_handle,libcurl,curl_multi_add_handle
+Curl_getconnectinfo,libcurl,Curl_getconnectinfo
+curl_multi_remove_handle,libcurl,curl_multi_remove_handle
+Curl_open,libcurl,Curl_open
+close_connect_only,libcurl,close_connect_only
+multi_done,libcurl,multi_done
+conn_is_conn,libcurl,conn_is_conn
+getparameter,curl,getparameter
+tool_header_cb,curl,tool_header_cb
+Curl_connect,libcurl,Curl_connect

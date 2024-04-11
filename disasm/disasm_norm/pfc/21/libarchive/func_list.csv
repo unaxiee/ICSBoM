@@ -1,0 +1,14 @@
+CVE-2018-1000877,3.3.3,3.4.0,libarchive,parse_codes,sub_3FD90
+CVE-2018-1000878,3.3.3,3.4.0,libarchive,read_header,sub_3C840
+CVE-2018-1000878,3.3.3,3.4.0,libarchive,rar_read_ahead,sub_3F180
+CVE-2018-1000879,3.3.3,3.4.0,libarchive,archive_acl_from_text_l,archive_acl_from_text_l
+CVE-2018-1000880,3.3.3,3.4.0,libarchive,_warc_read,sub_46230
+CVE-2019-1000019,3.3.3,3.4.0,libarchive,get_uncompressed_data,sub_27610
+CVE-2019-1000020,3.3.3,3.4.0,libarchive,parse_rockridge,sub_3362C
+CVE-2019-11463,3.3.3,3.4.0,libarchive,archive_read_format_zip_cleanup,sub_470D4
+CVE-2019-18408,3.3.3,3.4.0,libarchive,archive_read_format_rar_read_data,sub_3F0C0
+CVE-2019-19221,3.3.3,3.4.1,libarchive,archive_wstring_append_from_mbs,archive_wstring_append_from_mbs
+CVE-2020-21674,3.3.3,3.4.1,libarchive,archive_string_append_from_wcs,archive_string_append_from_wcs
+CVE-2020-21674,3.3.3,3.4.1,libarchive,strncat_from_utf8_libarchive2,sub_4E764
+CVE-2022-36227,3.3.3,3.6.2,libarchive,__archive_write_allocate_filter,__archive_write_allocate_filter
+CVE-2022-36227,3.3.3,3.6.2,libarchive,archive_write_open,archive_write_open

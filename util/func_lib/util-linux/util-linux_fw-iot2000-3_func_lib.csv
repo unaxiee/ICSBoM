@@ -1,9 +1,0 @@
-function,lib,name
-get_sem_elements,ipcs,get_sem_elements
-mnt_optstr_get_uid,libmount,mnt_optstr_get_uid
-mnt_context_prepare_umount,libmount,mnt_context_prepare_umount
-__table_parse_stream,libmount,__table_parse_stream
-ask_new_field,not found,
-shell_name_generator,not found,
-shell_name_completion,not found,
-ask_new_shell,not found,

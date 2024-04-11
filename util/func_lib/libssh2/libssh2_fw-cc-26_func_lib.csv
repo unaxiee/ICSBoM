@@ -1,3 +1,0 @@
-function,lib,name
-_libssh2_packet_add,libssh2,sub_1CB6C
-_libssh2_transport_read,libssh2,sub_35A14

@@ -1,6 +1,0 @@
-CVE-2023-34969,1.12.20,1.12.28,dbus-daemon,bus_transaction_send_from_driver,sub_27224
-CVE-2023-34969,1.12.20,1.12.28,libdbus,_dbus_connection_get_next_client_serial,sub_13AC4
-CVE-2022-42012,1.12.20,1.12.24,libdbus,byteswap_body_helper,sub_1CC54
-CVE-2022-42011,1.12.20,1.12.24,libdbus,validate_body_helper,sub_205E8
-CVE-2022-42011,1.12.20,1.12.24,libdbus,dbus_message_demarshal,dbus_message_demarshal
-CVE-2022-42010,1.12.20,1.12.24,libdbus,_dbus_validate_signature_with_reason,_dbus_validate_signature_with_reason

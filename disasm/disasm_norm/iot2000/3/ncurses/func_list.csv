@@ -1,0 +1,4 @@
+CVE-2021-39537,6.2,6.3,libtic,cvtchar,cvtchar
+CVE-2022-29458,6.2,6.4,libtinfo,convert_strings,convert_strings
+CVE-2022-29458,6.2,6.4,libtic,_nc_init_entry,_nc_init_entry
+CVE-2022-29458,6.2,6.4,libtic,_nc_save_str,_nc_save_str

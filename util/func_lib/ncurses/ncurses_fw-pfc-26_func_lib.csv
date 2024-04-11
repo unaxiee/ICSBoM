@@ -1,5 +1,0 @@
-function,lib,name
-cvtchar,libncursesw,sub_3E6C8
-convert_strings,libncursesw,sub_3BF6C
-_nc_init_entry,libncursesw,_nc_init_entry
-_nc_save_str,libncursesw,_nc_save_str

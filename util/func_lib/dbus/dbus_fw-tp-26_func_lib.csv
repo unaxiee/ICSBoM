@@ -1,7 +1,0 @@
-function,lib,name
-bus_transaction_send_from_driver,dbus-daemon,sub_27224
-_dbus_connection_get_next_client_serial,libdbus,sub_13AC4
-byteswap_body_helper,libdbus,sub_1CC54
-validate_body_helper,libdbus,sub_205E8
-dbus_message_demarshal,libdbus,dbus_message_demarshal
-_dbus_validate_signature_with_reason,libdbus,_dbus_validate_signature_with_reason

@@ -1,0 +1,5 @@
+function,lib,name
+ext2fs_extent_delete,libext2fs,ext2fs_extent_delete
+fill_dir_block,e2fsck,sub_325E0
+e2fsck_rehash_dir,e2fsck,e2fsck_rehash_dir
+ext2fs_extent_get,libext2fs,ext2fs_extent_get

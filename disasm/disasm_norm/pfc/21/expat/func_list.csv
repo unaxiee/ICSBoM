@@ -1,0 +1,52 @@
+CVE-2021-45960,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2021-46143,2.2.9,2.4.3,libexpat,doProlog,sub_625C
+CVE-2022-22822,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22822,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22822,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22822,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22822,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22822,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-22823,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22823,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22823,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22823,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22823,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22823,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-22824,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22824,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22824,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22824,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22824,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22824,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-22825,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22825,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22825,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22825,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22825,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22825,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-22826,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22826,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22826,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22826,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22826,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22826,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-22827,2.2.9,2.4.3,libexpat,addBinding,sub_3434
+CVE-2022-22827,2.2.9,2.4.3,libexpat,defineAttribute,not match
+CVE-2022-22827,2.2.9,2.4.3,libexpat,nextScaffoldPart,sub_2D54
+CVE-2022-22827,2.2.9,2.4.3,not found,build_model,
+CVE-2022-22827,2.2.9,2.4.3,libexpat,lookup,not match
+CVE-2022-22827,2.2.9,2.4.3,libexpat,storeAtts,not match
+CVE-2022-23852,2.2.9,2.4.4,libexpat,XML_GetBuffer,XML_GetBuffer
+CVE-2022-23990,2.2.9,2.4.4,libexpat,doProlog,sub_625C
+CVE-2022-25235,2.2.9,2.4.5,libexpat,normal_prologTok,not match
+CVE-2022-25235,2.2.9,2.4.5,libexpat,little2_prologTok,not match
+CVE-2022-25235,2.2.9,2.4.5,libexpat,big2_prologTok,not match
+CVE-2022-25236,2.2.9,2.4.5,libexpat,XML_ParserCreate,XML_ParserCreate
+CVE-2022-25236,2.2.9,2.4.5,libexpat,XML_ExternalEntityParserCreate,XML_ExternalEntityParserCreate
+CVE-2022-25236,2.2.9,2.4.5,libexpat,addBinding,sub_3434
+CVE-2022-25313,2.2.9,2.4.5,libexpat,build_node,not match
+CVE-2022-25313,2.2.9,2.4.5,not found,build_model,
+CVE-2022-25314,2.2.9,2.4.5,libexpat,getElementType,not match
+CVE-2022-25315,2.2.9,2.4.5,libexpat,storeRawNames,sub_512C
+CVE-2022-40674,2.2.9,2.4.9,libexpat,internalEntityProcessor,sub_9760
+CVE-2022-43680,2.2.9,2.5.0,libexpat,parserCreate,not match

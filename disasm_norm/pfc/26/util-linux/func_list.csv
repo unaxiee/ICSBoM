@@ -1,4 +1,0 @@
-CVE-2021-37600,2.36,2.37.2,ipcs,get_sem_elements,sub_136F8
-CVE-2021-3995,2.36,2.37.3,libmount,mnt_context_prepare_umount,mnt_context_prepare_umount
-CVE-2021-3995,2.36,2.37.3,libmount,mnt_optstr_get_uid,mnt_optstr_get_uid
-CVE-2021-3996,2.36,2.37.3,libmount,mnt_table_parse_stream,mnt_table_parse_stream

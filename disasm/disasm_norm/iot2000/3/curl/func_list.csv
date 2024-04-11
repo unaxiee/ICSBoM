@@ -1,0 +1,45 @@
+CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,allow_auth_to_host
+CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_add_custom_headers,Curl_add_custom_headers
+CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_http_output_auth,Curl_http_output_auth
+CVE-2022-27775,7.69.1,7.83.0,libcurl,Curl_conncache_find_bundle,Curl_conncache_find_bundle
+CVE-2022-27775,7.69.1,7.83.0,libcurl,Curl_conncache_add_conn,Curl_conncache_add_conn
+CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,allow_auth_to_host
+CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_add_custom_headers,Curl_add_custom_headers
+CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_http_output_auth,Curl_http_output_auth
+CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_connect,Curl_connect
+CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_ssl_config_matches,Curl_ssl_config_matches
+CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_safecmp,Curl_safecmp
+CVE-2022-22576,7.69.1,7.83.0,libcurl,conn_free,conn_free
+CVE-2021-22947,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemach_act
+CVE-2021-22946,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemach_act
+CVE-2021-22925,7.69.1,7.78.0,not found,suboption,
+CVE-2021-22924,7.69.1,7.78.0,libcurl,Curl_connect,Curl_connect
+CVE-2021-22924,7.69.1,7.78.0,libcurl,Curl_free_primary_ssl_config,Curl_free_primary_ssl_config
+CVE-2021-22924,7.69.1,7.78.0,libcurl,Curl_clone_primary_ssl_config,Curl_clone_primary_ssl_config
+CVE-2021-22924,7.69.1,7.78.0,libcurl,Curl_ssl_config_matches,Curl_ssl_config_matches
+CVE-2021-22924,7.69.1,7.78.0,libcurl,safecmp,Curl_safecmp
+CVE-2021-22923,7.69.1,7.78.0,curl,getparameter,getparameter
+CVE-2021-22923,7.69.1,7.78.0,curl,tool_version_info,tool_version_info
+CVE-2021-22923,7.69.1,7.78.0,curl,post_per_transfer,post_per_transfer
+CVE-2021-22922,7.69.1,7.78.0,curl,getparameter,getparameter
+CVE-2021-22922,7.69.1,7.78.0,curl,tool_version_info,tool_version_info
+CVE-2021-22922,7.69.1,7.78.0,curl,post_per_transfer,post_per_transfer
+CVE-2021-22898,7.69.1,7.77.0,not found,suboption,
+CVE-2021-22890,7.69.1,7.76.0,libcurl,Curl_ssl_addsessionid,Curl_ssl_addsessionid
+CVE-2021-22890,7.69.1,7.76.0,libcurl,Curl_ssl_getsessionid,Curl_ssl_getsessionid
+CVE-2021-22876,7.69.1,7.76.0,libcurl,Curl_follow,Curl_follow
+CVE-2020-8286,7.69.1,7.74.0,not found,verifystatus,
+CVE-2020-8285,7.69.1,7.74.0,libcurl,ftp_do,ftp_do
+CVE-2020-8284,7.69.1,7.74.0,curl,config_init,config_init
+CVE-2020-8284,7.69.1,7.74.0,libcurl,Curl_init_userdefined,Curl_init_userdefined
+CVE-2020-8231,7.69.1,7.72.0,libcurl,curl_easy_duphandle,curl_easy_duphandle
+CVE-2020-8231,7.69.1,7.72.0,libcurl,curl_multi_add_handle,curl_multi_add_handle
+CVE-2020-8231,7.69.1,7.72.0,libcurl,Curl_getconnectinfo,Curl_getconnectinfo
+CVE-2020-8231,7.69.1,7.72.0,libcurl,curl_multi_remove_handle,curl_multi_remove_handle
+CVE-2020-8231,7.69.1,7.72.0,libcurl,Curl_open,Curl_open
+CVE-2020-8231,7.69.1,7.72.0,libcurl,close_connect_only,close_connect_only
+CVE-2020-8231,7.69.1,7.72.0,libcurl,multi_done,multi_done
+CVE-2020-8231,7.69.1,7.72.0,libcurl,conn_is_conn,conn_is_conn
+CVE-2020-8177,7.69.1,7.71.0,curl,getparameter,getparameter
+CVE-2020-8177,7.69.1,7.71.0,curl,tool_header_cb,tool_header_cb
+CVE-2020-8169,7.69.1,7.71.0,libcurl,Curl_connect,Curl_connect

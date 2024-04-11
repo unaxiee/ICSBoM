@@ -1,4 +1,0 @@
-CVE-2021-39537,6.2,6.3,libncursesw,cvtchar,sub_3E6C8
-CVE-2022-29458,6.2,6.4,libncursesw,convert_strings,sub_3BF6C
-CVE-2022-29458,6.2,6.4,libncursesw,_nc_init_entry,_nc_init_entry
-CVE-2022-29458,6.2,6.4,libncursesw,_nc_save_str,_nc_save_str

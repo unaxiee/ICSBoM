@@ -1,0 +1,24 @@
+function,lib,name
+Curl_http_readwrite_headers,libcurl,sub_21158
+Curl_http_body,libcurl,sub_1F248
+tftp_send_first,libcurl,sub_369DC
+ftp_state_prepare_transfer,libcurl,sub_1556C
+Curl_http_auth_act,libcurl,sub_1DBAC
+Curl_http_method,libcurl,sub_1EC94
+Curl_vsetopt,libcurl,sub_2EA70
+Curl_follow,libcurl,sub_39250
+ftp_done,libcurl,sub_187E0
+Curl_bump_headersize,libcurl,
+ftp_do_more,libcurl,sub_17DF4
+Curl_cookie_add,not found,
+Curl_pp_readresp,libcurl,sub_2C220
+curl_easy_duphandle,libcurl,curl_easy_duphandle
+Curl_init_CONNECT,libcurl,sub_38E74
+ftp_parse_url_path,libcurl,sub_14D74
+ssh_statemach_act,libcurl,sub_494EC
+Curl_retry_request,libcurl,sub_39804
+Curl_cert_hostcheck,libcurl,sub_411EC
+smtp_done,libcurl,sub_321A0
+socks_proxy_cf_connect,libcurl,sub_34BF4
+Curl_fopen,libcurl,sub_13A14
+Curl_resolv_timeout,libcurl,sub_1BCD4
