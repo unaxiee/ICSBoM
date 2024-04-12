@@ -1,0 +1,4 @@
+CVE-2018-16842,7.61.0,7.62.0,curl,voutf,sub_DB20
+CVE-2018-16840,7.61.0,7.62.0,libcurl,Curl_close,sub_18320
+CVE-2018-16839,7.61.0,7.62.0,libcurl,Curl_auth_create_plain_message,sub_41830
+CVE-2018-14618,7.61.0,7.61.1,libcurl,Curl_ntlm_core_mk_nt_hash,sub_35410

@@ -1,0 +1,4 @@
+CVE-2018-16842,7.62.0,voutf
+CVE-2018-16840,7.62.0,Curl_close
+CVE-2018-16839,7.62.0,Curl_auth_create_plain_message
+CVE-2018-14618,7.61.1,Curl_ntlm_core_mk_nt_hash

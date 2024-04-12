@@ -1,0 +1,5 @@
+function,lib,name
+voutf,curl,sub_DB20
+Curl_auth_create_plain_message,libcurl,sub_41830
+Curl_close,libcurl,sub_18320
+Curl_ntlm_core_mk_nt_hash,libcurl,sub_35410

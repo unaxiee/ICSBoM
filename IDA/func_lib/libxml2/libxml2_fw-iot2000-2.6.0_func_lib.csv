@@ -1,0 +1,3 @@
+function,lib,name
+xmlXPathCompOpEval,libxml2,sub_79280
+xmlHaltParser,libxml2,sub_28E70

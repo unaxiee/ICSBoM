@@ -1,0 +1,4 @@
+["CVE-2022-1304", "ext2fs_extent_delete", "1.46.6", "E no vulnerable and patched version"]
+["CVE-2022-1304", "ext2fs_extent_get", "1.46.6", "V 0.5072765072765073 / 0.49272349272349275, vul-tar: 108/129, patch-tar: 115/129"]
+["CVE-2019-5188", "fill_dir_block", "1.45.5", "V 0.504424778761062 / 0.49557522123893805, vul-tar: 38/74, patch-tar: 40/74"]
+["CVE-2019-5188", "e2fsck_rehash_dir", "1.45.5", "NA VP no diff"]

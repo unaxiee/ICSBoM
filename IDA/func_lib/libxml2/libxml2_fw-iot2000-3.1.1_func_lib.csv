@@ -1,0 +1,3 @@
+function,lib,name
+xmlStringLenDecodeEntities,libxml2,xmlStringLenDecodeEntities
+xmlSchemaPreRun,libxml2,sub_B68C0

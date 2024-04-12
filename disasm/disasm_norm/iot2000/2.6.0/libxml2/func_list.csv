@@ -1,0 +1,2 @@
+CVE-2017-8872,2.9.8,2.9.9,libxml2,xmlHaltParser,sub_28E70
+CVE-2018-14404,2.9.8,2.9.9,libxml2,xmlXPathCompOpEval,sub_79280

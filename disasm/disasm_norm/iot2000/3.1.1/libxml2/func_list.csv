@@ -1,0 +1,2 @@
+CVE-2020-7595,2.9.10,2.9.11,libxml2,xmlStringLenDecodeEntities,xmlStringLenDecodeEntities
+CVE-2019-20388,2.9.10,2.9.11,libxml2,xmlSchemaPreRun,sub_B68C0
