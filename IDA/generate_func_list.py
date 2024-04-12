@@ -26,24 +26,27 @@ def calculate_statistics(lib):
 
 # per package version (list)
 def generate_func_list_for_list_per_package(lib, lib_ver, fw_ver):
-    collection = db[lib]
+    if lib == 'openssl':
+        collection = db[lib + '_' + lib_ver[:-1]]
+    else:
+        collection = db[lib]
     build_version = {lib_ver}
     # for different openssl series
-    with open('func_list_' + ven + '/' + lib.split('_')[0] + '_' + fw_ver + '_func_list.csv', 'w') as f:
+    with open('func_list_' + ven + '/' + lib + '_' + fw_ver + '_func_list.csv', 'w') as f:
         wr = csv.writer(f)
         for doc in collection.find():
             if 'affected_since_version' in doc.keys():
-                if 'openssl' not in lib and version.parse(lib_ver) < version.parse(doc['affected_since_version']):
+                if lib != 'openssl' and version.parse(lib_ver) < version.parse(doc['affected_since_version']):
                     print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
                     continue
-                elif 'openssl' in lib and lib_ver < doc['affected_since_version']:
+                elif lib == 'openssl' and lib_ver < doc['affected_since_version']:
                     print('skip', doc['CVE'], '(affecting since', doc['affected_since_version'], ')')
                     continue
 
-            if 'openssl' not in lib and version.parse(lib_ver) >= version.parse(doc['fixed_version']):
+            if lib != 'openssl' and version.parse(lib_ver) >= version.parse(doc['fixed_version']):
                 print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
                 continue
-            elif 'openssl' in lib and lib_ver >= doc['fixed_version']:
+            elif lib == 'openssl' and lib_ver >= doc['fixed_version']:
                 print('skip', doc['CVE'], '(fixed in', doc['fixed_version'], ')')
                 continue
             
@@ -122,10 +125,9 @@ fw_ver = config.fw_ver
 lib = config.lib
 lib_ver = config.lib_ver
 
-lib_dic_key = lib.split('_')[0]
-if lib_format_dic[lib_dic_key] == 'list':
+if lib_format_dic[lib] == 'list':
     generate_func_list_for_list_per_package(lib, lib_ver, fw_ver)
-elif lib_format_dic[lib_dic_key] == 'string':
+elif lib_format_dic[lib] == 'string':
     generate_func_list_for_string_per_package(lib, lib_ver, fw_ver)
 else:
     print('no package', lib)
