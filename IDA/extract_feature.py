@@ -9,6 +9,8 @@ import json
 # 2.9.13, 2.9.14
 libxml_special_func = ['xmlAddID', 'xmlParsePEReference']
 
+fw_func_list = []
+
 def get_func_for_build():
     func_name = set()
     with open('func_list.csv', 'r') as f:
@@ -50,10 +52,19 @@ def dump_function_details(ea):
             }
             cnt += 1
 
-    if cnt > 5:
+    if 'fw' not in file_name:
+        disasm['bb_num'] = cnt
         return disasm
     else:
-        return None
+        if cnt > 5:
+            disasm['bb_num'] = cnt
+            return disasm
+        elif get_func_name(ea) in fw_func_list:
+            print(get_func_name(ea), cnt, 'bbs')
+            disasm['bb_num'] = cnt
+            return disasm
+        else:
+            return None
 
 
 file_name = get_root_filename()
@@ -70,6 +81,8 @@ if 'fw' not in file_name:
         if name in func_name:
             disasm = dump_function_details(ea)
             if disasm:
+                print(name, disasm['bb_num'], 'bbs')
+                del disasm['bb_num']
                 # special case for libxml2
                 if 'libxml2' in file_name:
                     if '__internal_alias' in name:
@@ -79,7 +92,6 @@ if 'fw' not in file_name:
                         found_func.add(name + '__internal_alias')
                 disasm_dic[name] = disasm
                 found_func.add(name)
-                print(name, 'done')
             else:
                 print('Skip', name, 'less than five basic blocks')
     if 'libxml2' not in file_name:
@@ -99,6 +111,7 @@ else:
         name = get_func_name(ea)
         disasm = dump_function_details(ea)
         if disasm:
+            del disasm['bb_num']
             if 'libxml2' in file_name:
                 if '__internal_alias' in name:
                     name = name[:name.index('__internal_alias')]
