@@ -345,7 +345,6 @@ def matching_v2(source_trace_list, match_trace_list):
 	if trace_count > 0:
 		return float(total_score) / float(trace_count)
 	else:
-		print('here')
 		return -1
 
 
@@ -439,6 +438,8 @@ def match_decision(target_func, sig):
 			return ['NA too much diff']
 		trace_list_vul_vp = get_instr_list(vul_func, vul_vp)
 		trace_list_patch_vp = get_instr_list(patch_func, patch_vp)
+		if len(trace_list_vul_vp) == 0 or len(trace_list_patch_vp) == 0:
+			return ['NA cannot tell']
 		s_vt_n = matching_v2(trace_list_vul_vp, trace_list_tar_pt)
 		s_pt_n = matching_v2(trace_list_patch_vp, trace_list_tar_vt)
 		if abs(s_vt_n - s_pt_n) > 0.1:
