@@ -1,0 +1,4 @@
+CVE-2022-1304,1.45.4,1.46.6,libext2fs,ext2fs_extent_delete,ext2fs_extent_delete
+CVE-2022-1304,1.45.4,1.46.6,libext2fs,ext2fs_extent_get,ext2fs_extent_get
+CVE-2019-5188,1.45.4,1.45.5,e2fsck,fill_dir_block,fill_dir_block
+CVE-2019-5188,1.45.4,1.45.5,e2fsck,e2fsck_rehash_dir,e2fsck_rehash_dir

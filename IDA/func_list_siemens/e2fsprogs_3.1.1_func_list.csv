@@ -1,0 +1,4 @@
+CVE-2022-1304,1.46.6,ext2fs_extent_delete
+CVE-2022-1304,1.46.6,ext2fs_extent_get
+CVE-2019-5188,1.45.5,fill_dir_block
+CVE-2019-5188,1.45.5,e2fsck_rehash_dir

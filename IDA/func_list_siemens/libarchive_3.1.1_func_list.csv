@@ -1,0 +1,4 @@
+CVE-2021-36976,3.6.0,process_head_file
+CVE-2022-26280,3.6.1,archive_read_format_zip_read_data
+CVE-2022-36227,3.6.2,__archive_write_allocate_filter
+CVE-2022-36227,3.6.2,archive_write_open2

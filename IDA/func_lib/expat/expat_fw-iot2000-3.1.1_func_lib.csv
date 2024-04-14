@@ -1,0 +1,19 @@
+function,lib,name
+normal_prologTok,libexpat,normal_prologTok
+storeAtts,libexpat,storeAtts
+nextScaffoldPart,libexpat,nextScaffoldPart
+little2_prologTok,libexpat,little2_prologTok
+XML_GetBuffer,libexpat,XML_GetBuffer
+internalEntityProcessor,libexpat,internalEntityProcessor
+doProlog,libexpat,doProlog
+XML_ExternalEntityParserCreate,libexpat,XML_ExternalEntityParserCreate
+build_model,not found,
+addBinding,libexpat,addBinding
+big2_prologTok,libexpat,big2_prologTok
+parserCreate,libexpat,parserCreate
+defineAttribute,libexpat,defineAttribute
+build_node,libexpat,build_node
+getElementType,libexpat,getElementType
+lookup,libexpat,lookup
+XML_ParserCreate,libexpat,XML_ParserCreate
+storeRawNames,libexpat,storeRawNames

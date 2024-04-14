@@ -1,0 +1,5 @@
+function,lib,name
+convert_strings,libncursesw,convert_strings
+_nc_save_str,libncursesw,_nc_save_str
+_nc_init_entry,libncursesw,_nc_init_entry
+cvtchar,libncursesw,cvtchar

@@ -1,3 +1,4 @@
 voutf,curl,Top-25(not max)
-Curl_auth_create_plain_message,libcurl,Top-1 (0)
-Curl_close,libcurl,Top-1 (5)
+Curl_auth_create_plain_message,libcurl,Top-100(0) (tie)
+Curl_close,libcurl,Top-1 (4)
+Curl_ntlm_core_mk_nt_hash,libcurl,Top-50+bb_hash (4)
