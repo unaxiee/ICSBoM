@@ -1,4 +1,4 @@
 ["CVE-2018-16842", "voutf", "7.62.0", "NA cannot tell"]
-["CVE-2018-16840", "Curl_close", "7.62.0", "P 0.45 / 0.55, vul-tar: 11/11, patch-tar: 8/10"]
+["CVE-2018-16840", "Curl_close", "7.62.0", "V 0.46844957812214527/0.3646065531311433, vul-tar: 12/12, patch-tar: 9/11"]
 ["CVE-2018-16839", "Curl_auth_create_plain_message", "7.62.0", "V 0.5333333333333333 / 0.4666666666666667, vul-tar: 3/4, patch-tar: 4/4"]
-["CVE-2018-14618", "Curl_ntlm_core_mk_nt_hash", "7.61.1", "E no vulnerable and patched version"]
+["CVE-2018-14618", "Curl_ntlm_core_mk_nt_hash", "7.61.1", "NA VP no diff"]

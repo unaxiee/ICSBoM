@@ -1,0 +1,5 @@
+function,lib,name
+get_sem_elements,ipcs,get_sem_elements
+mnt_table_parse_stream,libmount,mnt_table_parse_stream
+mnt_optstr_get_uid,libmount,mnt_optstr_get_uid
+mnt_context_prepare_umount,libmount,mnt_context_prepare_umount

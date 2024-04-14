@@ -1,0 +1,11 @@
+function,lib,name
+do_encrypt_0,libgcrypt,do_encrypt_0
+ghash_internal,libgcrypt,ghash_internal
+sign_0,libgcrypt,sign_0
+_gcry_md_block_write,libgcrypt,_gcry_md_block_write
+do_encrypt_3,libgcrypt,do_encrypt_3
+prefetch_dec,libgcrypt,prefetch_dec
+gen_k,libgcrypt,gen_k
+prefetch_enc,libgcrypt,prefetch_enc
+do_decrypt,libgcrypt,do_decrypt
+decrypt,libgcrypt,decrypt
