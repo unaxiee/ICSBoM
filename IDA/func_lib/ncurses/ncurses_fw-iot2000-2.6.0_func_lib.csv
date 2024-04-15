@@ -1,0 +1,5 @@
+function,lib,name
+convert_strings,libtinfo,convert_strings
+_nc_init_entry,libtic,_nc_init_entry
+cvtchar,libtic,cvtchar
+_nc_save_str,libtic,_nc_save_str

@@ -1,0 +1,10 @@
+function,lib,name
+ext2fs_extent_delete,libext2fs,ext2fs_extent_delete
+qtree_scan_dquots,e2fsck,qtree_scan_dquots
+ext2fs_extent_get,libext2fs,ext2fs_extent_get
+v2_init_io,e2fsck,v2_init_io
+quota_compare_and_update,e2fsck,quota_compare_and_update
+e2fsck_rehash_dir,e2fsck,e2fsck_rehash_dir
+report_tree,e2fsck,report_tree
+fill_dir_block,e2fsck,fill_dir_block
+check_reference,e2fsck,check_reference

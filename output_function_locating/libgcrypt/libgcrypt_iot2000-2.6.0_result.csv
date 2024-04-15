@@ -1,0 +1,10 @@
+prefetch_enc,libgcrypt,Top-1 (1)
+ghash_internal,libgcrypt,Top-25+bb_hash (5)
+do_encrypt_0,libgcrypt,Top-1 (1)
+do_encrypt_3,libgcrypt,Top-25(0) (tie)
+sign_0,libgcrypt,Top-25(0) (tie)
+decrypt,libgcrypt,Not Found
+prefetch_dec,libgcrypt,Top-1 (1)
+do_decrypt,libgcrypt,Top-1 (0)
+gen_k,libgcrypt,Not Found
+_gcry_md_block_write,libgcrypt,Top-1 (7)

@@ -1,0 +1,6 @@
+function,lib,name
+is_url,not found,
+daemon_serviceloop,not found,
+daemon_msg_findallif_req,not found,
+daemon_AuthUserPwd,not found,
+pcap_ng_check_header,libpcap,pcap_ng_check_header

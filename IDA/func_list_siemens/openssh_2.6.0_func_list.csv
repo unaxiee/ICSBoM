@@ -1,0 +1,9 @@
+CVE-2018-20685,8.0,sink
+CVE-2020-12062,8.3,sink
+CVE-2020-12062,8.3,note_err
+CVE-2020-14145,8.4,ssh_kex2
+CVE-2021-28041,8.5,parse_key_constraints
+CVE-2023-25136,9.1,compat_cipher_proposal
+CVE-2023-25136,9.1,compat_pkalg_proposal
+CVE-2023-25136,9.1,compat_kex_proposal
+CVE-2021-41617,8.8,subprocess

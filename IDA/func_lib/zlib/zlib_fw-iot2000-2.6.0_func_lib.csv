@@ -1,0 +1,10 @@
+function,lib,name
+compress_block,libz,compress_block
+deflatePrime,libz,deflatePrime
+deflateCopy,libz,deflateCopy
+deflate_slow,libz,deflate_slow
+_tr_flush_block,libz,_tr_flush_block
+deflate_fast,libz,deflate_fast
+_tr_tally,libz,_tr_tally
+inflate,libz,inflate
+deflateInit2_,libz,deflateInit2_
