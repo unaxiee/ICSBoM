@@ -273,6 +273,7 @@ def build_trace_graph_v2(bb_add_list_changed, bb_add_list_root, func):
 				G.add_edge(bb1, bb2)
 	
 	if len(G.nodes()) > 300:
+		print('too many blocks')
 		return -1
 
 	roots = (v for v, d in G.in_degree() if d == 0)
@@ -289,7 +290,7 @@ def build_trace_graph_v2(bb_add_list_changed, bb_add_list_root, func):
 	cnt = 0
 	for root in root_list:
 		for leaf in leaf_list:
-			if root == leaf and root in bb_add_list_root:
+			if root == leaf and (root in bb_add_list_root or len(G.nodes()) == 1):
 				all_paths.extend([[root]])
 				cnt += 1
 
@@ -302,7 +303,8 @@ def build_trace_graph_v2(bb_add_list_changed, bb_add_list_root, func):
 							ppath.append(path)
 							cnt += 1
 							break
-					if cnt >= 5000:
+					if cnt >= 50000:
+						print('too many trace')
 						return -1
 				all_paths.extend(ppath)
 
@@ -324,8 +326,9 @@ def get_instr_list(func, trace_in_list):
 
 def matching_v2(source_trace_list, match_trace_list):
 	mul = len(source_trace_list) * len(match_trace_list)
-	if (mul > 50000):
-		return 1.0 / mul
+	len_thresh = 1000000
+	if (mul > len_thresh):
+		return len_thresh / mul
 	
 	trace_count = len(source_trace_list)
 	total_score = 0
@@ -392,9 +395,13 @@ def match_decision(target_func, sig):
 	s_pt_p = find_surruding(diff_p_to_t[0], patch_func)   # boundary basic blocks for unmatched bbs in patched compared to target
 	s_pt_t = find_surruding(diff_p_to_t[1], target_func)   # boundary basic blocks for unmatched bbs in target compared to patched
 
+	print('build vul_vt trace based on', len(diff_v_to_t[0]), 'basic blocks')
 	vul_vt = build_trace_graph_v2(diff_v_to_t[0], s_vt_v, vul_func)
+	print('build tar_vt trace based on', len(diff_v_to_t[1]), 'basic blocks')
 	tar_vt = build_trace_graph_v2(diff_v_to_t[1], s_vt_t, target_func)
+	print('build patch_pt trace based on', len(diff_p_to_t[0]), 'basic blocks')
 	patch_pt = build_trace_graph_v2(diff_p_to_t[0], s_pt_p, patch_func)
+	print('build tar_pt trace based on', len(diff_v_to_t[1]), 'basic blocks')
 	tar_pt = build_trace_graph_v2(diff_p_to_t[1], s_pt_t, target_func)
 	
 	if vul_vt == -1 or patch_pt == -1 or tar_vt == -1 or tar_pt == -1:
@@ -422,46 +429,45 @@ def match_decision(target_func, sig):
 	s_vt = matching_v2(trace_list_vul_vt, trace_list_tar_vt)
 	s_pt = matching_v2(trace_list_patch_pt, trace_list_tar_pt)
 
-	if abs(s_vt - s_pt) > 0.1:
-		if s_vt > s_pt:
-			return ['V ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-		elif s_vt < s_pt:
-			return ['P ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-		else:
-			return ['NA cannot tell']
+	# if abs(s_vt - s_pt) > 0.01:
+	if s_vt > s_pt:
+		return ['V ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	elif s_vt < s_pt:
+		return ['P ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 	else:
-		s_vp_v = find_surruding(diff[0], vul_func)
-		s_vp_p = find_surruding(diff[1], patch_func)
-		vul_vp = build_trace_graph_v2(diff[0], s_vp_v, vul_func)
-		patch_vp = build_trace_graph_v2(diff[1], s_vp_p, patch_func)
-		if vul_vp == -1 or patch_vp == -1:
-			return ['NA too much diff']
-		trace_list_vul_vp = get_instr_list(vul_func, vul_vp)
-		trace_list_patch_vp = get_instr_list(patch_func, patch_vp)
-		if len(trace_list_vul_vp) == 0 or len(trace_list_patch_vp) == 0:
-			return ['NA cannot tell']
-		s_vt_n = matching_v2(trace_list_vul_vp, trace_list_tar_pt)
-		s_pt_n = matching_v2(trace_list_patch_vp, trace_list_tar_vt)
-		if abs(s_vt_n - s_pt_n) > 0.1:
-			if s_vt_n > s_pt_n:
-				return ['V ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			elif s_vt_n < s_pt_n:
-				return ['P ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			else:
-				return ['NA cannot tell']
-		else:
-			diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
-			diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
-			if diff_vt_sum < diff_pt_sum:
-				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			elif diff_pt_sum < diff_vt_sum:
-				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			else:
-				return ['NA cannot tell']
+		return ['NA cannot tell']
+	# else:
+	# 	s_vp_v = find_surruding(diff[0], vul_func)
+	# 	s_vp_p = find_surruding(diff[1], patch_func)
+	# 	vul_vp = build_trace_graph_v2(diff[0], s_vp_v, vul_func)
+	# 	patch_vp = build_trace_graph_v2(diff[1], s_vp_p, patch_func)
+	# 	if vul_vp == -1 or patch_vp == -1:
+	# 		return ['NA too much diff']
+	# 	trace_list_vul_vp = get_instr_list(vul_func, vul_vp)
+	# 	trace_list_patch_vp = get_instr_list(patch_func, patch_vp)
+	# 	if len(trace_list_vul_vp) == 0 or len(trace_list_patch_vp) == 0:
+	# 		return ['NA cannot tell']
+	# 	s_vt_n = matching_v2(trace_list_vul_vp, trace_list_tar_pt)
+	# 	s_pt_n = matching_v2(trace_list_patch_vp, trace_list_tar_vt)
+	# 	if abs(s_vt_n - s_pt_n) > 0.01:
+	# 		if s_vt_n > s_pt_n:
+	# 			return ['V ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	# 		elif s_vt_n < s_pt_n:
+	# 			return ['P ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	# 		else:
+	# 			return ['NA cannot tell']
+	# 	else:
+	# 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
+	# 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
+	# 		if diff_vt_sum < diff_pt_sum:
+	# 			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	# 		elif diff_pt_sum < diff_vt_sum:
+	# 			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	# 		else:
+	# 			return ['NA cannot tell']
 
 
 def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name):
-	print('analysing ' + function_name)
 	
 	sig = extract_sig(fw, ver, pkg, lib, function_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff]
 
@@ -523,6 +529,7 @@ def detect_patch(fw, ver, pkg):
 		function_name = record[4]
 		
 		result_head = [CVE_id, function_name, patch_version]
+		print(result_head)
 		
 		decision = run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name)
 		print(decision)
