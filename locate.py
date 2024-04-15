@@ -57,7 +57,7 @@ def match_function(ref, build_dic, fw_j, max_num):
             break
 
     if not found:
-        print('Not found in Top-', list_len, '\n')
+        print('Not found\n')
         return 'Not Found'
 
     max_sim_bb = 0
@@ -115,19 +115,23 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             print(row['function'], 'cannot be matched in firmware binary\n')
             continue
 
-        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
-            print(row['lib'], 'cannot be found in firmware image\n')
-            continue
+        # if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
+        #     print(row['lib'], 'cannot be found in firmware image\n')
+        #     continue
 
         with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
             del fw_j['num']
+
+        if row['name'] not in fw_j.keys():
+            print(row['function'], 'is not extracted from firmware binary\n')
+            continue
         
         with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():
-            print(row['function'], 'is not extracted from built package\n')
+            print(row['function'], 'is not extracted from built binary\n')
             continue
         
         print(row['function'])
@@ -138,4 +142,4 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 200)
+evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 25)
