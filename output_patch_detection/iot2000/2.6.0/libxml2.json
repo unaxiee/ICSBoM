@@ -46,7 +46,7 @@
 ["CVE-2019-20388", "xmlSchemaPreRun", "2.9.11", "V 0.49604043619380783/0.4768136416693249, vul-tar: 14/8, patch-tar: 14/8"]
 ["CVE-2021-3517", "xmlEncodeEntitiesInternal", "2.9.11", "V 0.3537408866331196/0.13479895746486298, vul-tar: 75/74, patch-tar: 83/78"]
 ["CVE-2021-3518", "xmlXIncludeDoProcess", "2.9.11", "V 0.5961705831157529 / 0.40382941688424717, vul-tar: 230/234, patch-tar: 391/294"]
-["CVE-2021-3537", "xmlParseElementChildrenContentDeclPriv", "2.9.11", "NA VP no diff"]
+["CVE-2021-3537", "xmlParseElementChildrenContentDeclPriv_0", "2.9.11", "P 0.002489094170790859/0.016911418466972, vul-tar: 85/82, patch-tar: 72/83"]
 ["CVE-2021-3541", "xmlParsePEReference", "2.9.11", "V 0.5945047880204538/0.4591714222899387, vul-tar: 20/20, patch-tar: 28/27"]
 ["CVE-2021-3541", "xmlParserEntityCheck", "2.9.11", "V 0.4335047859383893/0.2538703940523561, vul-tar: 25/23, patch-tar: 36/26"]
 ["CVE-2017-8872", "xmlHaltParser", "2.9.9", "P 0.5716328197945845/0.671201814058957, vul-tar: 6/9, patch-tar: 6/6"]

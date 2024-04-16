@@ -17,7 +17,7 @@ xmlAddRef,libxml2,xmlAddRef
 xmlParseName,libxml2,xmlParseName
 xmlValidNormalizeString,libxml2,xmlValidNormalizeString
 xmlBufGrowInternal,libxml2,xmlBufGrowInternal
-xmlParseElementChildrenContentDeclPriv,libxml2,xmlParseElementChildrenContentDeclPriv
+xmlParseElementChildrenContentDeclPriv_0,libxml2,xmlParseElementChildrenContentDeclPriv_0
 xmlBufCat,libxml2,xmlBufCat
 xmlBufResize,libxml2,xmlBufResize
 xmlParsePI,libxml2,xmlParsePI

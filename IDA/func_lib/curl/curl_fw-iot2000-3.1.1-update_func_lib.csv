@@ -32,7 +32,7 @@ Curl_ssl_config_matches,libcurl,Curl_ssl_config_matches
 Curl_safecmp,libcurl,Curl_safecmp
 create_transfer,curl,create_transfer
 ssh_statemach_act,libcurl,ssh_statemach_act
-Curl_allow_auth_to_host,libcurl,Curl_allow_auth_to_host
+Curl_allow_auth_to_host,libcurl,allow_auth_to_host
 curl_multi_remove_handle,libcurl,curl_multi_remove_handle
 smb_done,libcurl,smb_done
 conn_is_conn,libcurl,conn_is_conn
@@ -49,7 +49,7 @@ post_per_transfer,curl,post_per_transfer
 smtp_done,libcurl,smtp_done
 ConnectionExists,libcurl,ConnectionExists
 Curl_add_custom_headers,libcurl,Curl_add_custom_headers
-ftp_statemachine,libcurl,ftp_statemachine
+ftp_statemachine,libcurl,ftp_statemach_act
 Curl_http_body,libcurl,Curl_http_body
 Curl_cookie_add,libcurl,Curl_cookie_add
 Curl_follow,libcurl,Curl_follow

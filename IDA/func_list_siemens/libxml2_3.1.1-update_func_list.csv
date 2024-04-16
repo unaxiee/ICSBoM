@@ -44,6 +44,6 @@ CVE-2023-45322,2.11.0,xmlStaticCopyNodeList
 CVE-2019-20388,2.9.11,xmlSchemaPreRun
 CVE-2021-3517,2.9.11,xmlEncodeEntitiesInternal
 CVE-2021-3518,2.9.11,xmlXIncludeDoProcess
-CVE-2021-3537,2.9.11,xmlParseElementChildrenContentDeclPriv
+CVE-2021-3537,2.9.11,xmlParseElementChildrenContentDeclPriv_0
 CVE-2021-3541,2.9.11,xmlParsePEReference
 CVE-2021-3541,2.9.11,xmlParserEntityCheck

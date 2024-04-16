@@ -46,8 +46,8 @@ CVE-2023-45322,2.9.8,2.11.0,libxml2,xmlStaticCopyNodeList,xmlStaticCopyNodeList
 CVE-2019-20388,2.9.8,2.9.11,libxml2,xmlSchemaPreRun,xmlSchemaPreRun
 CVE-2021-3517,2.9.8,2.9.11,libxml2,xmlEncodeEntitiesInternal,xmlEncodeEntitiesInternal
 CVE-2021-3518,2.9.8,2.9.11,libxml2,xmlXIncludeDoProcess,xmlXIncludeDoProcess
-CVE-2021-3537,2.9.8,2.9.11,libxml2,xmlParseElementChildrenContentDeclPriv,xmlParseElementChildrenContentDeclPriv
+CVE-2021-3537,2.9.8,2.9.11,libxml2,xmlParseElementChildrenContentDeclPriv_0,xmlParseElementChildrenContentDeclPriv_0
 CVE-2021-3541,2.9.8,2.9.11,libxml2,xmlParsePEReference,xmlParsePEReference
 CVE-2021-3541,2.9.8,2.9.11,libxml2,xmlParserEntityCheck,xmlParserEntityCheck
 CVE-2017-8872,2.9.8,2.9.9,libxml2,xmlHaltParser,xmlHaltParser
-CVE-2018-14404,2.9.8,2.9.9,libxml2,xmlXPathCompOpEval,xmlXPathCompOpEval
+CVE-2018-14404,2.9.8,2.9.9,libxml2,xmlXPathCompOpEval_0,xmlXPathCompOpEval_0

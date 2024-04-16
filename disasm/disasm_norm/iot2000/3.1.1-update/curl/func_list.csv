@@ -37,12 +37,12 @@ CVE-2022-32206,7.69.1,7.84.0,libcurl,Curl_build_unencoding_stack,Curl_build_unen
 CVE-2022-27782,7.69.1,7.83.1,libcurl,ConnectionExists,ConnectionExists
 CVE-2022-27781,7.69.1,7.83.1,libcurl,display_conn_info,display_conn_info
 CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_http_host,Curl_http_host
-CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,Curl_allow_auth_to_host
+CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,allow_auth_to_host
 CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_add_custom_headers,Curl_add_custom_headers
 CVE-2022-27776,7.69.1,7.83.0,libcurl,Curl_http_output_auth,Curl_http_output_auth
 CVE-2022-27775,7.69.1,7.83.0,libcurl,Curl_conncache_find_bundle,Curl_conncache_find_bundle
 CVE-2022-27775,7.69.1,7.83.0,libcurl,Curl_conncache_add_conn,Curl_conncache_add_conn
-CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,Curl_allow_auth_to_host
+CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_allow_auth_to_host,allow_auth_to_host
 CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_add_custom_headers,Curl_add_custom_headers
 CVE-2022-27774,7.69.1,7.83.0,libcurl,Curl_http_output_auth,Curl_http_output_auth
 CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_connect,Curl_connect
@@ -50,8 +50,8 @@ CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_ssl_config_matches,Curl_ssl_config_mat
 CVE-2022-22576,7.69.1,7.83.0,libcurl,Curl_safecmp,Curl_safecmp
 CVE-2022-22576,7.69.1,7.83.0,libcurl,conn_free,conn_free
 CVE-2022-22576,7.69.1,7.83.0,libcurl,safecmp,safecmp
-CVE-2021-22947,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemachine
-CVE-2021-22946,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemachine
+CVE-2021-22947,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemach_act
+CVE-2021-22946,7.69.1,7.79.0,libcurl,ftp_statemachine,ftp_statemach_act
 CVE-2021-22926,7.69.1,7.78.0,libcurl,sectransp_connect_step1,sectransp_connect_step1
 CVE-2021-22925,7.69.1,7.78.0,libcurl,suboption,suboption
 CVE-2021-22924,7.69.1,7.78.0,libcurl,Curl_connect,Curl_connect

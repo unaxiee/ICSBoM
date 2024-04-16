@@ -82,7 +82,7 @@ CVE-2020-8177,7.71.0,tool_header_cb
 CVE-2019-5481,7.66.0,read_data
 CVE-2019-5482,7.66.0,tftp_connect
 CVE-2019-5436,7.65.0,tftp_connect
-CVE-2018-16890,7.64.0,ntlm_decode_type2_target
+CVE-2018-16890,7.64.0,Curl_auth_decode_ntlm_type2_message
 CVE-2019-3822,7.64.0,Curl_auth_create_ntlm_type3_message
 CVE-2019-3823,7.64.0,smtp_endofresp
 CVE-2018-16842,7.62.0,voutf.isra.0

@@ -16,7 +16,7 @@
 ["CVE-2021-3711", "pkey_sm2_decrypt", "1.1.1l", "NA cannot tell"]
 ["CVE-2021-3711", "sm2_plaintext_size", "1.1.1l", "V 0.575396672293224/0.33269230769230773, vul-tar: 5/5, patch-tar: 3/8"]
 ["CVE-2021-3450", "verify_chain", "1.1.1k", "V 0.5187424425634825 / 0.48125755743651755, vul-tar: 209/189, patch-tar: 234/195"]
-["CVE-2021-3449", "init_sig_algs", "1.1.1k", "E no vulnerable and patched version"]
+["CVE-2021-3449", "init_sig_algs", "1.1.1k", "V 0.75/0.65, vul-tar: 1/1, patch-tar: 1/1"]
 ["CVE-2021-23841", "X509_issuer_and_serial_hash", "1.1.1j", "V 0.7657554401942779/0.6139213810896358, vul-tar: 7/7, patch-tar: 10/8"]
 ["CVE-2021-23840", "EVP_EncryptUpdate", "1.1.1j", "E no target function"]
 ["CVE-2021-23840", "EVP_DecryptUpdate", "1.1.1j", "V 0.5732909846715185/0.4381039496643839, vul-tar: 18/18, patch-tar: 28/22"]

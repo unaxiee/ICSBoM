@@ -82,7 +82,7 @@
 ["CVE-2019-5481", "read_data", "7.66.0", "E no vulnerable and patched version"]
 ["CVE-2019-5482", "tftp_connect", "7.66.0", "E no target function"]
 ["CVE-2019-5436", "tftp_connect", "7.65.0", "E no target function"]
-["CVE-2018-16890", "ntlm_decode_type2_target", "7.64.0", "E no vulnerable and patched version"]
+["CVE-2018-16890", "Curl_auth_decode_ntlm_type2_message", "7.64.0", "V 0.5431426817607614/0.5159112679192797, vul-tar: 18/18, patch-tar: 20/19"]
 ["CVE-2019-3822", "Curl_auth_create_ntlm_type3_message", "7.64.0", "P 0.4972677595628415 / 0.5027322404371585, vul-tar: 39/53, patch-tar: 39/52"]
 ["CVE-2019-3823", "smtp_endofresp", "7.64.0", "E no target function"]
 ["CVE-2018-16842", "voutf.isra.0", "7.62.0", "P 0.5521213613833045/0.6006719344128765, vul-tar: 14/14, patch-tar: 10/10"]

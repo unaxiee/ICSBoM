@@ -1,7 +1,7 @@
 function,lib,name
 xmlDictComputeFastKey,libxml2,xmlDictComputeFastKey
 parseAndPrintFile,xmllint,parseAndPrintFile
-xmlParseElementChildrenContentDeclPriv,libxml2,xmlParseElementChildrenContentDeclPriv
+xmlParseElementChildrenContentDeclPriv_0,libxml2,xmlParseElementChildrenContentDeclPriv_0
 xmlParsePI,libxml2,xmlParsePI
 xmlBufAdd,libxml2,xmlBufAdd
 xmlBufferAdd,libxml2,xmlBufferAdd
@@ -27,7 +27,7 @@ xmlParseSystemLiteral,libxml2,xmlParseSystemLiteral
 xmlSchemaPreRun,libxml2,xmlSchemaPreRun
 xmlParseNCName,libxml2,xmlParseNCName
 xmlParsePubidLiteral,libxml2,xmlParsePubidLiteral
-xmlXPathCompOpEval,libxml2,xmlXPathCompOpEval
+xmlXPathCompOpEval_0,libxml2,xmlXPathCompOpEval_0
 xmlStringLenDecodeEntities,libxml2,xmlStringLenDecodeEntities
 xmlBufCreateSize,libxml2,xmlBufCreateSize
 xmlBufferCreateSize,libxml2,xmlBufferCreateSize
