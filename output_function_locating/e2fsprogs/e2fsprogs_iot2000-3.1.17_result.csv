@@ -1,3 +1,0 @@
-fill_dir_block,e2fsck,Top-25(5) (tie)
-e2fsck_rehash_dir,e2fsck,Top-200(not max)
-ext2fs_extent_get,libext2fs,Top-25(not max)

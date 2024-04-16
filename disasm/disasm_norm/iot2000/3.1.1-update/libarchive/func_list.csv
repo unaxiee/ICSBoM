@@ -1,4 +1,0 @@
-CVE-2021-36976,3.4.2,3.6.0,libarchive,process_head_file,process_head_file
-CVE-2022-26280,3.4.2,3.6.1,libarchive,archive_read_format_zip_read_data,archive_read_format_zip_read_data
-CVE-2022-36227,3.4.2,3.6.2,libarchive,__archive_write_allocate_filter,__archive_write_allocate_filter
-CVE-2022-36227,3.4.2,3.6.2,libarchive,archive_write_open2,archive_write_open2

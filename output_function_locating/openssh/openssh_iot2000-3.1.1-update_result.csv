@@ -1,0 +1,6 @@
+compat_cipher_proposal,ssh,Top-1 (6)
+subprocess,sshd,Top-1 (10)
+compat_pkalg_proposal,ssh,Top-25(6) (tie)
+sink,scp,Top-1 (99)
+ssh_kex2,ssh,Top-1 (20)
+compat_kex_proposal,ssh,Top-1 (10)

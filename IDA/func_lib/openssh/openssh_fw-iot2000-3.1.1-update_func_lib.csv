@@ -1,0 +1,9 @@
+function,lib,name
+compat_cipher_proposal,ssh,compat_cipher_proposal
+parse_key_constraints,ssh-agent,parse_key_constraints
+subprocess,sshd,subprocess
+note_err,scp,note_err
+compat_pkalg_proposal,ssh,compat_pkalg_proposal
+sink,scp,sink
+ssh_kex2,ssh,ssh_kex2
+compat_kex_proposal,ssh,compat_kex_proposal

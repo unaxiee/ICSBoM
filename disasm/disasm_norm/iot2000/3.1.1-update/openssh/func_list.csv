@@ -2,7 +2,7 @@ CVE-2020-12062,8.2,8.3,scp,sink,sink
 CVE-2020-12062,8.2,8.3,scp,note_err,note_err
 CVE-2020-14145,8.2,8.4,ssh,ssh_kex2,ssh_kex2
 CVE-2021-28041,8.2,8.5,ssh-agent,parse_key_constraints,parse_key_constraints
-CVE-2023-25136,8.2,9.1,sshd,compat_cipher_proposal,compat_cipher_proposal
-CVE-2023-25136,8.2,9.1,sshd,compat_pkalg_proposal,compat_pkalg_proposal
-CVE-2023-25136,8.2,9.1,sshd,compat_kex_proposal,compat_kex_proposal
+CVE-2023-25136,8.2,9.1,ssh,compat_cipher_proposal,compat_cipher_proposal
+CVE-2023-25136,8.2,9.1,ssh,compat_pkalg_proposal,compat_pkalg_proposal
+CVE-2023-25136,8.2,9.1,ssh,compat_kex_proposal,compat_kex_proposal
 CVE-2021-41617,8.2,8.8,sshd,subprocess,subprocess
