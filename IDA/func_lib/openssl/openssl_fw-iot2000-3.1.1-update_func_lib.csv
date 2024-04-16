@@ -1,0 +1,13 @@
+function,lib,name
+PEM_read_bio_ex,libcrypto,PEM_read_bio_ex
+X509_policy_check,libcrypto,X509_policy_check
+ndef_suffix,libcrypto,ndef_suffix
+ossl_bn_rsa_do_unblind,libcrypto,ossl_bn_rsa_do_unblind
+DH_check,libcrypto,DH_check
+level_add_node,libcrypto,level_add_node
+BIO_new_NDEF,libcrypto,BIO_new_NDEF
+check_policy,libcrypto,check_policy
+level_find_node,libcrypto,level_find_node
+GENERAL_NAME_cmp,libcrypto,GENERAL_NAME_cmp
+OBJ_obj2txt,libcrypto,OBJ_obj2txt
+rsa_ossl_private_decrypt,libcrypto,rsa_ossl_private_decrypt

@@ -1,6 +1,0 @@
-["CVE-2020-10543", "S_study_chunk.constprop.0", "5.30.3", "V 0.5185753761129874 / 0.48142462388701257, vul-tar: 783/785, patch-tar: 877/812"]
-["CVE-2020-10878", "S_study_chunk.constprop.0", "5.30.3", "V 0.5185753761129874 / 0.48142462388701257, vul-tar: 783/785, patch-tar: 877/812"]
-["CVE-2020-10878", "S_rck_elide_nothing", "5.30.3", "P function appears in target and patched version, but not in vulnerable"]
-["CVE-2020-10878", "Perl_re_op_compile", "5.30.3", "V 0.6751172438672439/0.5978348481506205, vul-tar: 15/18, patch-tar: 71/65"]
-["CVE-2020-12723", "S_study_chunk.constprop.0", "5.30.3", "V 0.5185753761129874 / 0.48142462388701257, vul-tar: 783/785, patch-tar: 877/812"]
-["CVE-2020-12723", "Perl_re_op_compile", "5.30.3", "V 0.6751172438672439/0.5978348481506205, vul-tar: 15/18, patch-tar: 71/65"]

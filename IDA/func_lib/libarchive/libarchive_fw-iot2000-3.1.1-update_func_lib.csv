@@ -1,0 +1,5 @@
+function,lib,name
+process_head_file,libarchive,process_head_file
+archive_read_format_zip_read_data,libarchive,archive_read_format_zip_read_data
+__archive_write_allocate_filter,libarchive,__archive_write_allocate_filter
+archive_write_open2,libarchive,archive_write_open2
