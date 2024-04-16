@@ -42,5 +42,5 @@ def generate_func_lib(func_lib):
             wr.writerow([func, func_lib, func])
 
 
-generate_func_lib('ssh')
+generate_func_lib('libcurl')
 # search_in_select_lib()
