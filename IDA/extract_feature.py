@@ -3,13 +3,30 @@ from idaapi import *
 import csv
 import json
 
-# 2.9.10, 2.9.11
-# libxml_special_func = ['xmlParsePEReference']
 
-# 2.9.13, 2.9.14
-libxml_special_func = ['xmlAddID', 'xmlParsePEReference']
+libxml_special_func = ['xmlParsePEReference']
+
+# curl
+# fw_func_list = ['Curl_resolv_timeout', 'Curl_init_CONNECT', 'conn_is_conn', 'Curl_free_primary_ssl_config', 'Curl_auth_create_plain_message', 'Curl_setstropt', 'Curl_safecmp']
+# dbus
+# fw_func_list = ['_dbus_user_info_free_allocated', '_dbus_group_info_free_allocated']
+# e2fsprogs
+# fw_func_list = ['check_reference']
+# expat
+# fw_func_list = ['prologProcessor', 'XML_ParserCreate']
+# libarchive
+# fw_func_list = ['__archive_write_allocate_filter']
+# libgcrypt
+# fw_func_list = ['prefetch_enc', 'prefetch_dec', 'do_decrypt', 'sign_0', 'do_encrypt_3', 'decrypt']
+# libxml2
+# fw_func_list = ['xmlHTMLEncodeSend']
+# ncurses
+# fw_func_list = ['_nc_init_entry']
+# openssl
+# fw_func_list = ['init_sig_algs']
 
 fw_func_list = []
+
 
 def get_func_for_build():
     func_name = set()
