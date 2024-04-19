@@ -26,14 +26,15 @@ def get_max_diff_sel(select_list):
             idx_tmp = i
     return idx_tmp, diff_max_tmp
 
-def match_function(ref, build_dic, fw_j, max_num):
+def match_function(ref, build_dic, fw_j, tol_num):
     if build_dic['func_hash'] == 'TNULL':
         return 'Too few basic blocks'
     
-    list_len_list = [1, max_num]
+    max_num = tol_num // 3 * 2
+    list_len = 1
     found = False
 
-    for list_len in list_len_list:
+    while not found and list_len <= max_num:
         select_list = create_select_list(list_len)
     
         for key, value in fw_j.items():
@@ -49,53 +50,54 @@ def match_function(ref, build_dic, fw_j, max_num):
 
         for select_item in select_list:
             if select_item['func'] == ref:
-                print('Found in Top-', list_len)
                 found = True
                 break
-        
-        if found:
-            break
 
-    if not found:
-        print('Not found\n')
-        return 'Not Found'
-
-    max_sim_bb = 0
-    select = []
-    for select_item in select_list:
-        if len(select_item['bb_hash']) == 0:
-            continue
-        sim_bb = 0
-        for key_build, value_bb_hash in build_dic['bb_hash'].items():
-            for key_sel, value_bb_hash_sel in select_item['bb_hash'].items():
-                if value_bb_hash == value_bb_hash_sel:
-                    sim_bb += 1
-                    break
-
-        if sim_bb > max_sim_bb:
-            max_sim_bb = sim_bb
-            select = []
-            select.append(select_item['func'])
-        elif sim_bb == max_sim_bb:
-            select.append(select_item['func'])
-        
-    for func in select:
-        if func == ref:
+        if not found:
             if list_len == 1:
-                print(ref, "has bb_hash", max_sim_bb, '\n')
-                return 'Top-1 (' + str(max_sim_bb) + ')'
-            elif list_len == list_len_list[-1]:
-                if len(select) > 1:
-                    print(ref, "has the most bb_hash", max_sim_bb, "with tie\n")
-                    return 'Top-' + str(list_len_list[-1]) + '(' + str(max_sim_bb) + ') (tie)'
-                else:
-                    print(ref, "has the most bb_hash", max_sim_bb, '\n')
-                    return 'Top-' + str(list_len_list[-1]) + '+bb_hash (' + str(max_sim_bb) + ')'
-        
-    print(ref, "doesn't have the most bb_hash\n")
-    return 'Top-' + str(list_len_list[-1]) + '(not max)'
+                list_len = 25
+            elif list_len == 25:
+                list_len = 50
+            else:
+                list_len += 50
+            continue
 
-def evaluate(package, pkg_ver, fw, ver, max_num):
+
+        max_sim_bb = 0
+        select = []
+        for select_item in select_list:
+            if len(select_item['bb_hash']) == 0:
+                continue
+            sim_bb = 0
+            for key_build, value_bb_hash in build_dic['bb_hash'].items():
+                for key_sel, value_bb_hash_sel in select_item['bb_hash'].items():
+                    if value_bb_hash == value_bb_hash_sel:
+                        sim_bb += 1
+                        break
+
+            if sim_bb > max_sim_bb:
+                max_sim_bb = sim_bb
+                select = []
+                select.append(select_item['func'])
+            elif sim_bb == max_sim_bb:
+                select.append(select_item['func'])
+        
+        for func in select:
+            if func == ref:
+                if len(select) > 1:
+                    print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash with tie\n')
+                    return f'Top-{list_len} + bb_hash {str(max_sim_bb)} (tie)'
+                else:
+                    print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash \n')
+                    return f'Top-{list_len} + bb_hash {str(max_sim_bb)}'
+        
+        print(f'{ref} found in Top-{list_len} but does not have the most bb_hash ({max_sim_bb})\n')
+        return f'Top-{list_len} + bb_hash {str(max_sim_bb)} (not max)'
+    
+    print(f'{ref} not found in Top-{max_num}\n')
+    return 'Not Found'
+
+def evaluate(package, pkg_ver, fw, ver):
     
     data = pd.read_csv('IDA/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
 
@@ -103,43 +105,44 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
     if not os.path.isdir(dir_output):
         os.makedirs(dir_output)
 
-    if os.path.isfile(dir_output + package + '_' + fw + '-' + ver + '_result.csv'):
+    if os.path.isfile(dir_output + package + '_' + fw + '-' + ver + '_result.csv'):   # remove old output
         os.remove(dir_output + package + '_' + fw + '-' + ver + '_result.csv')
 
     for idx, row in data.iterrows():
-        if row['lib'] == 'not found':   # afftected function cannot be found in binary
-            print(row['function'], 'cannot be found in binary\n')
+        if row['lib'] == 'not found':   # afftected function cannot be found in reference binary
+            print(row['function'], 'cannot be found in reference binary\n')
             continue
 
-        if row['name'] == 'not match':   # stripped file cannot be matched by IDA
-            print(row['function'], 'cannot be matched in firmware binary\n')
+        if row['name'] == 'not match':   # affected function cannot be matched in target binary due to stripped file
+            print(row['function'], 'cannot be matched in target binary\n')
             continue
 
-        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
+        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):   # target binary cannot be found in firmware image
             print(row['lib'], 'cannot be found in firmware image\n')
             continue
 
         with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
+            tol_num = fw_j['num']
             del fw_j['num']
 
-        if row['name'] not in fw_j.keys():
-            print(row['function'], 'is not extracted from firmware binary\n')
+        if row['name'] not in fw_j.keys():   # affected function is not extracted from target binary
+            print(row['function'], 'is not extracted from target binary\n')
             continue
         
         with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
-        if row['function'] not in build_j.keys():
-            print(row['function'], 'is not extracted from built binary\n')
+        if row['function'] not in build_j.keys():   # affected function is not extracted from reference binary
+            print(row['function'], 'is not extracted from reference binary\n')
             continue
         
         print(row['function'])
 
-        result = match_function(row['name'], build_j[row['function']], fw_j, max_num)
+        result = match_function(row['name'], build_j[row['function']], fw_j, tol_num)
 
         with open(dir_output + package + '_' + fw + '-' + ver + '_result.csv', 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 750)
+evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver)
