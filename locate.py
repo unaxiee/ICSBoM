@@ -115,9 +115,9 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             print(row['function'], 'cannot be matched in firmware binary\n')
             continue
 
-        # if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
-        #     print(row['lib'], 'cannot be found in firmware image\n')
-        #     continue
+        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):
+            print(row['lib'], 'cannot be found in firmware image\n')
+            continue
 
         with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
@@ -142,4 +142,4 @@ def evaluate(package, pkg_ver, fw, ver, max_num):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 25)
+evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, 750)
