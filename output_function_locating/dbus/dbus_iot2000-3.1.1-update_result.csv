@@ -1,4 +1,4 @@
 byteswap_body_helper,libdbus,Top-1 (12)
 validate_body_helper,libdbus,Top-25+bb_hash (52)
 _dbus_validate_signature_with_reason,libdbus,Top-1 (15)
-bus_transaction_send_from_driver,dbus-daemon,Not Found
+bus_transaction_send_from_driver,dbus-daemon,Top-100+bb_hash (4)

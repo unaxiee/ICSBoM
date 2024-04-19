@@ -10,4 +10,4 @@ archive_read_format_zip_cleanup,libarchive,Top-1 (1)
 archive_wstring_append_from_mbs,libarchive,Top-1 (2)
 _warc_read,libarchive,Top-1 (4)
 read_header,libarchive,Top-25+bb_hash (51)
-rar_read_ahead,libarchive,Not Found
+rar_read_ahead,libarchive,Top-50+bb_hash (10)
