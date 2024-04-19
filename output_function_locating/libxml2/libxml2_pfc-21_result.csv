@@ -34,7 +34,7 @@ xmlXIncludeDoProcess,libxml2,Top-1 (97)
 xmlBufferAdd,libxml2,Top-1 (4)
 xmlParserEntityCheck,libxml2,Top-25(3) (tie)
 xmlParseNmtoken,libxml2,Top-400+bb_hash (6)
-xmlAddID,libxml2,Not Found
+xmlAddID,libxml2,Top-750(1) (tie)
 xmlParsePEReference,libxml2,Top-100+bb_hash (10)
 xmlParsePubidLiteral,libxml2,Top-25(not max)
 xmlBufCreateSize,libxml2,Top-25(1) (tie)
