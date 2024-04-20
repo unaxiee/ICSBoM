@@ -49,4 +49,4 @@ CVE-2022-25313,2.2.9,2.4.5,not found,build_model,
 CVE-2022-25314,2.2.9,2.4.5,libexpat,getElementType,not match
 CVE-2022-25315,2.2.9,2.4.5,libexpat,storeRawNames,sub_512C
 CVE-2022-40674,2.2.9,2.4.9,libexpat,internalEntityProcessor,sub_9760
-CVE-2022-43680,2.2.9,2.5.0,libexpat,parserCreate,not match
+CVE-2022-43680,2.2.9,2.5.0,libexpat,parserCreate,sub_A518

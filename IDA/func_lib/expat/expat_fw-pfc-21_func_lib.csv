@@ -12,7 +12,7 @@ big2_prologTok,libexpat,not match
 doProlog,libexpat,sub_625C
 internalEntityProcessor,libexpat,sub_9760
 storeRawNames,libexpat,sub_512C
-parserCreate,libexpat,not match
+parserCreate,libexpat,sub_A518
 normal_prologTok,libexpat,not match
 getElementType,libexpat,not match
 little2_prologTok,libexpat,not match

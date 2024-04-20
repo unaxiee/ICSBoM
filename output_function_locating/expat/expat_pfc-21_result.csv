@@ -1,7 +1,8 @@
-XML_ExternalEntityParserCreate,libexpat,Top-25(not max)
-addBinding,libexpat,Top-25(not max)
-nextScaffoldPart,libexpat,Top-50(not max)
-XML_GetBuffer,libexpat,Top-1 (25)
-doProlog,libexpat,Top-1 (139)
-internalEntityProcessor,libexpat,Top-25(0) (tie)
-storeRawNames,libexpat,Top-100(1) (tie)
+XML_ExternalEntityParserCreate,libexpat,Top-25 + bb_hash 6 (not max)
+addBinding,libexpat,Top-25 + bb_hash 4 (not max)
+nextScaffoldPart,libexpat,Top-50 + bb_hash 1 (not max)
+XML_GetBuffer,libexpat,Top-1 + bb_hash 25
+doProlog,libexpat,Top-1 + bb_hash 139
+internalEntityProcessor,libexpat,Top-25 + bb_hash 0 (tie)
+storeRawNames,libexpat,Top-100 + bb_hash 1 (tie)
+parserCreate,libexpat,Top-1 + bb_hash 1
