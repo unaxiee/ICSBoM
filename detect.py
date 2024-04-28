@@ -326,7 +326,7 @@ def get_instr_list(func, trace_in_list):
 
 def matching_v2(source_trace_list, match_trace_list):
 	mul = len(source_trace_list) * len(match_trace_list)
-	len_thresh = 1000000
+	len_thresh = 5000000
 	if (mul > len_thresh):
 		return len_thresh / mul
 	
@@ -429,7 +429,7 @@ def match_decision(target_func, sig):
 	s_vt = matching_v2(trace_list_vul_vt, trace_list_tar_vt)
 	s_pt = matching_v2(trace_list_patch_pt, trace_list_tar_pt)
 
-	# if abs(s_vt - s_pt) > 0.01:
+	# if abs(s_vt - s_pt) > 0.1:
 	if s_vt > s_pt:
 		return ['V ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 	elif s_vt < s_pt:
@@ -449,7 +449,7 @@ def match_decision(target_func, sig):
 	# 		return ['NA cannot tell']
 	# 	s_vt_n = matching_v2(trace_list_vul_vp, trace_list_tar_pt)
 	# 	s_pt_n = matching_v2(trace_list_patch_vp, trace_list_tar_vt)
-	# 	if abs(s_vt_n - s_pt_n) > 0.01:
+	# 	if abs(s_vt_n - s_pt_n) > 0.1:
 	# 		if s_vt_n > s_pt_n:
 	# 			return ['V ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 	# 		elif s_vt_n < s_pt_n:
