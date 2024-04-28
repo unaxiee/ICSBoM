@@ -10,3 +10,5 @@ Security Patch Detection
 2. Run 'detect.py' to detect security patches by comparing the triplet of target, vulnerabvle, and patched functions and results are stored in 'output_patch_detection'.
 
 All input arguments can be adjusted in 'util/config.py'
+
+All extracted executable files from firmware and reference TPCs can be found in https://drive.google.com/file/d/1nxyFCAq7pmhsuFnH_JHPQZFZPDuo6BJK/view?usp=drive_link
