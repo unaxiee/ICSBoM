@@ -175,5 +175,5 @@ for binary in tqdm(binaries):
 
 
 # Save temporary results
-with open(f"util/fw_bin/bin_dic_{config.FW_NAME.rsplit('.', 1)[0]}.pkl", 'wb') as f:
+with open(f"util/fw_pkl/{config.FW_NAME.rsplit('.', 1)[0]}.pkl", 'wb') as f:
     pickle.dump(binaries, f)
