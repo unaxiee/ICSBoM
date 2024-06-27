@@ -68,7 +68,7 @@ def generate_func_list_for_openssl(lib, lib_ver, fw_ver):
     if lib_ver[0] == '1':
         collection = db[lib + '_' + lib_ver[:-1]]
     elif lib_ver[0] == '3':
-        collection = db[lib + '_' + lib_ver[:-2]]
+        collection = db[lib + '_' + lib_ver.rsplit('.', 1)[0]]
     build_version = {lib_ver}
 
     dir_ven = 'func_list_' + ven + '/'
