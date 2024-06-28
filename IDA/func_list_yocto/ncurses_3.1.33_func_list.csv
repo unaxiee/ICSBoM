@@ -1,0 +1,17 @@
+CVE-2021-39537,6.3,cvtchar
+CVE-2022-29458,6.4,convert_strings
+CVE-2022-29458,6.4,_nc_init_entry
+CVE-2022-29458,6.4,_nc_save_str
+CVE-2023-29491,6.5,tgoto
+CVE-2023-29491,6.5,check_string_caps
+CVE-2023-29491,6.5,tparm
+CVE-2023-29491,6.5,tiparm
+CVE-2023-29491,6.5,_nc_tiparm
+CVE-2023-29491,6.5,_nc_read_termtype
+CVE-2023-29491,6.5,check_1_infotocap
+CVE-2023-29491,6.5,usage
+CVE-2023-29491,6.5,tput_cmd
+CVE-2023-29491,6.5,main
+CVE-2023-29491,6.5,tparm_type
+CVE-2023-29491,6.5,guess_tparm_type
+CVE-2023-50495,6.5,_nc_parse_entry

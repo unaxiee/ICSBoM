@@ -1,0 +1,11 @@
+CVE-2019-19221,3.4.1,archive_wstring_append_from_mbs
+CVE-2020-21674,3.4.1,archive_string_append_from_wcs
+CVE-2020-21674,3.4.1,strncat_from_utf8_libarchive2
+CVE-2020-9308,3.4.2,process_base_block
+CVE-2021-23177,3.5.2,set_acl
+CVE-2021-23177,3.5.2,archive_write_disk_set_acls
+CVE-2021-31566,3.5.2,_archive_write_disk_close
+CVE-2021-31566,3.5.2,new_fixup
+CVE-2022-26280,3.6.1,zip_read_data_zipx_lzma_alone
+CVE-2022-36227,3.6.2,__archive_write_allocate_filter
+CVE-2022-36227,3.6.2,archive_write_open2

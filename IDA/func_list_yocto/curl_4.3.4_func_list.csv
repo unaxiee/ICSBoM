@@ -1,0 +1,2 @@
+CVE-2023-46219,8.5.0,Curl_fopen
+CVE-2023-46218,8.5.0,Curl_cookie_add

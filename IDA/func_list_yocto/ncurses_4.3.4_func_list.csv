@@ -1,0 +1,13 @@
+CVE-2023-29491,6.5,tgoto
+CVE-2023-29491,6.5,check_string_caps
+CVE-2023-29491,6.5,tparm
+CVE-2023-29491,6.5,tiparm
+CVE-2023-29491,6.5,_nc_tiparm
+CVE-2023-29491,6.5,_nc_read_termtype
+CVE-2023-29491,6.5,check_1_infotocap
+CVE-2023-29491,6.5,usage
+CVE-2023-29491,6.5,tput_cmd
+CVE-2023-29491,6.5,main
+CVE-2023-29491,6.5,tparm_type
+CVE-2023-29491,6.5,guess_tparm_type
+CVE-2023-50495,6.5,_nc_parse_entry

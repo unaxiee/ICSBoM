@@ -1,0 +1,8 @@
+CVE-2021-37600,2.37.2,get_sem_elements
+CVE-2021-3995,2.37.3,mnt_context_prepare_umount
+CVE-2021-3995,2.37.3,mnt_optstr_get_uid
+CVE-2021-3996,2.37.3,mnt_table_parse_stream
+CVE-2022-0563,2.37.4,ask_new_field
+CVE-2022-0563,2.37.4,shell_name_generator
+CVE-2022-0563,2.37.4,shell_name_completion
+CVE-2022-0563,2.37.4,ask_new_shell

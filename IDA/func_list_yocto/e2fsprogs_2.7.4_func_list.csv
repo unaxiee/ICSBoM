@@ -1,0 +1,9 @@
+CVE-2019-5094,1.45.4,v2_init_io
+CVE-2019-5094,1.45.4,quota_compare_and_update
+CVE-2019-5094,1.45.4,report_tree
+CVE-2019-5094,1.45.4,qtree_scan_dquots
+CVE-2019-5094,1.45.4,check_reference
+CVE-2019-5188,1.45.5,fill_dir_block
+CVE-2019-5188,1.45.5,e2fsck_rehash_dir
+CVE-2022-1304,1.46.6,ext2fs_extent_delete
+CVE-2022-1304,1.46.6,ext2fs_extent_get
