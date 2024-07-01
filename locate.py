@@ -97,16 +97,17 @@ def match_function(ref, build_dic, fw_j, tol_num):
     print(f'{ref} not found in Top-{max_num}\n')
     return 'Not Found'
 
-def evaluate(package, pkg_ver, fw, ver):
+def evaluate(lib, lib_ver, fw, fw_ver, ven):
     
-    data = pd.read_csv('IDA/func_lib/' + package + '/' + package + '_fw-' + fw + '-' + ver + '_func_lib.csv')
+    data = pd.read_csv('IDA/func_lib/' + lib + '/' + ven + '_' + fw + '_' + fw_ver + '.csv')
 
-    dir_output = 'output_function_locating/' + package + '/'
+    dir_output = 'output_function_locating/' + lib + '/'
     if not os.path.isdir(dir_output):
         os.makedirs(dir_output)
 
-    if os.path.isfile(dir_output + package + '_' + fw + '-' + ver + '_result.csv'):   # remove old output
-        os.remove(dir_output + package + '_' + fw + '-' + ver + '_result.csv')
+    file_output = dir_output + ven + '_' + fw + '_' + fw_ver + '.csv'
+    if os.path.isfile(file_output):   # remove old output
+        os.remove(file_output)
 
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':   # afftected function cannot be found in reference binary
@@ -117,11 +118,13 @@ def evaluate(package, pkg_ver, fw, ver):
             print(row['function'], 'cannot be matched in target binary\n')
             continue
 
-        if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):   # target binary cannot be found in firmware image
+        # if not os.path.isfile('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json'):   # target binary cannot be found in firmware image
+        if not os.path.isfile('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_fw_' + fw + '_' + fw_ver + '_hash.json'):
             print(row['lib'], 'cannot be found in firmware image\n')
             continue
 
-        with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
+        # with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-fw-' + fw + '-' + ver + '_hash.json', 'r') as f:
+        with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_fw_' + fw + '_' + fw_ver + '_hash.json', 'r') as f:
             fw_j = json.load(f)
             tol_num = fw_j['num']
             del fw_j['num']
@@ -130,7 +133,8 @@ def evaluate(package, pkg_ver, fw, ver):
             print(row['function'], 'is not extracted from target binary\n')
             continue
         
-        with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
+        # with open('disasm/disasm_hash/' + fw + '/' + ver + '/' + package + '/' + row['lib'] + '-' + pkg_ver + '_hash.json', 'r') as f:
+        with open('disasm/disasm_hash/' + fw + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():   # affected function is not extracted from reference binary
@@ -141,8 +145,8 @@ def evaluate(package, pkg_ver, fw, ver):
 
         result = match_function(row['name'], build_j[row['function']], fw_j, tol_num)
 
-        with open(dir_output + package + '_' + fw + '-' + ver + '_result.csv', 'a') as f:
+        with open(file_output, 'a') as f:
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver)
+evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, config.ven)

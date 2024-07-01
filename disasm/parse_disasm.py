@@ -4,24 +4,19 @@ from tlsh import hash
 from hashlib import md5
 import csv
 import sys
-sys.path.append('/media/yongyu/Data/ICS/FSS')
+sys.path.append('/media/yongyu/Data/ICS/ICSBoM')
 from util import config
 
-pkg_name = config.lib
-pkg_ver = config.lib_ver
+lib = config.lib
+lib_ver = config.lib_ver
 fw = config.fw
-ver = config.fw_ver
+fw_ver = config.fw_ver
+ven = config.ven
 
-fw_ven_dic = {
-    'pfc': 'wago',
-    'cc': 'wago',
-    'tp': 'wago',
-    'iot2000': 'siemens',
-    'ac500': 'abb'
-}
-
-dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
-dir_pd = 'disasm_norm/' + fw + '/' + ver + '/' + pkg_name + '/'
+# dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
+dir_raw = 'disasm_raw/' + ven + '/' + lib +'/'
+# dir_pd = 'disasm_norm/' + fw + '/' + ver + '/' + pkg_name + '/'
+dir_pd = 'disasm_norm/' + ven + '/' + lib + '/'
 if not os.path.isdir(dir_pd):
     os.makedirs(dir_pd)
 
@@ -121,9 +116,12 @@ def sanitize_x86(disasm_dic):
 
 for file_name in os.listdir(dir_raw):
 
-    disasm_dic = {}
+    if os.path.isfile(dir_pd + file_name.rsplit('_', 1)[0] + '_norm.json'):
+        continue
 
     print(file_name)
+    
+    disasm_dic = {}
 
     with open(dir_raw + file_name, 'r') as f:
         contents_j = json.load(f)
@@ -144,20 +142,20 @@ for file_name in os.listdir(dir_raw):
         disasm_dic['num'] = num
 
     disasm_json = json.dumps(disasm_dic)
-    with open(dir_pd + file_name.split('_')[0] + '_norm.json', 'w') as f:
+    with open(dir_pd + file_name.rsplit('_', 1)[0] + '_norm.json', 'w') as f:
         f.write(disasm_json)
 
 dic_func_lib = {}
-with open('../IDA/func_lib/' + pkg_name + '/' + pkg_name + '_fw-' + fw + '-' + ver + '_func_lib.csv', 'r') as f_func_lib:
+with open('../IDA/func_lib/' + lib + '/' + ven + '_' + fw + '_' + fw_ver + '.csv', 'r') as f_func_lib:
     reader_func_lib = csv.reader(f_func_lib)
     next(reader_func_lib, None)
     for func_lib in reader_func_lib:
         dic_func_lib[func_lib[0]] = [func_lib[1], func_lib[2]]
 print(dic_func_lib)
 
-with open(dir_pd + 'func_list.csv', 'w') as f:
+with open(dir_pd + fw + '_' + fw_ver + '_func_list.csv', 'w') as f:
     writer = csv.writer(f)
-    with open('../IDA/func_list_' + fw_ven_dic[fw] + '/' + pkg_name + '_' + ver + '_func_list.csv', 'r') as f_func_list:
+    with open('../IDA/func_list_' + ven + '/' + lib + '_' + fw_ver + '_func_list.csv', 'r') as f_func_list:
         reader_func_list = csv.reader(f_func_list)
         for func_list in reader_func_list:
-            writer.writerow([func_list[0], pkg_ver, func_list[1], dic_func_lib[func_list[2]][0], func_list[2], dic_func_lib[func_list[2]][1]])
+            writer.writerow([func_list[0], lib_ver, func_list[1], dic_func_lib[func_list[2]][0], func_list[2], dic_func_lib[func_list[2]][1]])

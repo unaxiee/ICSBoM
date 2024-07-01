@@ -7,8 +7,9 @@ import os
 from util import config
 
 
-def read_func_info(fw, ver, pkg, lib, function_name, version):
-	input_path = 'disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg + '/' + lib + '-' + version + '_norm.json'
+def read_func_info(ven, pkg, lib, function_name, version):
+	# input_path = 'disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg + '/' + lib + '-' + version + '_norm.json'
+	input_path = 'disasm/disasm_norm/' + ven + '/' + pkg + '/' + lib + '_' + version + '_norm.json'
 	func = None
 	try:
 		with open(input_path, 'r') as input:
@@ -213,16 +214,16 @@ def get_diff_bbs(map):
 	return [func1_bb_list, func2_bb_list]
 
 
-def extract_sig(fw, ver, pkg, lib, function_name, vul_version, patch_version):
+def extract_sig(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version):
 	vul_flag = True
-	vul_func = read_func_info(fw, ver, pkg, lib, function_name, vul_version)
+	vul_func = read_func_info(ven, pkg, lib, function_name, vul_version)
 	if not vul_func:
 		vul_flag = False
 	else:
 		vul_func = preprocess_func(vul_func)	# add neighbor_disasm
 
 	patch_flag = True
-	patch_func = read_func_info(fw, ver, pkg, lib, function_name, patch_version)
+	patch_func = read_func_info(ven, pkg, lib, function_name, patch_version)
 	if not patch_func:
 		patch_flag = False
 	else:
@@ -236,9 +237,9 @@ def extract_sig(fw, ver, pkg, lib, function_name, vul_version, patch_version):
 		return [vul_flag, patch_flag]
 
 
-def load_target_func(fw, ver, pkg, lib, function_name):
-	target_version = 'fw-' + fw + '-' + ver
-	target_func = read_func_info(fw, ver, pkg, lib, function_name, target_version)
+def load_target_func(ven, fw, ver, pkg, lib, function_name):
+	target_version = 'fw_' + fw + '_' + ver
+	target_func = read_func_info(ven, pkg, lib, function_name, target_version)
 	if not target_func:
 		return None
 	target_func = preprocess_func(target_func)
@@ -467,11 +468,11 @@ def match_decision(target_func, sig):
 	# 			return ['NA cannot tell']
 
 
-def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name):
+def run_one_exp(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name):
 	
-	sig = extract_sig(fw, ver, pkg, lib, function_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff]
+	sig = extract_sig(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff]
 
-	target_func = load_target_func(fw, ver, pkg, lib, tar_func_name)
+	target_func = load_target_func(ven, fw, ver, pkg, lib, tar_func_name)
 
 	if len(sig) == 2:
 		if not sig[0] and not sig[1]:
@@ -498,9 +499,10 @@ def run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, ta
 	return decision
 
 
-def detect_patch(fw, ver, pkg):
+def detect_patch(ven, fw, ver, pkg):
 	record_list = []
-	with open('disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg +'/func_list.csv', 'r') as csvfile:
+	# with open('disasm/disasm_norm/' + fw + '/' + ver + '/' + pkg +'/func_list.csv', 'r') as csvfile:
+	with open('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
 		for row in r:
 			if len(row) == 6:
@@ -531,7 +533,7 @@ def detect_patch(fw, ver, pkg):
 		result_head = [CVE_id, function_name, patch_version]
 		print(result_head)
 		
-		decision = run_one_exp(fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name)
+		decision = run_one_exp(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name)
 		print(decision)
 		if len(decision) > 0:
 			result_head.extend(decision)
@@ -539,14 +541,15 @@ def detect_patch(fw, ver, pkg):
 			if decision[0][0] != 'E':
 				cnt += 1
 
-	dir_output = 'output_patch_detection/' + fw + '/' + ver + '/'
+	dir_output = 'output_patch_detection/' + pkg + '/'
 	if not os.path.isdir(dir_output):
 		os.makedirs(dir_output)
 	
-	if os.path.isfile(dir_output + pkg + '.json'):
-		os.remove(dir_output + pkg + '.json')
+	file_output = dir_output + ven + '_' + fw + '_' + ver + '.json'
+	if os.path.isfile(file_output):
+		os.remove(file_output)
 
-	with open(dir_output + pkg + '.json', 'a') as f:
+	with open(file_output, 'a') as f:
 		for result_line in result:
 			json.dump(result_line, f)
 			f.write('\n')
@@ -557,4 +560,4 @@ def detect_patch(fw, ver, pkg):
 if __name__ == '__main__':
 	
 	# arguments: firmware family, firmware version, package
-	detect_patch(config.fw, config.fw_ver, config.lib)
+	detect_patch(config.ven, config.fw, config.fw_ver, config.lib)

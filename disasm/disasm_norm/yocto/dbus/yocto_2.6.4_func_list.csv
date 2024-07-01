@@ -1,0 +1,14 @@
+CVE-2019-12749,1.12.10,1.12.16,libdbus,handle_server_data_cookie_sha1_mech,handle_server_data_cookie_sha1_mech
+CVE-2020-12049,1.12.10,1.12.18,libdbus,_dbus_read_socket_with_unix_fds,_dbus_read_socket_with_unix_fds
+CVE-2020-35512,1.12.10,1.12.20,dbus-daemon,_dbus_user_database_lookup_group,_dbus_user_database_lookup_group
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_user_info_unref,_dbus_user_info_unref
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_user_info_free_allocated,_dbus_user_info_free_allocated
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_group_info_unref,_dbus_group_info_unref
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_group_info_free_allocated,_dbus_group_info_free_allocated
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_user_database_lookup,_dbus_user_database_lookup
+CVE-2020-35512,1.12.10,1.12.20,libdbus,_dbus_user_database_new,_dbus_user_database_new
+CVE-2022-42010,1.12.10,1.12.24,libdbus,_dbus_validate_signature_with_reason,_dbus_validate_signature_with_reason
+CVE-2022-42011,1.12.10,1.12.24,libdbus,validate_body_helper,validate_body_helper
+CVE-2022-42012,1.12.10,1.12.24,libdbus,byteswap_body_helper,byteswap_body_helper
+CVE-2023-34969,1.12.10,1.12.28,dbus-daemon,bus_transaction_send_from_driver,bus_transaction_send_from_driver
+CVE-2023-34969,1.12.10,1.12.28,libdbus,_dbus_connection_get_next_client_serial,_dbus_connection_get_next_client_serial

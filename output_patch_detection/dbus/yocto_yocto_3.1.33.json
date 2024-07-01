@@ -1,0 +1,2 @@
+["CVE-2023-34969", "bus_transaction_send_from_driver", "1.12.28", "P 0.44863841257049825/0.5478471077798244, vul-tar: 11/13, patch-tar: 13/13"]
+["CVE-2023-34969", "_dbus_connection_get_next_client_serial", "1.12.28", "P function appears in target and patched version, but not in vulnerable"]

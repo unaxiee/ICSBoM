@@ -6,10 +6,10 @@ import json
 
 libxml_special_func = ['xmlParsePEReference']
 
+fw_func_list_dic = {
 # curl
 # fw_func_list = ['Curl_resolv_timeout', 'Curl_init_CONNECT', 'conn_is_conn', 'Curl_free_primary_ssl_config', 'Curl_auth_create_plain_message', 'Curl_setstropt', 'Curl_safecmp']
-# dbus
-# fw_func_list = ['_dbus_user_info_free_allocated', '_dbus_group_info_free_allocated']
+'libdbus': ['_dbus_user_info_free_allocated', '_dbus_group_info_free_allocated', '_dbus_user_info_unref', '_dbus_group_info_unref', '_dbus_connection_get_next_client_serial']
 # e2fsprogs
 # fw_func_list = ['check_reference']
 # expat
@@ -24,8 +24,7 @@ libxml_special_func = ['xmlParsePEReference']
 # fw_func_list = ['_nc_init_entry']
 # openssl
 # fw_func_list = ['init_sig_algs']
-
-fw_func_list = []
+}
 
 
 def get_func_for_build():
@@ -123,6 +122,12 @@ if 'fw' not in file_name:
             print(func)
 # for firmware
 else:
+    fw_func_list_dic_key = file_name.split('-fw')[0]
+    if fw_func_list_dic_key in fw_func_list_dic.keys():
+        fw_func_list = fw_func_list_dic[fw_func_list_dic_key]
+    else:
+        fw_func_list = []
+    print('fw_func_list', fw_func_list)
     func_cnt = 0
     for ea in Functions():
         name = get_func_name(ea)
@@ -138,5 +143,5 @@ else:
     print(func_cnt, 'done')
 
 disasm_json = json.dumps(disasm_dic)
-with open('../../output/' + file_name + '_disasm.json', 'w') as f:
+with open('../output/' + file_name + '_disasm.json', 'w') as f:
     f.write(disasm_json)

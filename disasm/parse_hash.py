@@ -3,16 +3,19 @@ import json
 from tlsh import hash
 from hashlib import md5
 import sys
-sys.path.append('/media/yongyu/Data/ICS/FSS')
+sys.path.append('/media/yongyu/Data/ICS/ICSBoM')
 from util import config
 
-pkg_name = config.lib
-pkg_ver = config.lib_ver
+lib = config.lib
+lib_ver = config.lib_ver
 fw = config.fw
-ver = config.fw_ver
+fw_ver = config.fw_ver
+ven = config.ven
 
-dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
-dir_hash = 'disasm_hash/' + fw + '/' + ver + '/' + pkg_name + '/'
+# dir_raw = 'disasm_raw/' + fw + '/' + ver + '/' + pkg_name +'/'
+dir_raw = 'disasm_raw/' + ven + '/' + lib +'/'
+# dir_hash = 'disasm_hash/' + fw + '/' + ver + '/' + pkg_name + '/'
+dir_hash = 'disasm_hash/' + ven + '/' + lib + '/'
 if not os.path.isdir(dir_hash):
     os.makedirs(dir_hash)
 
@@ -124,10 +127,10 @@ def sanitize_x86(disasm_dic):
 
 for file_name in os.listdir(dir_raw):
 
-    if 'fw' not in file_name and pkg_ver not in file_name:
+    if ('fw' not in file_name or fw_ver not in file_name) and lib_ver not in file_name:
         continue
 
-    if 'complete' in file_name:
+    if os.path.isfile(dir_hash + file_name.rsplit('_', 1)[0] + '_hash.json'):
         continue
 
     hash_dic = {}
@@ -153,5 +156,5 @@ for file_name in os.listdir(dir_raw):
         hash_dic['num'] = num
 
     hash_json = json.dumps(hash_dic)
-    with open(dir_hash + file_name.split('_')[0] + '_hash.json', 'w') as f:
+    with open(dir_hash + file_name.rsplit('_', 1)[0] + '_hash.json', 'w') as f:
         f.write(hash_json)

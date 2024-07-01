@@ -1,0 +1,3 @@
+function,lib,name
+bus_transaction_send_from_driver,dbus-daemon,bus_transaction_send_from_driver
+_dbus_connection_get_next_client_serial,libdbus,_dbus_connection_get_next_client_serial

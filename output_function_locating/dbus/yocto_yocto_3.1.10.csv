@@ -1,0 +1,10 @@
+validate_body_helper,libdbus,Top-25 + bb_hash 31
+_dbus_user_database_new,libdbus,Top-25 + bb_hash 0 (tie)
+_dbus_user_database_lookup_group,dbus-daemon,Top-50 + bb_hash 2 (tie)
+_dbus_user_database_lookup,libdbus,Top-25 + bb_hash 2
+_dbus_user_info_free_allocated,libdbus,Top-200 + bb_hash 1 (tie)
+_dbus_validate_signature_with_reason,libdbus,Top-50 + bb_hash 7
+bus_transaction_send_from_driver,dbus-daemon,Top-100 + bb_hash 2 (tie)
+byteswap_body_helper,libdbus,Top-1 + bb_hash 4
+_dbus_group_info_free_allocated,libdbus,Top-1 + bb_hash 1
+_dbus_read_socket_with_unix_fds,libdbus,Top-25 + bb_hash 3 (not max)
