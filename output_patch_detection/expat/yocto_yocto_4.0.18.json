@@ -1,0 +1,7 @@
+["CVE-2023-52426", "storeEntityValue", "2.6.0", "NA VP no diff"]
+["CVE-2023-52426", "appendAttributeValue", "2.6.0", "NA VP no diff"]
+["CVE-2023-52426", "epilogProcessor", "2.6.0", "NA VP no diff"]
+["CVE-2023-52426", "entityValueInitProcessor", "2.6.0", "P 0.3308431064219297/0.4007266045127803, vul-tar: 18/17, patch-tar: 19/18"]
+["CVE-2023-52426", "processXmlDecl", "2.6.0", "NA VP no diff"]
+["CVE-2023-52426", "doCdataSection", "2.6.0", "NA VP no diff"]
+["CVE-2024-28757", "accountingGetCurrentAmplification", "2.6.2", "NA VP no diff"]
