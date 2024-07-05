@@ -1,0 +1,30 @@
+recv_msg,ssh-agent,Top-1 + bb_hash 6
+sink,scp,Top-1 + bb_hash 85
+kex_names_cat,ssh,Top-25 + bb_hash 5
+subprocess,sshd,Top-25 + bb_hash 11
+kex_protocol_error,ssh,Top-200 + bb_hash 2
+sshsk_sign,ssh-agent,Top-25 + bb_hash 3 (not max)
+ssh_userauth2,ssh,Top-1 + bb_hash 69
+sshsk_load_resident,ssh-agent,Top-1 + bb_hash 2
+compat_pkalg_proposal,sshd,Top-25 + bb_hash 2
+input_userauth_success,ssh,Top-1 + bb_hash 5
+sshpkt_disconnect,ssh,Top-25 + bb_hash 3
+pkcs11_terminate,ssh-agent,Too few basic blocks
+ecdsa_do_sign,ssh-agent,Top-25 + bb_hash 8
+sshsk_enroll,ssh-agent,Top-1 + bb_hash 2
+ssh_packet_read_seqnr,ssh,Top-1 + bb_hash 23
+rsa_encrypt,ssh-agent,Top-25 + bb_hash 8
+ssh_packet_read_poll2,ssh,Top-1 + bb_hash 33
+compat_cipher_proposal,sshd,Top-25 + bb_hash 2
+ssh_kex2,ssh,Top-1 + bb_hash 8
+compat_kex_proposal,sshd,Top-25 + bb_hash 6
+kex_input_ext_info,ssh,Top-100 + bb_hash 3
+kex_input_kexinit,ssh,Top-25 + bb_hash 15 (not max)
+pkcs11_del_provider,ssh-agent,Top-50 + bb_hash 1 (not max)
+ssh_packet_read_poll_seqnr,ssh,Top-1 + bb_hash 6
+handle_conn_read,ssh-agent,Top-1 + bb_hash 59
+ssh_packet_send2_wrapped,ssh,Top-25 + bb_hash 14
+ssh_packet_read_expect,ssh,Top-100 + bb_hash 3
+main,ssh,Top-1 + bb_hash 306
+pkcs11_init,ssh-agent,Too few basic blocks
+pkcs11_add_provider,ssh-agent,Top-25 + bb_hash 17

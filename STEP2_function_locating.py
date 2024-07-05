@@ -90,16 +90,16 @@ def match_function(ref, build_dic, fw_j, tol_num):
         for func in select:
             if func == ref:
                 if len(select) > 1:
-                    # print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash with tie\n')
+                    print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash with tie\n')
                     return f'Top-{list_len} + bb_hash {str(max_sim_bb)} (tie)'
                 else:
-                    # print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash \n')
+                    print(f'{ref} found in Top-{list_len} with the most {max_sim_bb} bb_hash \n')
                     return f'Top-{list_len} + bb_hash {str(max_sim_bb)}'
         
-        # print(f'{ref} found in Top-{list_len} but does not have the most bb_hash ({max_sim_bb})\n')
+        print(f'{ref} found in Top-{list_len} but does not have the most bb_hash ({max_sim_bb})\n')
         return f'Top-{list_len} + bb_hash {str(max_sim_bb)} (not max)'
     
-    # print(f'{ref} not found in Top-{max_num}\n')
+    print(f'{ref} not found in Top-{max_num}\n')
     return 'Not Found'
 
 def evaluate(lib, lib_ver, fw, fw_ver, ven):
@@ -116,15 +116,15 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
 
     for idx, row in data.iterrows():
         if row['lib'] == 'not found':   # afftected function cannot be found in reference binary
-            # print(row['function'], 'cannot be found in reference binary\n')
+            print(row['function'], 'cannot be found in reference binary\n')
             continue
 
         if row['name'] == 'not match':   # affected function cannot be matched in target binary due to stripped file
-            # print(row['function'], 'cannot be matched in target binary\n')
+            print(row['function'], 'cannot be matched in target binary\n')
             continue
 
         if not os.path.isfile('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_fw_' + fw + '_' + fw_ver + '_hash.json'):   # target binary cannot be found in firmware image
-            # print(row['lib'], 'cannot be found in firmware image\n')
+            print(row['lib'], 'cannot be found in firmware image\n')
             continue
 
         with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_fw_' + fw + '_' + fw_ver + '_hash.json', 'r') as f:
@@ -133,17 +133,15 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             del fw_j['num']
 
         if row['name'] not in fw_j.keys():   # affected function is not extracted from target binary
-            # print(row['function'], 'is not extracted from target binary\n')
+            print(row['function'], 'is not extracted from target binary\n')
             continue
         
         with open('disasm/disasm_hash/' + fw + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():   # affected function is not extracted from reference binary
-            # print(row['function'], 'is not extracted from reference binary\n')
+            print(row['function'], 'is not extracted from reference binary\n')
             continue
-        
-        # print(row['function'])
 
         result = match_function(row['name'], build_j[row['function']], fw_j, tol_num)
 
@@ -151,7 +149,6 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             wr = csv.writer(f)
             wr.writerow([row['function'], row['lib'], result])
 
-test_lib = 'e2fsprogs'
 
 with open('fw_lib_list.csv', 'r') as f:
     lines = f.readlines()
@@ -164,7 +161,7 @@ for line in lines:
     config.lib = line[3]
     config.lib_ver = line[4]
 
-    if config.lib != test_lib:
+    if config.lib != config.test_lib:
         continue
     print(line)
 
@@ -180,7 +177,6 @@ for line in lines:
         if 'fw' in file_name:
             if config.fw not in file_name or config.fw_ver not in file_name:
                 continue
-            print('fw', file_name)
             hash_dic = {}
             norm_dic = {}
             with open(dir_raw + file_name, 'r') as f:
@@ -201,10 +197,8 @@ for line in lines:
             norm_json = json.dumps(norm_dic)
             with open(dir_hash + file_name.rsplit('_', 1)[0] + '_hash.json', 'w') as f:
                 f.write(hash_json)
-            print('hash generated')
             with open(dir_norm + file_name.rsplit('_', 1)[0] + '_norm.json', 'w') as f:
                 f.write(norm_json)
-            print('normalized')
             dic_func_lib = {}
 
             with open('IDA/func_lib/' + config.lib + '/' + config.ven + '_' + config.fw + '_' + config.fw_ver + '.csv', 'r') as f_func_lib:
@@ -212,17 +206,14 @@ for line in lines:
                 next(reader_func_lib, None)
                 for func_lib in reader_func_lib:
                     dic_func_lib[func_lib[0]] = [func_lib[1], func_lib[2]]
-            print('func_lib collected')
             with open(dir_norm + config.fw + '_' + config.fw_ver + '_func_list.csv', 'w') as f:
                 writer = csv.writer(f)
                 with open('IDA/func_list_' + config.ven + '/' + config.lib + '_' + config.fw + '_' + config.fw_ver + '_func_list.csv', 'r') as f_func_list:
                     reader_func_list = csv.reader(f_func_list)
                     for func_list in reader_func_list:
                         writer.writerow([func_list[0], config.lib_ver, func_list[1], dic_func_lib[func_list[2]][0], func_list[2], dic_func_lib[func_list[2]][1]])
-            print('func_list generated')
 
         else:
-            print('ref', file_name)
             if config.lib_ver in file_name:
                 hash_dic = {}
                 with open(dir_raw + file_name, 'r') as f:
@@ -236,7 +227,6 @@ for line in lines:
                 hash_json = json.dumps(hash_dic)
                 with open(dir_hash + file_name.rsplit('_', 1)[0] + '_hash.json', 'w') as f:
                     f.write(hash_json)
-                print('hash generated')
             if os.path.isfile(dir_norm + file_name.rsplit('_', 1)[0] + '_norm.json'):
                 continue
             norm_dic = {}
@@ -251,7 +241,6 @@ for line in lines:
             disasm_json = json.dumps(disasm_dic)
             with open(dir_norm + file_name.rsplit('_', 1)[0] + '_norm.json', 'w') as f:
                 f.write(disasm_json)
-            print('normalized')
             
 
     evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, config.ven)

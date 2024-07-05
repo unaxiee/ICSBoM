@@ -1,27 +1,27 @@
-big2_prologTok,libexpat,Top-25 + bb_hash 25 (not max)
-XML_ExternalEntityParserCreate,libexpat,Top-1 + bb_hash 6
-doProlog,libexpat,Top-1 + bb_hash 178
-normal_prologTok,libexpat,Top-25 + bb_hash 52
-getElementType,libexpat,Top-25 + bb_hash 2
-storeRawNames,libexpat,Top-1 + bb_hash 6
-defineAttribute,libexpat,Top-25 + bb_hash 3
-entityValueInitProcessor,libexpat,Top-25 + bb_hash 6
-build_node,libexpat,Top-25 + bb_hash 0 (tie)
-storeAtts,libexpat,Top-25 + bb_hash 33
-parserCreate,libexpat,Top-1 + bb_hash 4
-setElementTypePrefix,libexpat,Top-25 + bb_hash 2 (tie)
-prologProcessor,libexpat,Top-1 + bb_hash 1
-internalEntityProcessor,libexpat,Top-1 + bb_hash 6
-doCdataSection,libexpat,Top-50 + bb_hash 8
-addBinding,libexpat,Top-25 + bb_hash 6
-externalParEntProcessor,libexpat,Top-1 + bb_hash 1
-processInternalEntity,libexpat,Top-1 + bb_hash 4
-little2_prologTok,libexpat,Top-1 + bb_hash 23
-nextScaffoldPart,libexpat,Top-25 + bb_hash 5
-appendAttributeValue,libexpat,Top-1 + bb_hash 45
-epilogProcessor,libexpat,Top-1 + bb_hash 11
-storeEntityValue,libexpat,Top-1 + bb_hash 31
-XML_ParserCreate,libexpat,Too few basic blocks
-processXmlDecl,libexpat,Top-1 + bb_hash 35
 XML_GetBuffer,libexpat,Top-1 + bb_hash 7
+doCdataSection,libexpat,Top-50 + bb_hash 8
+storeEntityValue,libexpat,Top-1 + bb_hash 31
+XML_ExternalEntityParserCreate,libexpat,Top-1 + bb_hash 6
 lookup,libexpat,Top-1 + bb_hash 5
+parserCreate,libexpat,Top-1 + bb_hash 4
+internalEntityProcessor,libexpat,Top-1 + bb_hash 6
+externalParEntProcessor,libexpat,Top-1 + bb_hash 1
+processXmlDecl,libexpat,Top-1 + bb_hash 35
+normal_prologTok,libexpat,Top-25 + bb_hash 52
+XML_ParserCreate,libexpat,Too few basic blocks
+nextScaffoldPart,libexpat,Top-25 + bb_hash 5
+addBinding,libexpat,Top-25 + bb_hash 6
+epilogProcessor,libexpat,Top-1 + bb_hash 11
+processInternalEntity,libexpat,Top-1 + bb_hash 4
+appendAttributeValue,libexpat,Top-1 + bb_hash 45
+getElementType,libexpat,Top-25 + bb_hash 2
+prologProcessor,libexpat,Top-1 + bb_hash 1
+defineAttribute,libexpat,Top-25 + bb_hash 3
+little2_prologTok,libexpat,Top-1 + bb_hash 23
+big2_prologTok,libexpat,Top-25 + bb_hash 25 (not max)
+setElementTypePrefix,libexpat,Top-25 + bb_hash 2 (tie)
+build_node,libexpat,Top-25 + bb_hash 0 (tie)
+entityValueInitProcessor,libexpat,Top-25 + bb_hash 6
+storeAtts,libexpat,Top-25 + bb_hash 33
+doProlog,libexpat,Top-1 + bb_hash 178
+storeRawNames,libexpat,Top-1 + bb_hash 6

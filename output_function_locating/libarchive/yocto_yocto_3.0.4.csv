@@ -1,0 +1,9 @@
+archive_write_disk_set_acls,libarchive,Too few basic blocks
+archive_read_format_zip_read_data,libarchive,Top-25 + bb_hash 38
+archive_wstring_append_from_mbs,libarchive,Top-50 + bb_hash 2 (tie)
+__archive_write_allocate_filter,libarchive,Top-1 + bb_hash 3
+strncat_from_utf8_libarchive2,libarchive,Top-1 + bb_hash 6
+create_dir,libarchive,Top-25 + bb_hash 12
+process_base_block,libarchive,Top-1 + bb_hash 18
+_archive_write_disk_close,libarchive,Top-25 + bb_hash 8
+archive_string_append_from_wcs,libarchive,Top-100 + bb_hash 12

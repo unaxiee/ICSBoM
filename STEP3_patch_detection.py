@@ -554,7 +554,6 @@ def detect_patch(ven, fw, ver, pkg):
 	
 	print(cnt)
 
-test_lib = 'e2fsprogs'
 
 with open('fw_lib_list.csv', 'r') as f:
     lines = f.readlines()
@@ -567,7 +566,7 @@ for line in lines:
     config.lib = line[3]
     config.lib_ver = line[4]
 
-    if config.lib != test_lib:
+    if config.lib != config.test_lib:
         continue
     print(line)
 
