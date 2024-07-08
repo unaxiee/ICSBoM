@@ -9,4 +9,4 @@
 ["CVE-2024-2511", "SSL_SESSION_dup", "3.2.2", "NA VP no diff"]
 ["CVE-2024-2511", "ssl_session_dup", "3.2.2", "P"]
 ["CVE-2024-2511", "ssl_session_dup_intern", "3.2.2", "P function appears in target and patched version, but not in vulnerable"]
-["CVE-2024-2511", "tls_construct_server_hello", "3.2.2", "P 0.4682161753590324/0.7142857142857143, vul-tar: 12/10, patch-tar: 3/3"]
+["CVE-2024-2511", "tls_construct_server_hello", "3.2.2", "P 0.4682161753590323/0.7142857142857143, vul-tar: 12/10, patch-tar: 3/3"]
