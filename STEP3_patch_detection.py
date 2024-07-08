@@ -499,6 +499,9 @@ def run_one_exp(ven, fw, ver, pkg, lib, function_name, vul_version, patch_versio
 
 
 def detect_patch(ven, fw, ver, pkg):
+	if not os.path.isfile('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv'):
+		print('E no input func list for', fw, ver)
+		return
 	record_list = []
 	with open('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
