@@ -1,0 +1,12 @@
+GENERAL_NAME_cmp,libcrypto,Top-25 + bb_hash 8
+BIO_new_NDEF,libcrypto,Top-25 + bb_hash 5
+ndef_suffix,libcrypto,Top-100 + bb_hash 2 (tie)
+BN_mod_sqrt,libcrypto,Top-1 + bb_hash 27
+PEM_read_bio_ex,libcrypto,Top-25 + bb_hash 7
+level_find_node,libcrypto,Top-25 + bb_hash 1 (tie)
+rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 16
+DH_check,libcrypto,Top-1 + bb_hash 15
+check_policy,libcrypto,Top-1 + bb_hash 4
+X509_policy_check,libcrypto,Top-1 + bb_hash 29
+level_add_node,libcrypto,Top-50 + bb_hash 15
+OBJ_obj2txt,libcrypto,Top-50 + bb_hash 28

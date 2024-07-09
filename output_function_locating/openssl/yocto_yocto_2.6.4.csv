@@ -1,0 +1,31 @@
+pkey_sm2_decrypt,libcrypto,Top-25 + bb_hash 0 (tie)
+ndef_suffix,libcrypto,Top-450 + bb_hash 3 (not max)
+evp_EncryptDecryptUpdate,libcrypto,Top-1 + bb_hash 3
+PKCS7_dataDecode,libcrypto,Top-1 + bb_hash 11
+rand_fork,libcrypto,Too few basic blocks
+verify_chain,libcrypto,Top-25 + bb_hash 48
+CMS_decrypt,libcrypto,Top-650 + bb_hash 2 (not max)
+OPENSSL_fork_child,libcrypto,Too few basic blocks
+GENERAL_NAME_set0_value,libcrypto,Top-1 + bb_hash 1
+RAND_DRBG_generate,libcrypto,Top-150 + bb_hash 3 (not max)
+CMS_RecipientInfo_decrypt,libcrypto,Top-25 + bb_hash 3
+EC_GROUP_set_generator,libcrypto,Top-150 + bb_hash 4
+level_find_node,libcrypto,Top-700 + bb_hash 1 (not max)
+rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 6
+DH_check,libcrypto,Top-25 + bb_hash 7
+GENERAL_NAME_get0_value,libcrypto,Top-1 + bb_hash 6
+check_policy,libcrypto,Top-25 + bb_hash 2
+pkcs7_decrypt_rinfo,libcrypto,Top-100 + bb_hash 2 (not max)
+EVP_DecryptUpdate,libcrypto,Top-1 + bb_hash 5
+BIO_new_NDEF,libcrypto,Top-350 + bb_hash 3 (not max)
+PEM_read_bio_ex,libcrypto,Top-25 + bb_hash 9
+level_add_node,libcrypto,Top-100 + bb_hash 3
+X509_policy_check,libcrypto,Top-1 + bb_hash 22
+GENERAL_NAME_cmp,libcrypto,Top-1 + bb_hash 8
+chacha20_poly1305_ctrl,libcrypto,Top-25 + bb_hash 9
+sm2_plaintext_size,libcrypto,Top-200 + bb_hash 1 (not max)
+X509_issuer_and_serial_hash,libcrypto,Top-1 + bb_hash 1
+init_sig_algs,libssl,Top-1 + bb_hash 0
+BN_mod_sqrt,libcrypto,Top-25 + bb_hash 20
+EC_GROUP_new_from_ecparameters,libcrypto,Top-1 + bb_hash 14
+OBJ_obj2txt,libcrypto,Top-100 + bb_hash 23

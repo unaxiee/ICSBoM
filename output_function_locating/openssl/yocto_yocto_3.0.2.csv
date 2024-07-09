@@ -1,0 +1,22 @@
+pkey_sm2_decrypt,libcrypto,Top-1 + bb_hash 1
+ndef_suffix,libcrypto,Top-100 + bb_hash 2 (tie)
+evp_EncryptDecryptUpdate,libcrypto,Top-1 + bb_hash 8
+verify_chain,libcrypto,Top-1 + bb_hash 68
+GENERAL_NAME_set0_value,libcrypto,Top-1 + bb_hash 2
+level_find_node,libcrypto,Top-25 + bb_hash 1 (tie)
+rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 16
+DH_check,libcrypto,Top-1 + bb_hash 15
+GENERAL_NAME_get0_value,libcrypto,Top-1 + bb_hash 6
+check_policy,libcrypto,Top-25 + bb_hash 4
+EVP_DecryptUpdate,libcrypto,Top-1 + bb_hash 10
+BIO_new_NDEF,libcrypto,Top-25 + bb_hash 5
+PEM_read_bio_ex,libcrypto,Top-25 + bb_hash 16
+level_add_node,libcrypto,Top-50 + bb_hash 15
+X509_policy_check,libcrypto,Top-1 + bb_hash 29
+GENERAL_NAME_cmp,libcrypto,Top-1 + bb_hash 12
+sm2_plaintext_size,libcrypto,Top-300 + bb_hash 3
+X509_issuer_and_serial_hash,libcrypto,Top-1 + bb_hash 4
+init_sig_algs,libssl,Top-1 + bb_hash 0
+BN_mod_sqrt,libcrypto,Top-1 + bb_hash 27
+EC_GROUP_new_from_ecparameters,libcrypto,Top-100 + bb_hash 26
+OBJ_obj2txt,libcrypto,Top-50 + bb_hash 28
