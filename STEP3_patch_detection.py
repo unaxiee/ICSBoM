@@ -136,51 +136,51 @@ def cal_score_bb(bb0, bb1):
 	return score_final
 
 
-def handle_unmatched(record):
+def handle_unmatched(hash):
 	final_return = [[],[]]
 
-	len0 = len(record[0])   # number of bbs from func_list_0
-	len1 = len(record[1])   # number of bbs from func_list_1
+	len1 = len(hash[0])   # number of bbs from func_list_1
+	len2 = len(hash[1])   # number of bbs from func_list_2
 
 	score_map = []
-	for item0 in record[0]:   # basic block from func_list_0
-		tmp_record = []
-		for item1 in record[1]:   # basic block from func_list_1
-			tmp_score = cal_score_bb(item0, item1)
-			tmp_record.append(tmp_score)
-		score_map.append(tmp_record)
+	for item1 in hash[0]:   # basic block from func_list_1
+		score_row = []
+		for item2 in hash[1]:   # basic block from func_list_2
+			tmp_score = cal_score_bb(item1, item2)
+			score_row.append(tmp_score)
+		score_map.append(score_row)
 
-	len_min = min(len0, len1)
+	len_min = min(len1, len2)
 	
-	list0 = []
 	list1 = []
+	list2 = []
 	for x in range(len_min):
 		max_score = 0
 		index_row = 0
 		index_col = 0
-		for i in range(len(record[0])):
-			for j in range(len(record[1])):
+		for i in range(len(hash[0])):
+			for j in range(len(hash[1])):
 				if score_map[i][j] > max_score:
 					max_score = score_map[i][j]
 					index_row = i
 					index_col = j
 
-		for i in range(len(record[0])):
+		for i in range(len(hash[0])):
 			score_map[i][index_col] = -1
-		for j in range(len(record[1])):
+		for j in range(len(hash[1])):
 			score_map[index_row][j] = -1
 
-		list0.append(index_row)
-		list1.append(index_col)
+		list1.append(index_row)
+		list2.append(index_col)
 
-	if len0 < len1:
-		rest_set = set(range(0, len1)) - set(list1)
-		for item in rest_set:
-			final_return[1].append(list(record[1][item].keys())[0])   # return only key_bb
+	if len1 < len2:
+		rest_set = set(range(0, len2)) - set(list2)
+		for idx in rest_set:
+			final_return[1].append(list(hash[1][idx].keys())[0])   # return only key_bb
 	else:
-		rest_set = set(range(0, len0)) - set(list0)
-		for item in rest_set:
-			final_return[0].append(list(record[0][item].keys())[0])
+		rest_set = set(range(0, len1)) - set(list1)
+		for idx in rest_set:
+			final_return[0].append(list(hash[0][idx].keys())[0])
 
 	return final_return
 
@@ -189,20 +189,18 @@ def get_diff_bbs(map):
 	func1_bb_list = []
 	func2_bb_list = []
 	for k in map.keys():
-		record = map[k]
+		hash = map[k]
 		
-		if len(record[0]) == len(record[1]):   # equal number
+		if len(hash[0]) == len(hash[1]):   # equal number
 			continue
-		elif len(record[0]) == 0:   # only appear in one function
-			for item in record[1]:
-				for key in item.keys():
-					func2_bb_list.append(key)
-		elif len(record[1]) == 0:   # only appear in one function
-			for item in record[0]:
-				for key in item.keys():
-					func1_bb_list.append(key)
+		elif len(hash[0]) == 0:   # only appear in the first function
+			for item in hash[1]:
+				func2_bb_list.append(list(item.keys())[0])
+		elif len(hash[1]) == 0:   # only appear in the second function
+			for item in hash[0]:
+				func1_bb_list.append(list(item.keys())[0])
 		else:
-			result = handle_unmatched(record)   # appear in both functions
+			result = handle_unmatched(hash)   # appear in both functions
 			if len(result[0]) > 0:
 				func1_bb_list.extend(result[0])
 			if len(result[1]) > 0:
@@ -245,11 +243,7 @@ def load_target_func(ven, fw, ver, pkg, lib, function_name):
 	return target_func
 
 
-def isEmpty(diff):
-	return len(diff[0]) == 0 and len(diff[1]) == 0
-
-
-def add_list_to_bb_list(address_list, func):
+def bb_list_to_bb_rela_dict(address_list, func):
 	bb_list = dict()
 	for add in address_list:
 		bb = get_bb_by_address(add, func)
@@ -258,23 +252,26 @@ def add_list_to_bb_list(address_list, func):
 	return bb_list
 
 
-def build_trace_graph_v2(bb_add_list_changed, bb_add_list_root, func):
-	bb_add_list_in_graph = list(set(bb_add_list_changed).union(set(bb_add_list_root)))
-	bb_list_in_graph = add_list_to_bb_list(bb_add_list_in_graph, func)
+def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
+	bb_key_list = list(set(bb_key_diff_list).union(set(bb_key_sur_list)))
+	bb_key_rela_dict = bb_list_to_bb_rela_dict(bb_key_list, func)
 	G = nx.DiGraph()
-	for bb1 in bb_add_list_in_graph:
-		if bb1 not in bb_list_in_graph.keys():
+	for bb1 in bb_key_list:
+		if bb1 not in bb_key_rela_dict.keys():
 			continue
 		G.add_node(bb1)
-		for bb2 in bb_add_list_in_graph:
-			if bb2 in bb_list_in_graph[bb1][0]:   # pred bb
+		for bb2 in bb_key_list:
+			if bb2 in bb_key_rela_dict[bb1][0]:   # pred bb
 				G.add_edge(bb2, bb1)
-			if bb2 in bb_list_in_graph[bb1][1]:   # succ bb
+			if bb2 in bb_key_rela_dict[bb1][1]:   # succ bb
 				G.add_edge(bb1, bb2)
 	
 	if len(G.nodes()) > 300:
 		print('too many blocks')
 		return -1
+	
+	if len(G.nodes()) == 1:
+		return [[list(G.nodes())[0]]]
 
 	roots = (v for v, d in G.in_degree() if d == 0)
 	root_list = []
@@ -290,24 +287,25 @@ def build_trace_graph_v2(bb_add_list_changed, bb_add_list_root, func):
 	cnt = 0
 	for root in root_list:
 		for leaf in leaf_list:
-			if root == leaf and (root in bb_add_list_root or len(G.nodes()) == 1):
+			if root == leaf and root in bb_key_sur_list:
 				all_paths.extend([[root]])
 				cnt += 1
-
-			paths = nx.all_simple_paths(G, root, leaf)
-			if paths:
-				ppath = []
-				for path in paths:
-					for b in path:
-						if b in bb_add_list_root:
-							ppath.append(path)
+				continue
+			root_leaf_all_paths = nx.all_simple_paths(G, root, leaf)
+			if root_leaf_all_paths:
+				root_leaf_boundary_paths = []   # path covering boundary basic blocks
+				for path in root_leaf_all_paths:
+					for bb in path:
+						if bb in bb_key_sur_list:
+							root_leaf_boundary_paths.append(path)
 							cnt += 1
 							break
 					if cnt >= 50000:
 						print('too many trace')
 						return -1
-				all_paths.extend(ppath)
-
+				if len(root_leaf_boundary_paths) > 0:
+					all_paths.extend(root_leaf_boundary_paths)
+	
 	return all_paths
 
 
@@ -324,11 +322,12 @@ def get_instr_list(func, trace_in_list):
 	return instr_list
 
 
-def matching_v2(source_trace_list, match_trace_list):
+def matching(source_trace_list, match_trace_list):
 	mul = len(source_trace_list) * len(match_trace_list)
-	len_thresh = 5000000
-	if (mul > len_thresh):
-		return len_thresh / mul
+	print(mul)
+	threshold = 6000000
+	if (mul > threshold):
+		return threshold / mul
 	
 	trace_count = len(source_trace_list)
 	total_score = 0
@@ -337,10 +336,9 @@ def matching_v2(source_trace_list, match_trace_list):
 		len1 = len(item1)
 		for item2 in match_trace_list:
 			len2 = len(item2)
-			lenn = max(len1,len2)
-
+			len_max = max(len1,len2)
 			dist = editdistance.eval(item1 , item2)
-			value = float(lenn - dist) / float(lenn)
+			value = float(len_max - dist) / float(len_max)
 			if value > max_score:
 				max_score = value
 		total_score += max_score
@@ -348,6 +346,7 @@ def matching_v2(source_trace_list, match_trace_list):
 	if trace_count > 0:
 		return float(total_score) / float(trace_count)
 	else:
+		print('here')
 		return -1
 
 
@@ -358,27 +357,30 @@ def find_surruding(bb_address_list, func):
 			result_list.extend(value_bb['preds'])
 			result_list.extend(value_bb['succs'])
 	return_re = set(result_list) - set(bb_address_list)
-	return_re = list(return_re)
-	return return_re
+	return list(return_re)
 
 
 def match_decision(target_func, sig):
 	vul_func = sig[0]
 	patch_func = sig[1]
-	diff = sig[2]
+	diff = sig[2]   # key of different basic blocks
 
-	if isEmpty(diff):
+	if len(diff[0]) == 0 and len(diff[1]) == 0:
 		return ['NA VP no diff']
-	# print('vul-patch', len(diff[0]), len(diff[1]))
 
 	v_to_t = match_two_funcs(vul_func, target_func)   # vul-tar map
 	diff_v_to_t = get_diff_bbs(v_to_t)
+	if len(diff_v_to_t[0]) == 0 and len(diff_v_to_t[1]) == 0:
+		same_v = True
+	else:
+		same_v = False
 	
 	p_to_t = match_two_funcs(patch_func, target_func) # patch-tar map
 	diff_p_to_t = get_diff_bbs(p_to_t)
-	
-	same_v = isEmpty(diff_v_to_t)
-	same_p = isEmpty(diff_p_to_t)
+	if len(diff_p_to_t[0]) == 0 and len(diff_p_to_t[1]) == 0:
+		same_p = True
+	else:
+		same_p = False
 
 	if same_v and same_p:
 		return ['NA VT/PT no diff']
@@ -386,25 +388,23 @@ def match_decision(target_func, sig):
 		return ['P']
 	elif same_v:
 		return ['V']
-	
-	# print('vul-target', len(diff_v_to_t[0]), len(diff_v_to_t[1]))
-	# print('patch-target', len(diff_p_to_t[0]), len(diff_p_to_t[1]))
 
 	s_vt_v = find_surruding(diff_v_to_t[0], vul_func)   # boundary basic blocks for unmatched bbs in vulnerable compared to target
 	s_vt_t = find_surruding(diff_v_to_t[1], target_func)   # boundary basic blocks for unmatched bbs in target compared to vulnerable
 	s_pt_p = find_surruding(diff_p_to_t[0], patch_func)   # boundary basic blocks for unmatched bbs in patched compared to target
 	s_pt_t = find_surruding(diff_p_to_t[1], target_func)   # boundary basic blocks for unmatched bbs in target compared to patched
 
-	print('build vul_vt trace based on', len(diff_v_to_t[0]), 'basic blocks')
-	vul_vt = build_trace_graph_v2(diff_v_to_t[0], s_vt_v, vul_func)
-	print('build tar_vt trace based on', len(diff_v_to_t[1]), 'basic blocks')
-	tar_vt = build_trace_graph_v2(diff_v_to_t[1], s_vt_t, target_func)
-	print('build patch_pt trace based on', len(diff_p_to_t[0]), 'basic blocks')
-	patch_pt = build_trace_graph_v2(diff_p_to_t[0], s_pt_p, patch_func)
-	print('build tar_pt trace based on', len(diff_v_to_t[1]), 'basic blocks')
-	tar_pt = build_trace_graph_v2(diff_p_to_t[1], s_pt_t, target_func)
+	# print('build vul_vt trace based on', len(diff_v_to_t[0]), 'basic blocks')
+	vul_vt = build_trace_graph(diff_v_to_t[0], s_vt_v, vul_func)
+	# print('build tar_vt trace based on', len(diff_v_to_t[1]), 'basic blocks')
+	tar_vt = build_trace_graph(diff_v_to_t[1], s_vt_t, target_func)
+	# print('build patch_pt trace based on', len(diff_p_to_t[0]), 'basic blocks')
+	patch_pt = build_trace_graph(diff_p_to_t[0], s_pt_p, patch_func)
+	# print('build tar_pt trace based on', len(diff_v_to_t[1]), 'basic blocks')
+	tar_pt = build_trace_graph(diff_p_to_t[1], s_pt_t, target_func)
 	
 	if vul_vt == -1 or patch_pt == -1 or tar_vt == -1 or tar_pt == -1:
+		print('-1 for trace generation')
 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 		if diff_vt_sum < diff_pt_sum:
@@ -415,7 +415,7 @@ def match_decision(target_func, sig):
 			return ['NA cannot tell']
 	
 	if len(tar_vt) == 0 and len(tar_pt) == 0:
-		return ['NA no trace for VT or PT']
+		return ['NA no trace for VT and PT']
 	elif len(tar_vt) == 0:
 		return ['V']
 	elif len(tar_pt) == 0:
@@ -426,29 +426,37 @@ def match_decision(target_func, sig):
 	trace_list_patch_pt = get_instr_list(patch_func, patch_pt)
 	trace_list_tar_pt = get_instr_list(target_func, tar_pt)
 	
-	s_vt = matching_v2(trace_list_vul_vt, trace_list_tar_vt)
-	s_pt = matching_v2(trace_list_patch_pt, trace_list_tar_pt)
+	sim_vt = matching(trace_list_vul_vt, trace_list_tar_vt)
+	sim_pt = matching(trace_list_patch_pt, trace_list_tar_pt)
 
 	# if abs(s_vt - s_pt) > 0.1:
-	if s_vt > s_pt:
-		return ['V ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	elif s_vt < s_pt:
-		return ['P ' + str(s_vt) + '/' + str(s_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	if sim_vt > sim_pt:
+		return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	elif sim_vt < sim_pt:
+		return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 	else:
-		return ['NA cannot tell']
+		print('-1 for trace calculation')
+		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
+		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
+		if diff_vt_sum < diff_pt_sum:
+			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		elif diff_pt_sum < diff_vt_sum:
+			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		else:
+			return ['NA cannot tell']
 	# else:
 	# 	s_vp_v = find_surruding(diff[0], vul_func)
 	# 	s_vp_p = find_surruding(diff[1], patch_func)
-	# 	vul_vp = build_trace_graph_v2(diff[0], s_vp_v, vul_func)
-	# 	patch_vp = build_trace_graph_v2(diff[1], s_vp_p, patch_func)
+	# 	vul_vp = build_trace_graph(diff[0], s_vp_v, vul_func)
+	# 	patch_vp = build_trace_graph(diff[1], s_vp_p, patch_func)
 	# 	if vul_vp == -1 or patch_vp == -1:
 	# 		return ['NA too much diff']
 	# 	trace_list_vul_vp = get_instr_list(vul_func, vul_vp)
 	# 	trace_list_patch_vp = get_instr_list(patch_func, patch_vp)
 	# 	if len(trace_list_vul_vp) == 0 or len(trace_list_patch_vp) == 0:
 	# 		return ['NA cannot tell']
-	# 	s_vt_n = matching_v2(trace_list_vul_vp, trace_list_tar_pt)
-	# 	s_pt_n = matching_v2(trace_list_patch_vp, trace_list_tar_vt)
+	# 	s_vt_n = matching(trace_list_vul_vp, trace_list_tar_pt)
+	# 	s_pt_n = matching(trace_list_patch_vp, trace_list_tar_vt)
 	# 	if abs(s_vt_n - s_pt_n) > 0.1:
 	# 		if s_vt_n > s_pt_n:
 	# 			return ['V ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
@@ -467,9 +475,9 @@ def match_decision(target_func, sig):
 	# 			return ['NA cannot tell']
 
 
-def run_one_exp(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name):
+def run_one_exp(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name):
 	
-	sig = extract_sig(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff]
+	sig = extract_sig(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff_map]
 
 	target_func = load_target_func(ven, fw, ver, pkg, lib, tar_func_name)
 
@@ -502,45 +510,33 @@ def detect_patch(ven, fw, ver, pkg):
 	if not os.path.isfile('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv'):
 		print('E no input func list for', fw, ver)
 		return
-	record_list = []
+	result = []
 	with open('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
 		for row in r:
-			if len(row) == 6:
-				func = row[4]
-				func = func.replace("*","")
-				func = func.strip()
-				record_list.append([row[0], row[1], row[2], row[3], func, row[5]])
-	print(len(record_list))
+			lib = row[3]
+			if lib == 'not found':
+				print("[E] Cannot find affected function")
+				continue
 
-	result = []
-	cnt = 0
-	for record in record_list:
-		lib = record[3]
-		if lib == 'not found':
-			print("[E] Cannot find affected function")
-			continue
+			tar_func_name = row[5]
+			if tar_func_name == 'not match':
+				print("[E] Cannot locate target function")
+				continue
 
-		tar_func_name = record[5]
-		if tar_func_name == 'not match':
-			print("[E] Cannot locate target function")
-			continue
-
-		CVE_id = record[0]
-		vul_version = record[1]
-		patch_version = record[2]
-		function_name = record[4]
-		
-		result_head = [CVE_id, function_name, patch_version]
-		print(result_head)
-		
-		decision = run_one_exp(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version, tar_func_name)
-		print(decision)
-		if len(decision) > 0:
-			result_head.extend(decision)
-			result.append(result_head)
-			if decision[0][0] != 'E':
-				cnt += 1
+			CVE_id = row[0]
+			vul_version = row[1]
+			patch_version = row[2]
+			ref_func_name = row[4]
+			
+			result_head = [CVE_id, ref_func_name, patch_version]
+			print(result_head)
+			
+			decision = run_one_exp(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name)
+			print(decision)
+			if len(decision) > 0:
+				result_head.extend(decision)
+				result.append(result_head)
 
 	dir_output = 'output_patch_detection/' + pkg + '/'
 	if not os.path.isdir(dir_output):
@@ -555,8 +551,6 @@ def detect_patch(ven, fw, ver, pkg):
 			json.dump(result_line, f)
 			f.write('\n')
 	
-	print(cnt)
-
 
 with open('fw_lib_list.csv', 'r') as f:
     lines = f.readlines()
