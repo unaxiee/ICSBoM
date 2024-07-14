@@ -136,7 +136,7 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             print(row['function'], 'is not extracted from target binary\n')
             continue
         
-        with open('disasm/disasm_hash/' + fw + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
+        with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
             build_j = json.load(f)
 
         if row['function'] not in build_j.keys():   # affected function is not extracted from reference binary
@@ -150,12 +150,11 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             wr.writerow([row['function'], row['lib'], result])
 
 
-with open('fw_lib_list.csv', 'r') as f:
+with open('fw_lib_list_' + config.ven + '.csv', 'r') as f:
     lines = f.readlines()
 
 for line in lines:
     line = line[:-1].split(',')
-    config.ven = line[0]
     config.fw = line[1]
     config.fw_ver = line[2]
     config.lib = line[3]

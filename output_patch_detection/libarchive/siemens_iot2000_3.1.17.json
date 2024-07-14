@@ -1,0 +1,4 @@
+["CVE-2021-36976", "process_head_file", "3.6.0", "P 0.51866175170023/0.5293317929347341, vul-tar: 122/140, patch-tar: 113/128"]
+["CVE-2022-26280", "archive_read_format_zip_read_data", "3.6.1", "V 0.38385478018890046/0.3749052709597591, vul-tar: 171/208, patch-tar: 138/211"]
+["CVE-2022-36227", "__archive_write_allocate_filter", "3.6.2", "V 0.855952380952381/0.5988095238095238, vul-tar: 3/3, patch-tar: 6/3"]
+["CVE-2022-36227", "archive_write_open2", "3.6.2", "V function only appears in patched version"]

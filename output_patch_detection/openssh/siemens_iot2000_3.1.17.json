@@ -1,0 +1,8 @@
+["CVE-2020-12062", "sink", "8.3", "V 0.5141445321813747/0.5066621254204683, vul-tar: 183/192, patch-tar: 185/202"]
+["CVE-2020-12062", "note_err", "8.3", "V function only appears in patched version"]
+["CVE-2020-14145", "ssh_kex2", "8.4", "E no target function"]
+["CVE-2021-28041", "parse_key_constraints", "8.5", "V function only appears in patched version"]
+["CVE-2023-25136", "compat_cipher_proposal", "9.1", "E no target function"]
+["CVE-2023-25136", "compat_pkalg_proposal", "9.1", "E no target function"]
+["CVE-2023-25136", "compat_kex_proposal", "9.1", "E no target function"]
+["CVE-2021-41617", "subprocess", "8.8", "V 0.59 / 0.41, vul-tar: 39/43, patch-tar: 72/46"]

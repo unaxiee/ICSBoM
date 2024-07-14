@@ -1,5 +1,0 @@
-["CVE-2019-1563", "CMS_RecipientInfo_decrypt", "1.1.0l", "V 0.339214181985189/0.308231103416936, vul-tar: 36/33, patch-tar: 46/35"]
-["CVE-2019-1563", "CMS_decrypt", "1.1.0l", "V 0.5320477335955541/0.4821408722116825, vul-tar: 10/11, patch-tar: 12/12"]
-["CVE-2019-1563", "PKCS7_dataInit", "1.1.0l", "NA cannot tell"]
-["CVE-2019-1563", "PKCS7_dataDecode", "1.1.0l", "NA cannot tell"]
-["CVE-2019-1547", "EC_GROUP_set_generator", "1.1.0l", "V 0.5161627888795072/0.2408071647912974, vul-tar: 13/13, patch-tar: 42/15"]

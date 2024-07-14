@@ -1,0 +1,9 @@
+compress_block,libz,Top-1 + bb_hash 0
+deflatePrime,libz,Top-25 + bb_hash 3 (not max)
+deflateCopy,libz,Top-25 + bb_hash 5
+deflate_slow,libz,Top-25 + bb_hash 8
+_tr_flush_block,libz,Top-1 + bb_hash 17
+deflate_fast,libz,Top-1 + bb_hash 12
+_tr_tally,libz,Top-1 + bb_hash 0
+inflate,libz,Top-1 + bb_hash 162
+deflateInit2_,libz,Top-1 + bb_hash 23

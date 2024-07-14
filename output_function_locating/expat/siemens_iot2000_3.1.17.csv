@@ -1,0 +1,16 @@
+defineAttribute,libexpat,Top-1 + bb_hash 7
+addBinding,libexpat,Top-1 + bb_hash 7
+doProlog,libexpat,Top-1 + bb_hash 112
+XML_GetBuffer,libexpat,Top-25 + bb_hash 10
+big2_prologTok,libexpat,Top-25 + bb_hash 98
+lookup,libexpat,Top-25 + bb_hash 2 (not max)
+little2_prologTok,libexpat,Top-25 + bb_hash 98 (tie)
+storeAtts,libexpat,Top-1 + bb_hash 39
+normal_prologTok,libexpat,Top-1 + bb_hash 61
+XML_ParserCreate,libexpat,Top-1 + bb_hash 0
+internalEntityProcessor,libexpat,Top-25 + bb_hash 4
+nextScaffoldPart,libexpat,Top-1 + bb_hash 7
+parserCreate,libexpat,Top-1 + bb_hash 12
+storeRawNames,libexpat,Top-1 + bb_hash 2
+XML_ExternalEntityParserCreate,libexpat,Top-1 + bb_hash 25
+getElementType,libexpat,Top-1 + bb_hash 4

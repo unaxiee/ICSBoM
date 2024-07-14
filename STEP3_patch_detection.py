@@ -435,12 +435,12 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 	patch_pt = patch_pt[1]
 	tar_pt = tar_pt[1]
 	
-	# if len(tar_vt) == 0 and len(tar_pt) == 0:
-	# 	return ['NA no trace for VT and PT']
-	# elif len(tar_vt) == 0:
-	# 	return ['V']
-	# elif len(tar_pt) == 0:
-	# 	return ['P']
+	if len(tar_vt) == 0 and len(tar_pt) == 0:
+		return ['NA no trace for VT and PT']
+	elif len(tar_vt) == 0:
+		return ['V']
+	elif len(tar_pt) == 0:
+		return ['P']
 
 	trace_list_vul_vt = get_instr_list(vul_func, vul_vt)
 	trace_list_tar_vt = get_instr_list(target_func, tar_vt)
@@ -458,15 +458,7 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 		elif sim_vt < sim_pt:
 			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
-			print('turn to diff bb #')
-			diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
-			diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
-			if diff_vt_sum < diff_pt_sum:
-				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			elif diff_pt_sum < diff_vt_sum:
-				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-			else:
-				return ['NA cannot tell']
+			return ['NA cannot tell']
 	elif not sim_vt[0] and not sim_pt[0]:
 		print('PHASE3: trace #')
 		sim_vt = sim_vt[1]
@@ -535,16 +527,17 @@ def detect_patch(ven, fw, ver, pkg):
 			f.write('\n')
 	
 
-with open('fw_lib_list.csv', 'r') as f:
+with open('fw_lib_list_' + config.ven + '.csv', 'r') as f:
     lines = f.readlines()
 
 for line in lines:
     line = line[:-1].split(',')
-    config.ven = line[0]
     config.fw = line[1]
     config.fw_ver = line[2]
     config.lib = line[3]
     config.lib_ver = line[4]
+    if config.lib != config.test_lib:
+        continue
     print(line)
 
     detect_patch(config.ven, config.fw, config.fw_ver, config.lib)

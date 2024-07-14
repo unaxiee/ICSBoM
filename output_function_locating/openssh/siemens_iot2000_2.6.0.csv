@@ -1,0 +1,6 @@
+sink,scp,Top-1 + bb_hash 59
+compat_cipher_proposal,ssh,Top-25 + bb_hash 0 (tie)
+ssh_kex2,ssh,Top-50 + bb_hash 8
+subprocess,sshd,Top-50 + bb_hash 10
+compat_pkalg_proposal,ssh,Top-25 + bb_hash 0 (tie)
+compat_kex_proposal,ssh,Top-25 + bb_hash 0 (tie)

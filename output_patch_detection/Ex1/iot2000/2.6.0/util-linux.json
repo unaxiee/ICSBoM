@@ -1,4 +1,0 @@
-["CVE-2021-37600", "get_sem_elements", "2.37.2", "V 0.651824297864366/0.49370285749928267, vul-tar: 13/13, patch-tar: 14/15"]
-["CVE-2021-3995", "mnt_context_prepare_umount", "2.37.3", "V 0.6638612406818399/0.1241191265588121, vul-tar: 56/55, patch-tar: 120/87"]
-["CVE-2021-3995", "mnt_optstr_get_uid", "2.37.3", "V function only appears in patched version"]
-["CVE-2021-3996", "mnt_table_parse_stream", "2.37.3", "V 0.6538461538461539 / 0.34615384615384615, vul-tar: 127/134, patch-tar: 327/166"]
