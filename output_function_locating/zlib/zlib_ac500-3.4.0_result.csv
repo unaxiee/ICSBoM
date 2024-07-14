@@ -1,5 +1,0 @@
-_tr_tally,libz,Top-1 (0)
-deflateInit2_,libz,Top-25+bb_hash (9)
-deflatePrime,libz,Top-50(not max)
-inflate,libz,Top-1 (79)
-deflateCopy,libz,Top-1 (3)

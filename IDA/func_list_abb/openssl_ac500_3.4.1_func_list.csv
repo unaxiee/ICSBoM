@@ -1,0 +1,9 @@
+CVE-2019-1563,1.1.0l,CMS_RecipientInfo_decrypt
+CVE-2019-1563,1.1.0l,CMS_decrypt
+CVE-2019-1563,1.1.0l,PKCS7_dataInit
+CVE-2019-1563,1.1.0l,pkcs7_decrypt_rinfo
+CVE-2019-1563,1.1.0l,PKCS7_dataDecode
+CVE-2019-1547,1.1.0l,EC_GROUP_set_generator
+CVE-2019-1543,1.1.0k,chacha20_poly1305_ctrl
+CVE-2018-0734,1.1.0j,dsa_sign_setup_no_digest
+CVE-2018-0735,1.1.0j,ec_mul_consttime

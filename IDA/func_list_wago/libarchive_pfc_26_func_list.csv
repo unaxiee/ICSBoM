@@ -1,0 +1,2 @@
+CVE-2022-36227,3.6.2,__archive_write_allocate_filter
+CVE-2022-36227,3.6.2,archive_write_open2

@@ -1,0 +1,2 @@
+CVE-2020-22218,1.10.0,_libssh2_transport_read
+CVE-2019-17498,1.10.0,_libssh2_packet_add

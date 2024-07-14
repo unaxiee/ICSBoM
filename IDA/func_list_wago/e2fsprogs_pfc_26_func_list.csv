@@ -1,0 +1,2 @@
+CVE-2022-1304,1.46.6,ext2fs_extent_delete
+CVE-2022-1304,1.46.6,ext2fs_extent_get

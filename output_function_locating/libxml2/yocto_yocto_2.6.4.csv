@@ -35,3 +35,10 @@ xmlAddID,libxml2,Top-1 + bb_hash 6
 xmlBufResize,libxml2,Top-25 + bb_hash 16
 xmlCtxtUseOptionsInternal,libxml2,Top-1 + bb_hash 10
 xmlDetectSAX2,libxml2,Top-1 + bb_hash 10
+xmlBufferCreateStatic,libxml2,Top-150 + bb_hash 3
+xmlDictComputeFastKey,libxml2,Top-1 + bb_hash 15
+xmlParseComment,libxml2,Top-1 + bb_hash 57
+xmlSAXVersion,libxml2,Top-500 + bb_hash 3
+xmlStaticCopyNodeList,libxml2,Top-1 + bb_hash 12
+xmlBufCCat,libxml2,Top-1 + bb_hash 10
+xmlParseSystemLiteral,libxml2,Top-100 + bb_hash 8 (tie)

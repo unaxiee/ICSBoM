@@ -1,0 +1,5 @@
+["CVE-2018-25032", "deflateInit2_", "1.2.12", "V function appears in target and vulnerable version, but not in patched"]
+["CVE-2018-25032", "deflatePrime", "1.2.12", "V function appears in target and vulnerable version, but not in patched"]
+["CVE-2018-25032", "deflateCopy", "1.2.12", "V function appears in target and vulnerable version, but not in patched"]
+["CVE-2018-25032", "_tr_tally", "1.2.12", "V function appears in target and vulnerable version, but not in patched"]
+["CVE-2022-37434", "inflate", "1.2.13", "V 0.3560004646284806/0.35155554003590683, vul-tar: 398/415, patch-tar: 405/419"]

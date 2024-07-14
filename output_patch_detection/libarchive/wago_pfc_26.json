@@ -1,0 +1,2 @@
+["CVE-2022-36227", "__archive_write_allocate_filter", "3.6.2", "E no target function"]
+["CVE-2022-36227", "archive_write_open2", "3.6.2", "V 0.17531916612798965/0.10329468042476457, vul-tar: 6/6, patch-tar: 12/6"]
