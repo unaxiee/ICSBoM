@@ -20,6 +20,15 @@ def read_func_info(ven, pkg, lib, function_name, version):
 	return func
 
 
+def load_target_func(ven, fw, ver, pkg, lib, function_name):
+	target_version = 'fw_' + fw + '_' + ver
+	target_func = read_func_info(ven, pkg, lib, function_name, target_version)
+	if not target_func:
+		return None
+	target_func = preprocess_func(target_func)
+	return target_func
+
+
 def get_bb_by_address(address, func):
 	for key_bb, value_bb in func.items():
 		if key_bb == address:
@@ -211,38 +220,6 @@ def get_diff_bbs(map):
 	return [func1_bb_list, func2_bb_list]
 
 
-def extract_sig(ven, fw, ver, pkg, lib, function_name, vul_version, patch_version):
-	vul_flag = True
-	vul_func = read_func_info(ven, pkg, lib, function_name, vul_version)
-	if not vul_func:
-		vul_flag = False
-	else:
-		vul_func = preprocess_func(vul_func)	# add neighbor_disasm
-
-	patch_flag = True
-	patch_func = read_func_info(ven, pkg, lib, function_name, patch_version)
-	if not patch_func:
-		patch_flag = False
-	else:
-		patch_func = preprocess_func(patch_func)	# add neighbor_disasm
-
-	if vul_flag and patch_flag:
-		map = match_two_funcs(vul_func, patch_func)
-		diff = get_diff_bbs(map)   # return key of different bbs
-		return [vul_func, patch_func, diff]
-	else:
-		return [vul_flag, patch_flag]
-
-
-def load_target_func(ven, fw, ver, pkg, lib, function_name):
-	target_version = 'fw_' + fw + '_' + ver
-	target_func = read_func_info(ven, pkg, lib, function_name, target_version)
-	if not target_func:
-		return None
-	target_func = preprocess_func(target_func)
-	return target_func
-
-
 def bb_list_to_bb_rela_dict(address_list, func):
 	bb_list = dict()
 	for add in address_list:
@@ -266,13 +243,13 @@ def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
 			if bb2 in bb_key_rela_dict[bb1][1]:   # succ bb
 				G.add_edge(bb1, bb2)
 	
-	if len(G.nodes()) > 300:
-		print('too many blocks')
-		return -1
+	all_paths = []
+	if len(G.nodes()) > 150 or len(G.nodes()) == 1:
+		for node in G.nodes():
+			all_paths.append([node])
+		print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
+		return [True, all_paths]
 	
-	if len(G.nodes()) == 1:
-		return [[list(G.nodes())[0]]]
-
 	roots = (v for v, d in G.in_degree() if d == 0)
 	root_list = []
 	for root in roots:
@@ -283,13 +260,10 @@ def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
 	for leaf in leaves:
 		leaf_list.append(leaf)
 
-	all_paths = []
-	cnt = 0
 	for root in root_list:
 		for leaf in leaf_list:
 			if root == leaf and root in bb_key_sur_list:
 				all_paths.extend([[root]])
-				cnt += 1
 				continue
 			root_leaf_all_paths = nx.all_simple_paths(G, root, leaf)
 			if root_leaf_all_paths:
@@ -298,15 +272,11 @@ def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
 					for bb in path:
 						if bb in bb_key_sur_list:
 							root_leaf_boundary_paths.append(path)
-							cnt += 1
 							break
-					if cnt >= 50000:
-						print('too many trace')
-						return -1
 				if len(root_leaf_boundary_paths) > 0:
 					all_paths.extend(root_leaf_boundary_paths)
-	
-	return all_paths
+	print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
+	return [False, all_paths]
 
 
 def get_instr_list(func, trace_in_list):
@@ -318,19 +288,18 @@ def get_instr_list(func, trace_in_list):
 				if key_bb == bb:
 					instr_list_list_bb.extend(value_bb['disasm'])
 					break
-		instr_list.append(instr_list_list_bb)
+		if len(instr_list_list_bb) != 0:
+			instr_list.append(instr_list_list_bb)
 	return instr_list
 
 
 def matching(source_trace_list, match_trace_list):
 	mul = len(source_trace_list) * len(match_trace_list)
-	print(mul)
-	threshold = 6000000
+	threshold = 1000000
 	if (mul > threshold):
-		return threshold / mul
+		return [False, threshold / mul]
 	
-	trace_count = len(source_trace_list)
-	total_score = 0
+	score_1 = 0
 	for item1 in source_trace_list:
 		max_score = 0
 		len1 = len(item1)
@@ -341,13 +310,25 @@ def matching(source_trace_list, match_trace_list):
 			value = float(len_max - dist) / float(len_max)
 			if value > max_score:
 				max_score = value
-		total_score += max_score
+		score_1 += max_score
+	score_1 /= len(source_trace_list)
 
-	if trace_count > 0:
-		return float(total_score) / float(trace_count)
-	else:
-		print('here')
-		return -1
+	score_2 = 0
+	# for item1 in match_trace_list:
+	# 	max_score = 0
+	# 	len1 = len(item1)
+	# 	for item2 in source_trace_list:
+	# 		len2 = len(item2)
+	# 		len_max = max(len1,len2)
+	# 		dist = editdistance.eval(item1 , item2)
+	# 		value = float(len_max - dist) / float(len_max)
+	# 		if value > max_score:
+	# 			max_score = value
+	# 	score_2 += max_score
+	# score_2 /= len(match_trace_list)
+	score_2 = score_1
+
+	return [True, (score_1 + score_2) / 2]
 
 
 def find_surruding(bb_address_list, func):
@@ -360,13 +341,48 @@ def find_surruding(bb_address_list, func):
 	return list(return_re)
 
 
-def match_decision(target_func, sig):
-	vul_func = sig[0]
-	patch_func = sig[1]
-	diff = sig[2]   # key of different basic blocks
+def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name):
+	vul_flag = True
+	vul_func = read_func_info(ven, pkg, lib, ref_func_name, vul_version)
+	if not vul_func:
+		vul_flag = False
+	else:
+		vul_func = preprocess_func(vul_func)	# add neighbor_disasm
 
-	if len(diff[0]) == 0 and len(diff[1]) == 0:
+	patch_flag = True
+	patch_func = read_func_info(ven, pkg, lib, ref_func_name, patch_version)
+	if not patch_func:
+		patch_flag = False
+	else:
+		patch_func = preprocess_func(patch_func)	# add neighbor_disasm
+
+	target_func = load_target_func(ven, fw, ver, pkg, lib, tar_func_name)
+
+	if not (vul_flag and patch_flag):
+		if not vul_flag and not patch_flag:
+			print('no vulnerable and patched version')
+			return ['E no vulnerable and patched version']
+		elif not vul_flag:
+			if not target_func:
+				return ['V function only appears in patched version']
+			else:
+				return ['P function appears in target and patched version, but not in vulnerable']
+		# not practical for removed function
+		else:
+			if not target_func:
+				return ['P function only appears in vulnerable version']
+			else:
+				return ['V function appears in target and vulnerable version, but not in patched']
+	
+	if not target_func:
+		print('no target function')
+		return ['E no target function']
+
+	v_to_p = match_two_funcs(vul_func, patch_func)
+	diff_v_to_p = get_diff_bbs(v_to_p)   # return key of different bbs
+	if len(diff_v_to_p[0]) == 0 and len(diff_v_to_p[1]) == 0:
 		return ['NA VP no diff']
+	print('vul-patch', len(diff_v_to_p[0]), '/', len(diff_v_to_p[1]))
 
 	v_to_t = match_two_funcs(vul_func, target_func)   # vul-tar map
 	diff_v_to_t = get_diff_bbs(v_to_t)
@@ -403,8 +419,9 @@ def match_decision(target_func, sig):
 	# print('build tar_pt trace based on', len(diff_v_to_t[1]), 'basic blocks')
 	tar_pt = build_trace_graph(diff_p_to_t[1], s_pt_t, target_func)
 	
-	if vul_vt == -1 or patch_pt == -1 or tar_vt == -1 or tar_pt == -1:
-		print('-1 for trace generation')
+	# unfaire comparision based on trace, compare # of diff bbs
+	if (vul_vt[0] or patch_pt[0] or tar_vt[0] or tar_pt[0]) and not (vul_vt[0] and patch_pt[0] and tar_vt[0] and tar_pt[0]):
+		print('PHASE1: diff bb #')
 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 		if diff_vt_sum < diff_pt_sum:
@@ -413,29 +430,55 @@ def match_decision(target_func, sig):
 			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
 			return ['NA cannot tell']
+	vul_vt = vul_vt[1]
+	tar_vt = tar_vt[1]
+	patch_pt = patch_pt[1]
+	tar_pt = tar_pt[1]
 	
-	if len(tar_vt) == 0 and len(tar_pt) == 0:
-		return ['NA no trace for VT and PT']
-	elif len(tar_vt) == 0:
-		return ['V']
-	elif len(tar_pt) == 0:
-		return ['P']
+	# if len(tar_vt) == 0 and len(tar_pt) == 0:
+	# 	return ['NA no trace for VT and PT']
+	# elif len(tar_vt) == 0:
+	# 	return ['V']
+	# elif len(tar_pt) == 0:
+	# 	return ['P']
 
 	trace_list_vul_vt = get_instr_list(vul_func, vul_vt)
 	trace_list_tar_vt = get_instr_list(target_func, tar_vt)
+	sim_vt = matching(trace_list_tar_vt, trace_list_vul_vt)
 	trace_list_patch_pt = get_instr_list(patch_func, patch_pt)
 	trace_list_tar_pt = get_instr_list(target_func, tar_pt)
-	
-	sim_vt = matching(trace_list_vul_vt, trace_list_tar_vt)
-	sim_pt = matching(trace_list_patch_pt, trace_list_tar_pt)
+	sim_pt = matching(trace_list_tar_pt, trace_list_patch_pt)
 
-	# if abs(s_vt - s_pt) > 0.1:
-	if sim_vt > sim_pt:
-		return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	elif sim_vt < sim_pt:
-		return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+	if sim_vt[0] and sim_pt[0]:
+		print('PHASE2: trace value')
+		sim_vt = sim_vt[1]
+		sim_pt = sim_pt[1]
+		if sim_vt > sim_pt:
+			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		elif sim_vt < sim_pt:
+			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		else:
+			print('turn to diff bb #')
+			diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
+			diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
+			if diff_vt_sum < diff_pt_sum:
+				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			elif diff_pt_sum < diff_vt_sum:
+				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			else:
+				return ['NA cannot tell']
+	elif not sim_vt[0] and not sim_pt[0]:
+		print('PHASE3: trace #')
+		sim_vt = sim_vt[1]
+		sim_pt = sim_pt[1]
+		if sim_vt > sim_pt:
+			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		elif sim_vt < sim_pt:
+			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+		else:
+			return ['NA cannot tell']
 	else:
-		print('-1 for trace calculation')
+		print('PHASE4: diff bb #')
 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 		if diff_vt_sum < diff_pt_sum:
@@ -444,66 +487,6 @@ def match_decision(target_func, sig):
 			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
 			return ['NA cannot tell']
-	# else:
-	# 	s_vp_v = find_surruding(diff[0], vul_func)
-	# 	s_vp_p = find_surruding(diff[1], patch_func)
-	# 	vul_vp = build_trace_graph(diff[0], s_vp_v, vul_func)
-	# 	patch_vp = build_trace_graph(diff[1], s_vp_p, patch_func)
-	# 	if vul_vp == -1 or patch_vp == -1:
-	# 		return ['NA too much diff']
-	# 	trace_list_vul_vp = get_instr_list(vul_func, vul_vp)
-	# 	trace_list_patch_vp = get_instr_list(patch_func, patch_vp)
-	# 	if len(trace_list_vul_vp) == 0 or len(trace_list_patch_vp) == 0:
-	# 		return ['NA cannot tell']
-	# 	s_vt_n = matching(trace_list_vul_vp, trace_list_tar_pt)
-	# 	s_pt_n = matching(trace_list_patch_vp, trace_list_tar_vt)
-	# 	if abs(s_vt_n - s_pt_n) > 0.1:
-	# 		if s_vt_n > s_pt_n:
-	# 			return ['V ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	# 		elif s_vt_n < s_pt_n:
-	# 			return ['P ' + str(s_vt_n) + '/' + str(s_pt_n)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	# 		else:
-	# 			return ['NA cannot tell']
-	# 	else:
-	# 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
-	# 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
-	# 		if diff_vt_sum < diff_pt_sum:
-	# 			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	# 		elif diff_pt_sum < diff_vt_sum:
-	# 			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-	# 		else:
-	# 			return ['NA cannot tell']
-
-
-def run_one_exp(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name):
-	
-	sig = extract_sig(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version)   # sig includes [vul_func, patch_func, diff_map]
-
-	target_func = load_target_func(ven, fw, ver, pkg, lib, tar_func_name)
-
-	if len(sig) == 2:
-		if not sig[0] and not sig[1]:
-			print('no vulnerable and patched version')
-			return ['E no vulnerable and patched version']
-		elif not sig[0]:
-			if not target_func:
-				return ['V function only appears in patched version']
-			else:
-				return ['P function appears in target and patched version, but not in vulnerable']
-		# not practical for removed function
-		else:
-			if not target_func:
-				return ['P function only appears in vulnerable version']
-			else:
-				return ['V function appears in target and vulnerable version, but not in patched']
-	
-	if not target_func:
-		print('no target function')
-		return ['E no target function']
-			
-	decision = match_decision(target_func, sig)
-
-	return decision
 
 
 def detect_patch(ven, fw, ver, pkg):
@@ -532,7 +515,7 @@ def detect_patch(ven, fw, ver, pkg):
 			result_head = [CVE_id, ref_func_name, patch_version]
 			print(result_head)
 			
-			decision = run_one_exp(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name)
+			decision = match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name)
 			print(decision)
 			if len(decision) > 0:
 				result_head.extend(decision)
@@ -562,9 +545,6 @@ for line in lines:
     config.fw_ver = line[2]
     config.lib = line[3]
     config.lib_ver = line[4]
-
-    if config.lib != config.test_lib:
-        continue
     print(line)
 
     detect_patch(config.ven, config.fw, config.fw_ver, config.lib)
