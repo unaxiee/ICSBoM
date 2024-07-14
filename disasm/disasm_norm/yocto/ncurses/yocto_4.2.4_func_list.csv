@@ -3,7 +3,6 @@ CVE-2023-29491,6.4,6.5,libtinfo,check_string_caps,check_string_caps
 CVE-2023-29491,6.4,6.5,libtinfo,tparm,tparm
 CVE-2023-29491,6.4,6.5,libtinfo,tiparm,tiparm
 CVE-2023-29491,6.4,6.5,libtinfo,_nc_tiparm,_nc_tiparm
-CVE-2023-29491,6.4,6.5,libtinfo,_nc_read_termtype,_nc_read_termtype
 CVE-2023-29491,6.4,6.5,tic,check_1_infotocap,check_1_infotocap
 CVE-2023-29491,6.4,6.5,tic,tparm_type,tparm_type
 CVE-2023-29491,6.4,6.5,tic,guess_tparm_type,guess_tparm_type

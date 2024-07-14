@@ -4,16 +4,13 @@ CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseStringName,xmlParseStringName
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseNmtoken,xmlParseNmtoken
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseEntityValue,xmlParseEntityValue
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseAttValueInternal,xmlParseAttValueInternal
-CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseSystemLiteral,xmlParseSystemLiteral
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParsePubidLiteral,xmlParsePubidLiteral
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseComment,xmlParseComment
 CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParsePI,xmlParsePI
-CVE-2022-40303,2.9.14,2.10.3,libxml2,xmlParseCDSect,xmlParseCDSect
 CVE-2022-40304,2.9.14,2.10.3,libxml2,xmlCreateEntity,xmlCreateEntity
 CVE-2022-40304,2.9.14,2.10.3,libxml2,xmlFreeEntity,xmlFreeEntity
 CVE-2023-28484,2.9.14,2.10.4,libxml2,xmlSchemaFixupComplexType,xmlSchemaFixupComplexType
 CVE-2023-29469,2.9.14,2.10.4,libxml2,xmlDictComputeFastKey,xmlDictComputeFastKey
-CVE-2023-39615,2.9.14,2.12.0,libxml2,xmlCtxtUseOptionsInternal,xmlCtxtUseOptionsInternal
 CVE-2023-39615,2.9.14,2.12.0,libxml2,xmlSAXVersion,xmlSAXVersion
 CVE-2023-39615,2.9.14,2.12.0,libxml2,xmlDetectSAX2,xmlDetectSAX2
 CVE-2023-45322,2.9.14,2.12.0,libxml2,xmlStaticCopyNodeList,xmlStaticCopyNodeList

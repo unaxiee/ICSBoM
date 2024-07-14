@@ -28,7 +28,6 @@ CVE-2022-25235,2.2.6,2.4.5,libexpat,little2_prologTok,little2_prologTok
 CVE-2022-25235,2.2.6,2.4.5,libexpat,big2_prologTok,big2_prologTok
 CVE-2022-25236,2.2.6,2.4.5,libexpat,XML_ParserCreate,XML_ParserCreate
 CVE-2022-25236,2.2.6,2.4.5,libexpat,XML_ExternalEntityParserCreate,XML_ExternalEntityParserCreate
-CVE-2022-25236,2.2.6,2.4.5,libexpat,addBinding,addBinding
 CVE-2022-25313,2.2.6,2.4.5,libexpat,build_node,build_node
 CVE-2022-25314,2.2.6,2.4.5,libexpat,getElementType,getElementType
 CVE-2022-25315,2.2.6,2.4.5,libexpat,storeRawNames,storeRawNames
