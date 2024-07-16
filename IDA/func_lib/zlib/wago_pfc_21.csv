@@ -1,10 +1,10 @@
 function,lib,name
+deflate_fast,libz,not match
 inflate,libz,inflate
 compress_block,libz,not match
 deflatePrime,libz,deflatePrime
 deflateCopy,libz,deflateCopy
-deflate_slow,libz,not match
-deflate_fast,libz,not match
-_tr_flush_block,libz,not match
-_tr_tally,libz,sub_F554
 deflateInit2_,libz,deflateInit2_
+_tr_flush_block,libz,not match
+deflate_slow,libz,not match
+_tr_tally,libz,sub_F554

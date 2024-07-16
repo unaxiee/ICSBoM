@@ -1,2 +1,9 @@
 function,lib,name
-parserCreate,libexpat,sub_522C
+epilogProcessor,libexpat,epilogProcessor
+appendAttributeValue,libexpat,appendAttributeValue
+processXmlDecl,libexpat,processXmlDecl
+accountingGetCurrentAmplification,libexpat,accountingGetCurrentAmplification
+parserCreate,libexpat,parserCreate
+doCdataSection,libexpat,doCdataSection
+entityValueInitProcessor,libexpat,entityValueInitProcessor
+storeEntityValue,libexpat,storeEntityValue

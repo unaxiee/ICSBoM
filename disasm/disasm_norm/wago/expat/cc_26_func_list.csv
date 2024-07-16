@@ -1,0 +1,7 @@
+CVE-2023-52426,2.5.0,2.6.0,libexpat,storeEntityValue,storeEntityValue
+CVE-2023-52426,2.5.0,2.6.0,libexpat,appendAttributeValue,appendAttributeValue
+CVE-2023-52426,2.5.0,2.6.0,libexpat,epilogProcessor,epilogProcessor
+CVE-2023-52426,2.5.0,2.6.0,libexpat,entityValueInitProcessor,entityValueInitProcessor
+CVE-2023-52426,2.5.0,2.6.0,libexpat,processXmlDecl,processXmlDecl
+CVE-2023-52426,2.5.0,2.6.0,libexpat,doCdataSection,doCdataSection
+CVE-2024-28757,2.5.0,2.6.2,libexpat,accountingGetCurrentAmplification,accountingGetCurrentAmplification

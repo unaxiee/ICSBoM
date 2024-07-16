@@ -1,10 +1,7 @@
-xmlSchemaFixupComplexType,libxml2,Top-25 + bb_hash 247
-xmlDictComputeFastKey,libxml2,Top-550 + bb_hash 11 (tie)
-xmlStringGetNodeList,libxml2,Top-300 + bb_hash 12
-xmlParseReference,libxml2,Top-25 + bb_hash 46
-xmlSAX2ExternalSubset,libxml2,Top-100 + bb_hash 8
-xmlSkipBlankChars,libxml2,Top-1 + bb_hash 12
-xmlNewDocNodeEatName,libxml2,Top-200 + bb_hash 2 (tie)
-xmlNewPropInternal,libxml2,Top-100 + bb_hash 8
-xmlCreatePushParserCtxt,libxml2,Top-25 + bb_hash 4
-xmlStaticCopyNodeList,libxml2,Top-500 + bb_hash 2 (tie)
+xmlStaticCopyNodeList,libxml2,Top-1 + bb_hash 10
+xmlDetectSAX2,libxml2,Top-100 + bb_hash 9
+xmlSAXVersion,libxml2,Top-25 + bb_hash 4
+xmlDictComputeFastKey,libxml2,Top-1 + bb_hash 25
+xmlCtxtUseOptionsInternal,libxml2,Top-1 + bb_hash 8
+xmlTextReaderRead,libxml2,Top-1 + bb_hash 187
+xmlSchemaFixupComplexType,libxml2,Top-1 + bb_hash 202

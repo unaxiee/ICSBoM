@@ -1,10 +1,7 @@
 CVE-2023-28484,2.10.4,xmlSchemaFixupComplexType
 CVE-2023-29469,2.10.4,xmlDictComputeFastKey
-CVE-2023-45322,2.11.0,xmlStringGetNodeList
-CVE-2023-45322,2.11.0,xmlParseReference
-CVE-2023-45322,2.11.0,xmlSAX2ExternalSubset
-CVE-2023-45322,2.11.0,xmlSkipBlankChars
-CVE-2023-45322,2.11.0,xmlNewDocNodeEatName
-CVE-2023-45322,2.11.0,xmlNewPropInternal
-CVE-2023-45322,2.11.0,xmlCreatePushParserCtxt
-CVE-2023-45322,2.11.0,xmlStaticCopyNodeList
+CVE-2023-39615,2.12.0,xmlCtxtUseOptionsInternal
+CVE-2023-39615,2.12.0,xmlSAXVersion
+CVE-2023-39615,2.12.0,xmlDetectSAX2
+CVE-2023-45322,2.12.0,xmlStaticCopyNodeList
+CVE-2024-25062,2.13.0,xmlTextReaderRead

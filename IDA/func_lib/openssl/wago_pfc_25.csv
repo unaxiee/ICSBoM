@@ -1,7 +1,7 @@
 function,lib,name
+check_policy,libcrypto,check_policy
 OBJ_obj2txt,libcrypto,OBJ_obj2txt
-DH_check,libcrypto,DH_check
-level_add_node,libcrypto,sub_1A6E9C
-check_policy,libcrypto,sub_19C75C
+level_find_node,libcrypto,level_find_node
 X509_policy_check,libcrypto,X509_policy_check
-level_find_node,libcrypto,sub_1A6E18
+DH_check,libcrypto,DH_check
+level_add_node,libcrypto,level_add_node

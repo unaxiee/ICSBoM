@@ -1,2 +1,2 @@
-ext2fs_extent_delete,libext2fs,Top-1 + bb_hash 3
-ext2fs_extent_get,libext2fs,Top-25 + bb_hash 46
+ext2fs_extent_delete,libext2fs,Top-1 + bb_hash 0
+ext2fs_extent_get,libext2fs,Top-1 + bb_hash 54

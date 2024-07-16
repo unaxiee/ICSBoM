@@ -1,1 +1,2 @@
-archive_write_open2,libarchive,Top-200 + bb_hash 0 (tie)
+archive_write_open2,libarchive,Top-150 + bb_hash 0 (tie)
+__archive_write_allocate_filter,libarchive,Top-1 + bb_hash 0

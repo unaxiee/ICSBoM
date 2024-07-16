@@ -1,2 +1,14 @@
-CVE-2020-22218,1.9.0,1.10.0,libssh2,_libssh2_transport_read,sub_35A14
-CVE-2019-17498,1.9.0,1.10.0,libssh2,_libssh2_packet_add,sub_1CB6C
+CVE-2019-17498,1.9.0,1.10.0,libssh2,_libssh2_packet_add,_libssh2_packet_add
+CVE-2020-22218,1.9.0,1.10.0,libssh2,_libssh2_transport_read,_libssh2_transport_read
+CVE-2023-48795,1.9.0,master,libssh2,kex_agree_instr,kex_agree_instr
+CVE-2023-48795,1.9.0,master,libssh2,_libssh2_kex_agree_instr,_libssh2_kex_agree_instr
+CVE-2023-48795,1.9.0,master,libssh2,kex_agree_hostkey,kex_agree_hostkey
+CVE-2023-48795,1.9.0,master,libssh2,kex_agree_crypt,kex_agree_crypt
+CVE-2023-48795,1.9.0,master,libssh2,kex_agree_mac,kex_agree_mac
+CVE-2023-48795,1.9.0,master,libssh2,kex_agree_comp,kex_agree_comp
+CVE-2023-48795,1.9.0,master,libssh2,_libssh2_kex_exchange,_libssh2_kex_exchange
+CVE-2023-48795,1.9.0,master,libssh2,_libssh2_packet_add,_libssh2_packet_add
+CVE-2023-48795,1.9.0,master,libssh2,_libssh2_packet_ask,_libssh2_packet_ask
+CVE-2023-48795,1.9.0,master,libssh2,_libssh2_packet_require,_libssh2_packet_require
+CVE-2023-48795,1.9.0,master,libssh2,libssh2_session_init_ex,libssh2_session_init_ex
+CVE-2023-48795,1.9.0,master,libssh2,libssh2_session_disconnect_ex,libssh2_session_disconnect_ex

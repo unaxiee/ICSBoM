@@ -1,19 +1,33 @@
 function,lib,name
-build_model,not found,
-XML_ExternalEntityParserCreate,libexpat,XML_ExternalEntityParserCreate
-build_node,libexpat,not match
-addBinding,libexpat,sub_3434
-nextScaffoldPart,libexpat,sub_2D54
-lookup,libexpat,not match
-XML_ParserCreate,libexpat,XML_ParserCreate
-defineAttribute,libexpat,not match
 XML_GetBuffer,libexpat,XML_GetBuffer
-big2_prologTok,libexpat,not match
-doProlog,libexpat,sub_625C
-internalEntityProcessor,libexpat,sub_9760
-storeRawNames,libexpat,sub_512C
-parserCreate,libexpat,sub_A518
-normal_prologTok,libexpat,not match
-getElementType,libexpat,not match
-little2_prologTok,libexpat,not match
-storeAtts,libexpat,not match
+appendAttributeValue,libexpat,appendAttributeValue
+doProlog,libexpat,doProlog
+parserCreate,libexpat,parserCreate
+little2_prologTok,libexpat,little2_prologTok
+doCdataSection,libexpat,doCdataSection
+getElementType,libexpat,getElementType
+XML_ExternalEntityParserCreate,libexpat,XML_ExternalEntityParserCreate
+lookup,libexpat,lookup
+addBinding,libexpat,addBinding
+testingAccountingGetCountBytesDirect,libexpat,testingAccountingGetCountBytesDirect
+entityValueInitProcessor,libexpat,entityValueInitProcessor
+testingAccountingGetCountBytesIndirect,libexpat,testingAccountingGetCountBytesIndirect
+accountingGetCurrentAmplification,libexpat,accountingGetCurrentAmplification
+storeRawNames,libexpat,storeRawNames
+defineAttribute,libexpat,defineAttribute
+entityTrackingReportStats,libexpat,entityTrackingReportStats
+big2_prologTok,libexpat,big2_prologTok
+storeAtts,libexpat,storeAtts
+entityTrackingOnOpen,libexpat,entityTrackingOnOpen
+storeEntityValue,libexpat,storeEntityValue
+epilogProcessor,libexpat,epilogProcessor
+build_node,libexpat,build_node
+processXmlDecl,libexpat,processXmlDecl
+normal_prologTok,libexpat,normal_prologTok
+XML_ParserCreate,libexpat,XML_ParserCreate
+nextScaffoldPart,libexpat,nextScaffoldPart
+internalEntityProcessor,libexpat,internalEntityProcessor
+accountingDiffTolerated,libexpat,accountingDiffTolerated
+unsignedCharToPrintable,libexpat,unsignedCharToPrintable
+getDebugLevel,libexpat,getDebugLevel
+accountingReportStats,libexpat,accountingReportStats

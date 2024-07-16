@@ -1,3 +1,3 @@
 function,lib,name
-__archive_write_allocate_filter,libarchive,__archive_write_allocate_filter
 archive_write_open2,libarchive,archive_write_open2
+__archive_write_allocate_filter,libarchive,__archive_write_allocate_filter

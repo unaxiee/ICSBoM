@@ -1,10 +1,7 @@
-CVE-2023-28484,2.10.3,2.10.4,libxml2,xmlSchemaFixupComplexType,sub_C0138
-CVE-2023-29469,2.10.3,2.10.4,libxml2,xmlDictComputeFastKey,sub_EA26C
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlStringGetNodeList,xmlStringGetNodeList
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlParseReference,xmlParseReference
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlSAX2ExternalSubset,xmlSAX2ExternalSubset
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlSkipBlankChars,xmlSkipBlankChars
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlNewDocNodeEatName,xmlNewDocNodeEatName
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlNewPropInternal,sub_4937C
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlCreatePushParserCtxt,xmlCreatePushParserCtxt
-CVE-2023-45322,2.10.3,2.11.0,libxml2,xmlStaticCopyNodeList,sub_4EC70
+CVE-2023-28484,2.10.3,2.10.4,libxml2,xmlSchemaFixupComplexType,xmlSchemaFixupComplexType
+CVE-2023-29469,2.10.3,2.10.4,libxml2,xmlDictComputeFastKey,xmlDictComputeFastKey
+CVE-2023-39615,2.10.3,2.12.0,libxml2,xmlCtxtUseOptionsInternal,xmlCtxtUseOptionsInternal
+CVE-2023-39615,2.10.3,2.12.0,libxml2,xmlSAXVersion,xmlSAXVersion
+CVE-2023-39615,2.10.3,2.12.0,libxml2,xmlDetectSAX2,xmlDetectSAX2
+CVE-2023-45322,2.10.3,2.12.0,libxml2,xmlStaticCopyNodeList,xmlStaticCopyNodeList
+CVE-2024-25062,2.10.3,2.13.0,libxml2,xmlTextReaderRead,xmlTextReaderRead
