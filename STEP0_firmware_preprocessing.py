@@ -5,10 +5,10 @@ from glob import glob
 from tqdm import tqdm
 import magic
 from util.binary_signatures import bin_mime_signs, bin_direct_version, bin_indirect_version, header_regexes
-import subprocess
-import re
-from util.package_repos import version_res_arch_local, match_binary_to_package
-import pickle
+# import subprocess
+# import re
+# from util.package_repos import version_res_arch_local, match_binary_to_package
+# import pickle
 
 
 # ======== Step 1: Unpack firmware ========
@@ -59,6 +59,7 @@ print(f"[i] Found {len(binaries)} executable files.")
 if len(binaries) == 0:
     print("[i] Exiting.")
     exit(1)
+exit(0)
 
 
 # ==== Step 3: Identify binary versions using regex signatures ====

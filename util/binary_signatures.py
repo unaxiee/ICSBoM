@@ -2,7 +2,8 @@ import re
 
 
 # Binary mime signatures. We use these to filter the extracted files
-bin_mime_signs = set(["application/x-executable", "application/x-pie-executable", "application/x-sharedlib"])
+bin_mime_signs = set(["application/x-executable", "application/x-pie-executable", "application/x-sharedlib", "application/octet-stream"])
+# application/octet-stream
 # Complete mime types
 com_mime_types = set(['application/octet-stream', 'application/x-pie-executable', 'application/x-xz', 'application/x-sharedlib', 'application/x-terminfo', 'application/json', 'application/x-bzip2', 'application/x-executable', 'application/vnd.ms-fontobject', 'application/x-terminfo2', 'application/x-object',
                       'text/x-c', 'text/plain', 'text/x-php', 'text/xml', 'text/csv', 'text/x-java', 'text/x-perl', 'text/x-script.python', 'text/x-shellscript', 'text/html',

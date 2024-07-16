@@ -162,6 +162,8 @@ for line in lines:
 
     if config.lib != config.test_lib:
         continue
+    if config.fw_ver != config.test_fw_ver:
+        continue
     print(line)
 
     dir_raw = 'disasm/disasm_raw/' + config.ven + '/' + config.lib +'/'

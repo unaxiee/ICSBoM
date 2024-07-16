@@ -244,11 +244,17 @@ def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
 				G.add_edge(bb1, bb2)
 	
 	all_paths = []
-	if len(G.nodes()) > 150 or len(G.nodes()) == 1:
+	if len(G.nodes()) > 150:
 		for node in G.nodes():
 			all_paths.append([node])
 		print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
 		return [True, all_paths]
+	
+	if len(G.nodes()) == 1:
+		for node in G.nodes():
+			all_paths.append([node])
+		print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
+		return [False, all_paths]
 	
 	roots = (v for v, d in G.in_degree() if d == 0)
 	root_list = []
@@ -458,7 +464,16 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 		elif sim_vt < sim_pt:
 			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
-			return ['NA cannot tell']
+			print('PHASE4: diff bb #')
+			diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
+			diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
+			if diff_vt_sum < diff_pt_sum:
+				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			elif diff_pt_sum < diff_vt_sum:
+				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			else:
+				return ['NA cannot tell']
+			# return ['NA cannot tell']
 	elif not sim_vt[0] and not sim_pt[0]:
 		print('PHASE3: trace #')
 		sim_vt = sim_vt[1]
@@ -467,7 +482,7 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		elif sim_vt < sim_pt:
 			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
-		else:
+		else:	
 			return ['NA cannot tell']
 	else:
 		print('PHASE4: diff bb #')
@@ -537,6 +552,8 @@ for line in lines:
     config.lib = line[3]
     config.lib_ver = line[4]
     if config.lib != config.test_lib:
+        continue
+    if config.fw_ver != config.test_fw_ver:
         continue
     print(line)
 
