@@ -1,6 +1,3 @@
-import re
-
-
 # Binary mime signatures. We use these to filter the extracted files
 bin_mime_signs = set(["application/x-executable", "application/x-pie-executable", "application/x-sharedlib", "application/octet-stream"])
 # application/octet-stream
