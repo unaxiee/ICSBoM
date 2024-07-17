@@ -127,7 +127,7 @@ def cal_score_bb(bb0, bb1):
 	key_bb0 = list(bb0.keys())[0]
 	key_bb1 = list(bb1.keys())[0]
 
-	if len(bb0[key_bb0][0]) and len(bb1[key_bb1][0]) == 0:
+	if len(bb0[key_bb0][0]) == 0 and len(bb1[key_bb1][0]) == 0:
 		pred_score = 1
 	elif len(bb0[key_bb0][0]) == 0 or len(bb1[key_bb1][0]) == 0:
 		pred_score = 0
@@ -542,7 +542,7 @@ def detect_patch(ven, fw, ver, pkg):
 			f.write('\n')
 	
 
-with open('fw_lib_list_' + config.ven + '.csv', 'r') as f:
+with open('util/fw_lib_list/' + config.ven + '.csv', 'r') as f:
     lines = f.readlines()
 
 for line in lines:

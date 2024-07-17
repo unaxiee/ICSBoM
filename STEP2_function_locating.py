@@ -150,7 +150,7 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             wr.writerow([row['function'], row['lib'], result])
 
 
-with open('fw_lib_list_' + config.ven + '.csv', 'r') as f:
+with open('util/fw_lib_list/' + config.ven + '.csv', 'r') as f:
     lines = f.readlines()
 
 for line in lines:
