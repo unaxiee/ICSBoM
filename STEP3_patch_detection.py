@@ -5,6 +5,7 @@ from math import *
 import json
 import os
 from util import config
+import time
 
 
 def read_func_info(ven, pkg, lib, function_name, version):
@@ -32,7 +33,7 @@ def load_target_func(ven, fw, ver, pkg, lib, function_name):
 def get_bb_by_address(address, func):
 	for key_bb, value_bb in func.items():
 		if key_bb == address:
-			return [value_bb['disasm'], value_bb['preds'], value_bb['succs']]
+			return value_bb
 	return None
 
 
@@ -40,14 +41,14 @@ def preprocess_func(func):
 	for key_bb, value_bb in func.items():
 		pred_disam_list = []
 		for pred in value_bb['preds']:
-			tmp_bb = get_bb_by_address(str(pred), func)
-			if tmp_bb:
-				pred_disam_list.append(tmp_bb[0])   # bb['disasm']
+			bb = get_bb_by_address(str(pred), func)
+			if bb:
+				pred_disam_list.append(bb['disasm'])
 		succ_disam_list = []
 		for succ in value_bb['succs']:
-			tmp_bb = get_bb_by_address(str(succ), func)
-			if tmp_bb:
-				succ_disam_list.append(tmp_bb[0])
+			bb = get_bb_by_address(str(succ), func)
+			if bb:
+				succ_disam_list.append(bb['disasm'])
 		func[key_bb]['neighbor_disasm_list'] = [pred_disam_list, succ_disam_list]
 	return func
 
@@ -221,21 +222,29 @@ def get_diff_bbs(map):
 
 
 def bb_list_to_bb_rela_dict(address_list, func):
-	bb_list = dict()
+	bb_dict = dict()
 	for add in address_list:
 		bb = get_bb_by_address(add, func)
 		if bb:
-			bb_list[add] = [bb[1], bb[2]]
-	return bb_list
+			pred_list = []
+			for pred in bb['preds']:
+				pred_list.append(str(pred))
+			succ_list = []
+			for succ in bb['succs']:
+				succ_list.append(str(succ))
+			bb_dict[add] = [pred_list, succ_list]
+
+	return bb_dict
 
 
 def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
-	bb_key_list = list(set(bb_key_diff_list).union(set(bb_key_sur_list)))
+	# bb_key_list = bb_key_diff_list + bb_key_sur_list
+	bb_key_list = bb_key_diff_list
 	bb_key_rela_dict = bb_list_to_bb_rela_dict(bb_key_list, func)
 	G = nx.DiGraph()
 	for bb1 in bb_key_list:
-		if bb1 not in bb_key_rela_dict.keys():
-			continue
+		# if bb1 not in bb_key_rela_dict.keys():
+		# 	continue
 		G.add_node(bb1)
 		for bb2 in bb_key_list:
 			if bb2 in bb_key_rela_dict[bb1][0]:   # pred bb
@@ -243,67 +252,63 @@ def build_trace_graph(bb_key_diff_list, bb_key_sur_list, func):
 			if bb2 in bb_key_rela_dict[bb1][1]:   # succ bb
 				G.add_edge(bb1, bb2)
 	
-	all_paths = []
-	if len(G.nodes()) > 150:
-		for node in G.nodes():
-			all_paths.append([node])
-		print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
-		return [True, all_paths]
-	
-	if len(G.nodes()) == 1:
-		for node in G.nodes():
-			all_paths.append([node])
-		print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
-		return [False, all_paths]
+	node_path = []
+	for node in G.nodes():
+		node_path.append([node])
+	if len(G.nodes()) > 100:
+		print('node num:', len(G.nodes()), 'trace num:', len(node_path))
+		return [True, node_path]
+	cnt = len(node_path)
 	
 	roots = (v for v, d in G.in_degree() if d == 0)
 	root_list = []
 	for root in roots:
 		root_list.append(root)
-
 	leaves = (v for v, d in G.out_degree() if d == 0)
 	leaf_list = []
 	for leaf in leaves:
 		leaf_list.append(leaf)
 
+	trace_path = []
 	for root in root_list:
 		for leaf in leaf_list:
-			if root == leaf and root in bb_key_sur_list:
-				all_paths.extend([[root]])
-				continue
-			root_leaf_all_paths = nx.all_simple_paths(G, root, leaf)
-			if root_leaf_all_paths:
-				root_leaf_boundary_paths = []   # path covering boundary basic blocks
-				for path in root_leaf_all_paths:
-					for bb in path:
-						if bb in bb_key_sur_list:
-							root_leaf_boundary_paths.append(path)
-							break
-				if len(root_leaf_boundary_paths) > 0:
-					all_paths.extend(root_leaf_boundary_paths)
-	print('node num:', len(G.nodes()), 'trace num:', len(all_paths))
-	return [False, all_paths]
+			root_leaf_path = nx.all_simple_paths(G, root, leaf)
+			if root_leaf_path:
+				for path in root_leaf_path:
+					# for bb in path:
+					# 	if bb in bb_key_sur_list:
+					trace_path.append(path)
+					cnt += 1
+							# break
+					if cnt > 10000:
+						print('node num:', len(G.nodes()), 'trace num:', len(node_path))
+						return [True, node_path]
+	all_path = node_path + trace_path
+	print('node num:', len(G.nodes()), 'trace num:', len(all_path))
+	return [False, all_path]
 
 
 def get_instr_list(func, trace_in_list):
 	instr_list = []
 	for trace in trace_in_list:
-		instr_list_list_bb = []
-		for bb in trace:
-			for key_bb, value_bb in func.items():
-				if key_bb == bb:
-					instr_list_list_bb.extend(value_bb['disasm'])
-					break
-		if len(instr_list_list_bb) != 0:
-			instr_list.append(instr_list_list_bb)
+		instr_list_per_bb = []
+		for add in trace:
+			bb = get_bb_by_address(add, func)
+			if bb:
+				instr_list_per_bb.extend(bb['disasm'])
+		if len(instr_list_per_bb) != 0:
+			instr_list.append(instr_list_per_bb)
 	return instr_list
 
 
-def matching(source_trace_list, match_trace_list):
-	mul = len(source_trace_list) * len(match_trace_list)
+def matching(vp_vpt, vp_function, tar_vpt, tar_function):
+	mul = len(vp_vpt) * len(tar_vpt)
 	threshold = 1000000
 	if (mul > threshold):
 		return [False, threshold / mul]
+	
+	source_trace_list = get_instr_list(tar_function, tar_vpt)
+	match_trace_list = get_instr_list(vp_function, vp_vpt)
 	
 	score_1 = 0
 	for item1 in source_trace_list:
@@ -319,7 +324,7 @@ def matching(source_trace_list, match_trace_list):
 		score_1 += max_score
 	score_1 /= len(source_trace_list)
 
-	score_2 = 0
+	# score_2 = 0
 	# for item1 in match_trace_list:
 	# 	max_score = 0
 	# 	len1 = len(item1)
@@ -338,12 +343,14 @@ def matching(source_trace_list, match_trace_list):
 
 
 def find_surruding(bb_address_list, func):
-	result_list = []
+	result_list = set()
 	for key_bb, value_bb in func.items():
 		if key_bb in bb_address_list:
-			result_list.extend(value_bb['preds'])
-			result_list.extend(value_bb['succs'])
-	return_re = set(result_list) - set(bb_address_list)
+			for pred in value_bb['preds']:
+				result_list.add(str(pred))
+			for succ in value_bb['succs']:
+				result_list.add(str(succ))
+	return_re = result_list - set(bb_address_list)
 	return list(return_re)
 
 
@@ -416,13 +423,9 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 	s_pt_p = find_surruding(diff_p_to_t[0], patch_func)   # boundary basic blocks for unmatched bbs in patched compared to target
 	s_pt_t = find_surruding(diff_p_to_t[1], target_func)   # boundary basic blocks for unmatched bbs in target compared to patched
 
-	# print('build vul_vt trace based on', len(diff_v_to_t[0]), 'basic blocks')
 	vul_vt = build_trace_graph(diff_v_to_t[0], s_vt_v, vul_func)
-	# print('build tar_vt trace based on', len(diff_v_to_t[1]), 'basic blocks')
 	tar_vt = build_trace_graph(diff_v_to_t[1], s_vt_t, target_func)
-	# print('build patch_pt trace based on', len(diff_p_to_t[0]), 'basic blocks')
 	patch_pt = build_trace_graph(diff_p_to_t[0], s_pt_p, patch_func)
-	# print('build tar_pt trace based on', len(diff_v_to_t[1]), 'basic blocks')
 	tar_pt = build_trace_graph(diff_p_to_t[1], s_pt_t, target_func)
 	
 	# unfaire comparision based on trace, compare # of diff bbs
@@ -448,12 +451,8 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 	elif len(tar_pt) == 0:
 		return ['P']
 
-	trace_list_vul_vt = get_instr_list(vul_func, vul_vt)
-	trace_list_tar_vt = get_instr_list(target_func, tar_vt)
-	sim_vt = matching(trace_list_tar_vt, trace_list_vul_vt)
-	trace_list_patch_pt = get_instr_list(patch_func, patch_pt)
-	trace_list_tar_pt = get_instr_list(target_func, tar_pt)
-	sim_pt = matching(trace_list_tar_pt, trace_list_patch_pt)
+	sim_vt = matching(vul_vt, vul_func, tar_vt, target_func)
+	sim_pt = matching(patch_pt, patch_func, tar_pt, target_func)
 
 	if sim_vt[0] and sim_pt[0]:
 		print('PHASE2: trace value')
@@ -499,8 +498,9 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 def detect_patch(ven, fw, ver, pkg):
 	if not os.path.isfile('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv'):
 		print('E no input func list for', fw, ver)
-		return
+		return 0
 	result = []
+	cnt = 0
 	with open('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
 		for row in r:
@@ -524,9 +524,9 @@ def detect_patch(ven, fw, ver, pkg):
 			
 			decision = match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name)
 			print(decision)
-			if len(decision) > 0:
-				result_head.extend(decision)
-				result.append(result_head)
+			result_head.extend(decision)
+			result.append(result_head)
+			cnt += 1
 
 	dir_output = 'output_patch_detection/' + pkg + '/'
 	if not os.path.isdir(dir_output):
@@ -541,20 +541,24 @@ def detect_patch(ven, fw, ver, pkg):
 			json.dump(result_line, f)
 			f.write('\n')
 	
+	return cnt
+	
 
 with open('util/fw_lib_list/' + config.ven + '.csv', 'r') as f:
     lines = f.readlines()
-
+start = time.time()
+cnt = 0
 for line in lines:
     line = line[:-1].split(',')
     config.fw = line[1]
     config.fw_ver = line[2]
     config.lib = line[3]
     config.lib_ver = line[4]
-    if config.lib != config.test_lib:
-        continue
-    if config.fw_ver != config.test_fw_ver:
-        continue
+    # if config.lib != config.test_lib:
+    #     continue
+    # if config.fw_ver != config.test_fw_ver:
+    #     continue
     print(line)
-
-    detect_patch(config.ven, config.fw, config.fw_ver, config.lib)
+    cnt += detect_patch(config.ven, config.fw, config.fw_ver, config.lib)
+end = time.time()
+print(cnt, end - start, (end - start) / cnt)
