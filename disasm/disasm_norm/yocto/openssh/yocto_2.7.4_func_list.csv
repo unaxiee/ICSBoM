@@ -11,7 +11,6 @@ CVE-2019-6109,7.9,8.0,sftp,sftpio,sftpio
 CVE-2019-6109,7.9,8.0,sftp,send_msg,send_msg
 CVE-2019-6109,7.9,8.0,sftp,get_msg_extended,get_msg_extended
 CVE-2019-6111,7.9,8.0,scp,tolocal,tolocal
-CVE-2019-6111,7.9,8.0,scp,sink,sink
 CVE-2020-12062,7.9,8.3,scp,sink,sink
 CVE-2020-12062,7.9,8.3,scp,note_err,note_err
 CVE-2020-14145,7.9,8.4,ssh,ssh_kex2,ssh_kex2

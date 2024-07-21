@@ -1,3 +1,3 @@
 ["CVE-2021-37600", "get_sem_elements", "2.37.2", "NA VP no diff"]
 ["CVE-2021-3995", "mnt_optstr_get_uid", "2.37.3", "P function appears in target and patched version, but not in vulnerable"]
-["CVE-2021-3996", "mnt_table_parse_stream", "2.37.3", "P 0.45858360139029625/0.5170916792205739, vul-tar: 299/288, patch-tar: 274/263"]
+["CVE-2021-3996", "mnt_table_parse_stream", "2.37.3", "P 0.45858360139029636/0.5170916792205742, vul-tar: 299/288, patch-tar: 274/263"]

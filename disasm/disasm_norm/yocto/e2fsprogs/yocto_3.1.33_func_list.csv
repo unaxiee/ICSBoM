@@ -1,2 +1,1 @@
 CVE-2022-1304,1.45.7,1.46.6,libext2fs,ext2fs_extent_delete,ext2fs_extent_delete
-CVE-2022-1304,1.45.7,1.46.6,libext2fs,ext2fs_extent_get,ext2fs_extent_get
