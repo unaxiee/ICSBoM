@@ -1,2 +1,5 @@
-subprocess,sshd,Top-1 + bb_hash 10
 sink,scp,Top-1 + bb_hash 99
+subprocess,sshd,Top-1 + bb_hash 10
+compat_pkalg_proposal,sshd,Top-25 + bb_hash 0 (tie)
+compat_cipher_proposal,sshd,Top-25 + bb_hash 0 (tie)
+compat_kex_proposal,sshd,Top-25 + bb_hash 0 (tie)

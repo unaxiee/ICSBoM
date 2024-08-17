@@ -1,3 +1,1 @@
-mnt_table_parse_stream,libmount,Top-1 + bb_hash 90
-mnt_context_prepare_umount,libmount,Top-1 + bb_hash 94
 get_sem_elements,ipcs,Top-1 + bb_hash 4

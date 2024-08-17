@@ -1,9 +1,9 @@
-deflateInit2_,libz,Top-25 + bb_hash 19
-deflatePrime,libz,Top-1 + bb_hash 2
-compress_block,libz,Top-25 + bb_hash 1
 _tr_tally,libz,Top-25 + bb_hash 0 (tie)
 deflate_slow,libz,Top-25 + bb_hash 21
-inflate,libz,Top-1 + bb_hash 180
+compress_block,libz,Top-25 + bb_hash 1
+deflateInit2_,libz,Top-25 + bb_hash 19
+deflatePrime,libz,Top-1 + bb_hash 2
 deflateCopy,libz,Top-25 + bb_hash 4
 _tr_flush_block,libz,Top-25 + bb_hash 17
+inflate,libz,Top-1 + bb_hash 180
 deflate_fast,libz,Top-25 + bb_hash 12
