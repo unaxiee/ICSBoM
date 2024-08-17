@@ -1,6 +1,6 @@
 function,lib,name
-is_url,not found,
-daemon_serviceloop,not found,
-daemon_msg_findallif_req,not found,
-daemon_AuthUserPwd,not found,
+daemon_msg_findallif_req,libpcap,daemon_msg_findallif_req
+daemon_serviceloop,libpcap,daemon_serviceloop
 pcap_ng_check_header,libpcap,pcap_ng_check_header
+daemon_AuthUserPwd,libpcap,daemon_AuthUserPwd
+is_url,libpcap,is_url

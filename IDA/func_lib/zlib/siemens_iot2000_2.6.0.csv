@@ -1,10 +1,11 @@
 function,lib,name
+_tr_tally,libz,_tr_tally
+deflate_slow,libz,deflate_slow
 compress_block,libz,compress_block
+zipOpenNewFileInZip4_64,libz,zipOpenNewFileInZip4_64
+deflateInit2_,libz,deflateInit2_
 deflatePrime,libz,deflatePrime
 deflateCopy,libz,deflateCopy
-deflate_slow,libz,deflate_slow
 _tr_flush_block,libz,_tr_flush_block
-deflate_fast,libz,deflate_fast
-_tr_tally,libz,_tr_tally
 inflate,libz,inflate
-deflateInit2_,libz,deflateInit2_
+deflate_fast,libz,deflate_fast

@@ -1,5 +1,5 @@
+CVE-2022-42010,1.12.24,_dbus_validate_signature_with_reason
+CVE-2022-42011,1.12.24,validate_body_helper
+CVE-2022-42012,1.12.24,byteswap_body_helper
 CVE-2023-34969,1.12.28,bus_transaction_send_from_driver
 CVE-2023-34969,1.12.28,_dbus_connection_get_next_client_serial
-CVE-2022-42012,1.12.24,byteswap_body_helper
-CVE-2022-42011,1.12.24,validate_body_helper
-CVE-2022-42010,1.12.24,_dbus_validate_signature_with_reason

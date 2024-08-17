@@ -18,7 +18,7 @@ CVE-2021-3711,1.1.1l,sm2_plaintext_size
 CVE-2021-3450,1.1.1k,verify_chain
 CVE-2021-3449,1.1.1k,init_sig_algs
 CVE-2021-23841,1.1.1j,X509_issuer_and_serial_hash
-CVE-2021-23840,1.1.1j,EVP_EncryptUpdate
+CVE-2021-23840,1.1.1j,evp_EncryptDecryptUpdate
 CVE-2021-23840,1.1.1j,EVP_DecryptUpdate
 CVE-2020-1971,1.1.1i,GENERAL_NAME_cmp
 CVE-2020-1971,1.1.1i,GENERAL_NAME_get0_value

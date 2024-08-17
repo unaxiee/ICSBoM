@@ -1,4 +1,4 @@
 function,lib,name
+__svc_destroy_idle,libtirpc,__svc_destroy_idle
 svc_open_fds,libtirpc,svc_open_fds
 rendezvous_request,libtirpc,rendezvous_request
-__svc_destroy_idle,libtirpc,__svc_destroy_idle

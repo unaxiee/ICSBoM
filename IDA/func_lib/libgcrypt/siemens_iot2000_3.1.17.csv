@@ -1,11 +1,10 @@
 function,lib,name
-decrypt,libgcrypt,decrypt
 ghash_internal,libgcrypt,ghash_internal
-do_encrypt_3,libgcrypt,do_encrypt_3
-prefetch_dec,libgcrypt,prefetch_dec
-sign_0,libgcrypt,sign_0
+decrypt,libgcrypt,decrypt
 prefetch_enc,libgcrypt,prefetch_enc
-do_decrypt,libgcrypt,do_decrypt
 _gcry_md_block_write,libgcrypt,_gcry_md_block_write
+prefetch_dec,libgcrypt,prefetch_dec
+sign,libgcrypt,sign
 gen_k,libgcrypt,gen_k
-do_encrypt_0,libgcrypt,do_encrypt_0
+do_encrypt,libgcrypt,do_encrypt
+do_decrypt,libgcrypt,do_decrypt

@@ -1,3 +1,5 @@
 CVE-2021-37600,2.37.2,get_sem_elements
 CVE-2021-3995,2.37.3,mnt_optstr_get_uid
+CVE-2021-3995,2.37.3,mnt_context_prepare_umount
 CVE-2021-3996,2.37.3,mnt_table_parse_stream
+CVE-2021-3996,2.37.3,__table_parse_stream
