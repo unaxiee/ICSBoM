@@ -1,0 +1,8 @@
+["CVE-2021-23177", "archive_write_disk_set_acls", "3.5.2", "NA VP no diff"]
+["CVE-2021-31566", "_archive_write_disk_close", "3.5.2", "P 0.6282728883287894/0.7180909547968372 vul-tar:20/26 patch-tar:18/19"]
+["CVE-2021-31566", "create_dir", "3.5.2", "NA VP no diff"]
+["CVE-2021-31566", "current_fixup", "3.5.2", "E no target function"]
+["CVE-2021-36976", "process_head_file", "3.6.0", "P 0.5354739772035585/0.5498856053061122 vul-tar:253/141 patch-tar:254/140"]
+["CVE-2022-26280", "archive_read_format_zip_read_data", "3.6.1", "V 0.5195652173913043/0.48043478260869565 vul-tar:101/120 patch-tar:93/146"]
+["CVE-2022-36227", "__archive_write_allocate_filter", "3.6.2", "P 0.5037698412698413/0.875 vul-tar:3/6 patch-tar:1/1"]
+["CVE-2022-36227", "archive_write_open2", "3.6.2", "V function only appears in patched version"]

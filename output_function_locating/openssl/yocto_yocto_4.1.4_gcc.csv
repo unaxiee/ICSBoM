@@ -1,0 +1,27 @@
+ossl_dsa_check_pub_key,libcrypto,Too few basic blocks
+tls_construct_server_hello,libssl,Top-50 + bb_hash 12
+ssl_session_dup,libssl,Top-25 + bb_hash 1 (tie)
+PKCS12_unpack_p7data,libcrypto,Top-650 + bb_hash 0 (tie)
+ossl_dsa_check_pub_key_partial,libcrypto,Too few basic blocks
+PKCS12_unpack_p7encdata,libcrypto,Top-1 + bb_hash 0
+ossl_dsa_check_params,libcrypto,Top-100 + bb_hash 2
+DH_check,libcrypto,Top-1 + bb_hash 9
+ossl_dsa_check_priv_key,libcrypto,Top-1 + bb_hash 2
+ossl_rsa_sp800_56b_check_public,libcrypto,Top-500 + bb_hash 3 (tie)
+check_policy,libcrypto,Top-1150 + bb_hash 3 (not max)
+SMIME_write_PKCS7,libcrypto,Top-250 + bb_hash 0 (tie)
+ossl_dh_compute_key,libcrypto,Top-100 + bb_hash 1 (not max)
+evp_cipher_init_internal,libcrypto,Top-25 + bb_hash 35
+generate_key,libcrypto,Top-100 + bb_hash 8
+siv_cipher,libcrypto,Top-700 + bb_hash 3 (not max)
+ossl_policy_level_add_node,libcrypto,Top-1 + bb_hash 4
+ssl_update_cache,libssl,Top-1 + bb_hash 14
+PKCS12_newpass,libcrypto,Top-1 + bb_hash 18
+PKCS12_unpack_authsafes,libcrypto,Top-25 + bb_hash 2
+ossl_policy_level_find_node,libcrypto,Top-200 + bb_hash 1 (not max)
+SSL_free_buffers,libssl,Top-1 + bb_hash 0
+SSL_SESSION_dup,libssl,Too few basic blocks
+X509_policy_check,libcrypto,Top-1 + bb_hash 45
+DH_check_pub_key,libcrypto,Too few basic blocks
+OBJ_obj2txt,libcrypto,Top-200 + bb_hash 18
+ossl_dsa_check_pairwise,libcrypto,Top-100 + bb_hash 1 (tie)

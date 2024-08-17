@@ -1,3 +1,3 @@
-["CVE-2021-46828", "svc_open_fds", "1.3.3", "P function appears in target and patched version, but not in vulnerable"]
-["CVE-2021-46828", "__svc_destroy_idle", "1.3.3", "P function appears in target and patched version, but not in vulnerable"]
-["CVE-2021-46828", "rendezvous_request", "1.3.3", "P 0.6250030069967776/0.739047155754622, vul-tar: 15/18, patch-tar: 12/12"]
+["CVE-2021-46828", "svc_open_fds", "1.3.3", "P function appears in target and patched version but not in vulnerable"]
+["CVE-2021-46828", "__svc_destroy_idle", "1.3.3", "P function appears in target and patched version but not in vulnerable"]
+["CVE-2021-46828", "rendezvous_request", "1.3.3", "P 0.6250030069967776/0.7390471557546222 vul-tar:15/18 patch-tar:12/12"]

@@ -45,7 +45,6 @@ CVE-2022-40304,2.9.8,2.10.3,libxml2,xmlCreateEntity,xmlCreateEntity
 CVE-2022-40304,2.9.8,2.10.3,libxml2,xmlFreeEntity,xmlFreeEntity
 CVE-2023-28484,2.9.8,2.10.4,libxml2,xmlSchemaFixupComplexType,xmlSchemaFixupComplexType
 CVE-2023-29469,2.9.8,2.10.4,libxml2,xmlDictComputeFastKey,xmlDictComputeFastKey
-CVE-2023-39615,2.9.8,2.12.0,libxml2,xmlCtxtUseOptionsInternal,xmlCtxtUseOptionsInternal
 CVE-2023-39615,2.9.8,2.12.0,libxml2,xmlSAXVersion,xmlSAXVersion
 CVE-2023-39615,2.9.8,2.12.0,libxml2,xmlDetectSAX2,xmlDetectSAX2
 CVE-2023-45322,2.9.8,2.12.0,libxml2,xmlStaticCopyNodeList,xmlStaticCopyNodeList

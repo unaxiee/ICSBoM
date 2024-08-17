@@ -1,0 +1,39 @@
+ossl_pkcs7_resolve_libctx,libcrypto,Top-25 + bb_hash 5
+ossl_dsa_check_pub_key,libcrypto,Too few basic blocks
+PKCS7_dataDecode,libcrypto,Top-1 + bb_hash 42
+tls_construct_server_hello,libssl,Top-200 + bb_hash 20
+ossl_ffc_validate_public_key_partial,libcrypto,Top-650 + bb_hash 2 (tie)
+ossl_ffc_validate_private_key,libcrypto,Top-300 + bb_hash 1 (not max)
+ssl_session_dup,libssl,Top-1 + bb_hash 1
+PKCS12_unpack_p7data,libcrypto,Top-550 + bb_hash 0 (tie)
+pkcs7_bio_add_digest,libcrypto,Top-100 + bb_hash 6
+ossl_dsa_check_pub_key_partial,libcrypto,Too few basic blocks
+PKCS12_unpack_p7encdata,libcrypto,Top-1 + bb_hash 0
+nc_match_single,libcrypto,Top-25 + bb_hash 25
+ossl_dsa_check_params,libcrypto,Top-25 + bb_hash 2
+DH_check,libcrypto,Top-1 + bb_hash 13
+rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 6
+ossl_dsa_check_priv_key,libcrypto,Top-1 + bb_hash 2
+ossl_rsa_sp800_56b_check_public,libcrypto,Top-250 + bb_hash 6
+check_policy,libcrypto,Not Found
+SMIME_write_PKCS7,libcrypto,Top-25 + bb_hash 0 (tie)
+ossl_dh_compute_key,libcrypto,Top-100 + bb_hash 2 (not max)
+nc_match,libcrypto,Top-1250 + bb_hash 9 (not max)
+BIO_new_NDEF,libcrypto,Top-500 + bb_hash 3 (not max)
+evp_cipher_init_internal,libcrypto,Top-25 + bb_hash 47
+generate_key,libcrypto,Top-50 + bb_hash 17
+siv_cipher,libcrypto,Top-750 + bb_hash 2 (tie)
+PEM_read_bio_ex,libcrypto,Top-25 + bb_hash 52
+ossl_policy_cache_set_mapping,libcrypto,Top-550 + bb_hash 2 (tie)
+ossl_policy_level_add_node,libcrypto,Top-25 + bb_hash 4
+ssl_update_cache,libssl,Top-1 + bb_hash 16
+PKCS12_newpass,libcrypto,Top-1 + bb_hash 20
+GENERAL_NAME_cmp,libcrypto,Top-1 + bb_hash 24
+PKCS12_unpack_authsafes,libcrypto,Top-1 + bb_hash 2
+ossl_policy_level_find_node,libcrypto,Top-1000 + bb_hash 1 (tie)
+SSL_free_buffers,libssl,Top-1 + bb_hash 0
+SSL_SESSION_dup,libssl,Too few basic blocks
+X509_policy_check,libcrypto,Top-1 + bb_hash 118
+DH_check_pub_key,libcrypto,Too few basic blocks
+OBJ_obj2txt,libcrypto,Top-50 + bb_hash 47
+ossl_dsa_check_pairwise,libcrypto,Top-50 + bb_hash 2

@@ -1,0 +1,2 @@
+__archive_write_allocate_filter,libarchive,Top-1 + bb_hash 0
+archive_write_open2,libarchive,Top-1 + bb_hash 0

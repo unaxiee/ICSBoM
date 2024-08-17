@@ -1,0 +1,36 @@
+start_progress_meter,scp,Top-1 + bb_hash 0
+recv_msg,ssh-agent,Top-1 + bb_hash 10
+send_msg,sftp,Top-1 + bb_hash 5
+sink,scp,Top-1 + bb_hash 104
+sftpio,sftp,Top-1 + bb_hash 0
+kex_names_cat,ssh,Top-50 + bb_hash 13
+atomiciov6,scp,Not Found
+subprocess,sshd,Top-25 + bb_hash 19
+tolocal,scp,Top-1 + bb_hash 15
+kex_protocol_error,ssh,Top-1 + bb_hash 3
+get_msg_extended,sftp,Top-1 + bb_hash 11
+sig_winch,scp,Too few basic blocks
+ssh_userauth2,ssh,Top-1 + bb_hash 55
+compat_pkalg_proposal,sshd,Top-1 + bb_hash 2
+refresh_progress_meter,scp,Not Found
+scpio,scp,Top-25 + bb_hash 1 (not max)
+input_userauth_success,ssh,Top-1 + bb_hash 5
+sshpkt_disconnect,ssh,Top-25 + bb_hash 4
+input_userauth_ext_info,ssh,Too few basic blocks
+pkcs11_terminate,ssh-agent,Not Found
+ssh_packet_read_seqnr,ssh,Top-25 + bb_hash 21
+ssh_packet_read_poll2,ssh,Top-1 + bb_hash 62
+compat_cipher_proposal,sshd,Top-1 + bb_hash 2
+ssh_kex2,ssh,Top-1 + bb_hash 19
+compat_kex_proposal,sshd,Top-50 + bb_hash 6
+kex_input_ext_info,ssh,Top-1 + bb_hash 5
+kex_input_kexinit,ssh,Top-25 + bb_hash 21
+pkcs11_del_provider,ssh-agent,Top-1 + bb_hash 6
+ssh_packet_read_poll_seqnr,ssh,Top-25 + bb_hash 17
+handle_conn_read,ssh-agent,Top-1 + bb_hash 134
+ssh_packet_send2_wrapped,ssh,Top-25 + bb_hash 19
+ssh_packet_read_expect,ssh,Top-25 + bb_hash 4
+main,ssh,Top-1 + bb_hash 349
+atomicio6,scp,Top-1 + bb_hash 10
+pkcs11_init,ssh-agent,Too few basic blocks
+pkcs11_add_provider,ssh-agent,Top-1 + bb_hash 33
