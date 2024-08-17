@@ -1,3 +1,7 @@
+CVE-2021-23177,3.4.2,3.5.2,libarchive,archive_write_disk_set_acls,archive_write_disk_set_acls
+CVE-2021-31566,3.4.2,3.5.2,libarchive,_archive_write_disk_close,_archive_write_disk_close
+CVE-2021-31566,3.4.2,3.5.2,libarchive,create_dir,create_dir
+CVE-2021-31566,3.4.2,3.5.2,libarchive,current_fixup,current_fixup
 CVE-2021-36976,3.4.2,3.6.0,libarchive,process_head_file,process_head_file
 CVE-2022-26280,3.4.2,3.6.1,libarchive,archive_read_format_zip_read_data,archive_read_format_zip_read_data
 CVE-2022-36227,3.4.2,3.6.2,libarchive,__archive_write_allocate_filter,__archive_write_allocate_filter

@@ -1,0 +1,1 @@
+CVE-2023-38546,8.1.0,8.4.0,libcurl,curl_easy_duphandle,curl_easy_duphandle

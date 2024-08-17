@@ -39,3 +39,4 @@ ssh_packet_read_expect,ssh,ssh_packet_read_expect
 main,ssh,main
 pkcs11_init,ssh-agent,pkcs11_init
 pkcs11_add_provider,ssh-agent,pkcs11_add_provider
+parse_key_constraints,ssh-agent,parse_key_constraints

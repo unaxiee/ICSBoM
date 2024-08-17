@@ -2,3 +2,16 @@ CVE-2021-39537,6.1,6.3,libtic,cvtchar,cvtchar
 CVE-2022-29458,6.1,6.4,libtinfo,convert_strings,convert_strings
 CVE-2022-29458,6.1,6.4,libtic,_nc_init_entry,_nc_init_entry
 CVE-2022-29458,6.1,6.4,libtic,_nc_save_str,_nc_save_str
+CVE-2023-29491,6.1,6.5,libtinfo,tgoto,tgoto
+CVE-2023-29491,6.1,6.5,libtinfo,check_string_caps,check_string_caps
+CVE-2023-29491,6.1,6.5,libtinfo,tparm,tparm
+CVE-2023-29491,6.1,6.5,libtinfo,tiparm,tiparm
+CVE-2023-29491,6.1,6.5,libtinfo,_nc_tiparm,_nc_tiparm
+CVE-2023-29491,6.1,6.5,libtinfo,_nc_read_termtype,_nc_read_termtype
+CVE-2023-29491,6.1,6.5,tic,check_1_infotocap,check_1_infotocap
+CVE-2023-29491,6.1,6.5,tic,tparm_type,tparm_type
+CVE-2023-29491,6.1,6.5,tic,guess_tparm_type,guess_tparm_type
+CVE-2023-29491,6.1,6.5,tput,usage,usage
+CVE-2023-29491,6.1,6.5,tput,tput_cmd,tput_cmd
+CVE-2023-29491,6.1,6.5,tput,main,main
+CVE-2023-50495,6.1,6.5,libtic,_nc_parse_entry,_nc_parse_entry
