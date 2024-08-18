@@ -102,7 +102,7 @@ def match_function(ref, build_dic, fw_j, tol_num):
     print(f'{ref} not found in Top-{max_num}\n')
     return 'Not Found'
 
-def evaluate(lib, lib_ver, fw, fw_ver, ven):
+def evaluate(lib, lib_ver, fw, fw_ver, ven, compiler):
     
     data = pd.read_csv('IDA/func_lib/' + lib + '/' + ven + '_' + fw + '_' + fw_ver + '.csv')
 
@@ -111,6 +111,8 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
         os.makedirs(dir_output)
 
     file_output = dir_output + ven + '_' + fw + '_' + fw_ver + '.csv'
+    if compiler != '':
+        file_output = dir_output + ven + '_' + fw + '_' + fw_ver + '_' + compiler + '.csv'
     if os.path.isfile(file_output):   # remove old output
         os.remove(file_output)
 
@@ -136,8 +138,12 @@ def evaluate(lib, lib_ver, fw, fw_ver, ven):
             print(row['function'], 'is not extracted from target binary\n')
             continue
         
-        with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
-            build_j = json.load(f)
+        if compiler != '':
+            with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_' + compiler + '_hash.json', 'r') as f:
+                build_j = json.load(f)
+        else:
+            with open('disasm/disasm_hash/' + ven + '/' + lib + '/' + row['lib'] + '_' + lib_ver + '_hash.json', 'r') as f:
+                build_j = json.load(f)
 
         if row['function'] not in build_j.keys():   # affected function is not extracted from reference binary
             print(row['function'], 'is not extracted from reference binary\n')
@@ -160,10 +166,10 @@ for line in lines:
     config.lib = line[3]
     config.lib_ver = line[4]
 
-    if config.lib != config.test_lib:
-        continue
-    if config.fw_ver != config.test_fw_ver:
-        continue
+    # if config.lib != config.test_lib:
+    #     continue
+    # if config.fw_ver != config.test_fw_ver:
+    #     continue
     print(line)
 
     dir_raw = 'disasm/disasm_raw/' + config.ven + '/' + config.lib +'/'
@@ -216,6 +222,10 @@ for line in lines:
 
         else:
             if config.lib_ver in file_name:
+                if config.test_compiler != '' and config.test_compiler not in file_name:
+                    continue
+                if os.path.isfile(dir_norm + file_name.rsplit('_', 1)[0] + '_hash.json'):
+                    continue
                 hash_dic = {}
                 with open(dir_raw + file_name, 'r') as f:
                     contents_j = json.load(f)
@@ -244,4 +254,4 @@ for line in lines:
                 f.write(disasm_json)
             
 
-    evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, config.ven)
+    evaluate(config.lib, config.lib_ver, config.fw, config.fw_ver, config.ven, config.test_compiler)

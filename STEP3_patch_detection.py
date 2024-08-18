@@ -8,8 +8,10 @@ from util import config
 import time
 
 
-def read_func_info(ven, pkg, lib, function_name, version):
+def read_func_info(ven, pkg, lib, function_name, version, compiler):
 	input_path = 'disasm/disasm_norm/' + ven + '/' + pkg + '/' + lib + '_' + version + '_norm.json'
+	if compiler != '':
+		input_path = 'disasm/disasm_norm/' + ven + '/' + pkg + '/' + lib + '_' + version + '_' + compiler + '_norm.json'
 	func = None
 	try:
 		with open(input_path, 'r') as input:
@@ -23,7 +25,7 @@ def read_func_info(ven, pkg, lib, function_name, version):
 
 def load_target_func(ven, fw, ver, pkg, lib, function_name):
 	target_version = 'fw_' + fw + '_' + ver
-	target_func = read_func_info(ven, pkg, lib, function_name, target_version)
+	target_func = read_func_info(ven, pkg, lib, function_name, target_version, '')
 	if not target_func:
 		return None
 	target_func = preprocess_func(target_func)
@@ -316,8 +318,8 @@ def matching(vp_vpt, vp_function, tar_vpt, tar_function):
 		len1 = len(item1)
 		for item2 in match_trace_list:
 			len2 = len(item2)
-			len_max = max(len1,len2)
-			dist = editdistance.eval(item1 , item2)
+			len_max = max(len1, len2)
+			dist = editdistance.eval(item1, item2)
 			value = float(len_max - dist) / float(len_max)
 			if value > max_score:
 				max_score = value
@@ -330,8 +332,8 @@ def matching(vp_vpt, vp_function, tar_vpt, tar_function):
 	# 	len1 = len(item1)
 	# 	for item2 in source_trace_list:
 	# 		len2 = len(item2)
-	# 		len_max = max(len1,len2)
-	# 		dist = editdistance.eval(item1 , item2)
+	# 		len_max = max(len1, len2)
+	# 		dist = editdistance.eval(item1, item2)
 	# 		value = float(len_max - dist) / float(len_max)
 	# 		if value > max_score:
 	# 			max_score = value
@@ -354,16 +356,16 @@ def find_surruding(bb_address_list, func):
 	return list(return_re)
 
 
-def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name):
+def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name, compiler):
 	vul_flag = True
-	vul_func = read_func_info(ven, pkg, lib, ref_func_name, vul_version)
+	vul_func = read_func_info(ven, pkg, lib, ref_func_name, vul_version, compiler)
 	if not vul_func:
 		vul_flag = False
 	else:
 		vul_func = preprocess_func(vul_func)	# add neighbor_disasm
 
 	patch_flag = True
-	patch_func = read_func_info(ven, pkg, lib, ref_func_name, patch_version)
+	patch_func = read_func_info(ven, pkg, lib, ref_func_name, patch_version, compiler)
 	if not patch_func:
 		patch_flag = False
 	else:
@@ -379,13 +381,13 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 			if not target_func:
 				return ['V function only appears in patched version']
 			else:
-				return ['P function appears in target and patched version, but not in vulnerable']
+				return ['P function appears in target and patched version but not in vulnerable']
 		# not practical for removed function
 		else:
 			if not target_func:
 				return ['P function only appears in vulnerable version']
 			else:
-				return ['V function appears in target and vulnerable version, but not in patched']
+				return ['V function appears in target and vulnerable version but not in patched']
 	
 	if not target_func:
 		print('no target function')
@@ -428,15 +430,15 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 	patch_pt = build_trace_graph(diff_p_to_t[0], s_pt_p, patch_func)
 	tar_pt = build_trace_graph(diff_p_to_t[1], s_pt_t, target_func)
 	
-	# unfaire comparision based on trace, compare # of diff bbs
+	# unfair comparision based on trace, compare # of diff bbs
 	if (vul_vt[0] or patch_pt[0] or tar_vt[0] or tar_pt[0]) and not (vul_vt[0] and patch_pt[0] and tar_vt[0] and tar_pt[0]):
 		print('PHASE1: diff bb #')
 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 		if diff_vt_sum < diff_pt_sum:
-			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		elif diff_pt_sum < diff_vt_sum:
-			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
 			return ['NA cannot tell']
 	vul_vt = vul_vt[1]
@@ -459,17 +461,17 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 		sim_vt = sim_vt[1]
 		sim_pt = sim_pt[1]
 		if sim_vt > sim_pt:
-			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		elif sim_vt < sim_pt:
-			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
 			print('PHASE4: diff bb #')
 			diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 			diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 			if diff_vt_sum < diff_pt_sum:
-				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+				return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 			elif diff_pt_sum < diff_vt_sum:
-				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+				return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 			else:
 				return ['NA cannot tell']
 			# return ['NA cannot tell']
@@ -478,9 +480,9 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 		sim_vt = sim_vt[1]
 		sim_pt = sim_pt[1]
 		if sim_vt > sim_pt:
-			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['V ' + str(sim_vt) + '/' + str(sim_pt)  + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		elif sim_vt < sim_pt:
-			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['P ' + str(sim_vt) + '/' + str(sim_pt)  + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:	
 			return ['NA cannot tell']
 	else:
@@ -488,18 +490,18 @@ def match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_ver
 		diff_pt_sum = len(diff_p_to_t[0]) + len(diff_p_to_t[1])
 		diff_vt_sum = len(diff_v_to_t[0]) + len(diff_v_to_t[1])
 		if diff_vt_sum < diff_pt_sum:
-			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['V ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		elif diff_pt_sum < diff_vt_sum:
-			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + ' / ' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ', vul-tar: ' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ', patch-tar: ' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
+			return ['P ' + str(diff_pt_sum / (diff_vt_sum + diff_pt_sum)) + '/' + str(diff_vt_sum / (diff_vt_sum + diff_pt_sum)) + ' vul-tar:' + str(len(diff_v_to_t[0])) + '/' + str(len(diff_v_to_t[1])) + ' patch-tar:' + str(len(diff_p_to_t[0])) + '/' + str(len(diff_p_to_t[1]))]
 		else:
 			return ['NA cannot tell']
 
 
-def detect_patch(ven, fw, ver, pkg):
+def detect_patch(ven, fw, ver, pkg, compiler):
 	if not os.path.isfile('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv'):
 		print('E no input func list for', fw, ver)
 		return 0
-	result = []
+	result_list = []
 	cnt = 0
 	with open('disasm/disasm_norm/' + ven + '/' + pkg + '/' + fw + '_' + ver + '_func_list.csv', 'r') as csvfile:
 		r = csv.reader(csvfile, delimiter=',')
@@ -522,10 +524,10 @@ def detect_patch(ven, fw, ver, pkg):
 			result_head = [CVE_id, ref_func_name, patch_version]
 			print(result_head)
 			
-			decision = match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name)
+			decision = match_decision(ven, fw, ver, pkg, lib, ref_func_name, vul_version, patch_version, tar_func_name, compiler)
 			print(decision)
 			result_head.extend(decision)
-			result.append(result_head)
+			result_list.append(result_head)
 			cnt += 1
 
 	dir_output = 'output_patch_detection/' + pkg + '/'
@@ -533,12 +535,14 @@ def detect_patch(ven, fw, ver, pkg):
 		os.makedirs(dir_output)
 	
 	file_output = dir_output + ven + '_' + fw + '_' + ver + '.json'
+	if compiler != '':
+		file_output = dir_output + ven + '_' + fw + '_' + ver + '_' + compiler + '.json'
 	if os.path.isfile(file_output):
 		os.remove(file_output)
 
 	with open(file_output, 'a') as f:
-		for result_line in result:
-			json.dump(result_line, f)
+		for result in result_list:
+			json.dump(result, f)
 			f.write('\n')
 	
 	return cnt
@@ -559,6 +563,6 @@ for line in lines:
     # if config.fw_ver != config.test_fw_ver:
     #     continue
     print(line)
-    cnt += detect_patch(config.ven, config.fw, config.fw_ver, config.lib)
+    cnt += detect_patch(config.ven, config.fw, config.fw_ver, config.lib, config.test_compiler)
 end = time.time()
 print(cnt, end - start, (end - start) / cnt)
