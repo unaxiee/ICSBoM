@@ -1,6 +1,0 @@
-level_find_node,libcrypto,Top-25 + bb_hash 1 (tie)
-DH_check,libcrypto,Top-1 + bb_hash 15
-check_policy,libcrypto,Top-1 + bb_hash 4
-X509_policy_check,libcrypto,Top-1 + bb_hash 28
-level_add_node,libcrypto,Top-150 + bb_hash 9
-OBJ_obj2txt,libcrypto,Top-100 + bb_hash 26
