@@ -2,6 +2,16 @@ CVE-2021-39537,6.2,6.3,libncursesw,cvtchar,cvtchar
 CVE-2022-29458,6.2,6.4,libncursesw,convert_strings,convert_strings
 CVE-2022-29458,6.2,6.4,libncursesw,_nc_init_entry,_nc_init_entry
 CVE-2022-29458,6.2,6.4,libncursesw,_nc_save_str,_nc_save_str
+CVE-2023-29491,6.2,6.5,libncursesw,tgoto,tgoto
 CVE-2023-29491,6.2,6.5,libncursesw,check_string_caps,check_string_caps
+CVE-2023-29491,6.2,6.5,libncursesw,tparm,tparm
+CVE-2023-29491,6.2,6.5,libncursesw,tiparm,tiparm
+CVE-2023-29491,6.2,6.5,libncursesw,_nc_tiparm,_nc_tiparm
 CVE-2023-29491,6.2,6.5,libncursesw,_nc_read_termtype,_nc_read_termtype
+CVE-2023-29491,6.2,6.5,libncursesw,check_1_infotocap,check_1_infotocap
+CVE-2023-29491,6.2,6.5,libncursesw,tparm_type,tparm_type
+CVE-2023-29491,6.2,6.5,libncursesw,guess_tparm_type,guess_tparm_type
+CVE-2023-29491,6.2,6.5,libncursesw,usage,usage
+CVE-2023-29491,6.2,6.5,libncursesw,tput_cmd,tput_cmd
+CVE-2023-29491,6.2,6.5,libncursesw,main,main
 CVE-2023-50495,6.2,6.5,libncursesw,_nc_parse_entry,_nc_parse_entry

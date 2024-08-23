@@ -7,3 +7,4 @@ parserCreate,libexpat,parserCreate
 doCdataSection,libexpat,doCdataSection
 entityValueInitProcessor,libexpat,entityValueInitProcessor
 storeEntityValue,libexpat,storeEntityValue
+internalEntityProcessor,libexpat,internalEntityProcessor

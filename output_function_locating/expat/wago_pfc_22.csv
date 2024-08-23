@@ -1,0 +1,9 @@
+epilogProcessor,libexpat,Top-25 + bb_hash 42
+appendAttributeValue,libexpat,Top-25 + bb_hash 66
+processXmlDecl,libexpat,Top-25 + bb_hash 21
+accountingGetCurrentAmplification,libexpat,Top-25 + bb_hash 0 (tie)
+parserCreate,libexpat,Top-25 + bb_hash 7
+doCdataSection,libexpat,Top-1 + bb_hash 63
+entityValueInitProcessor,libexpat,Top-25 + bb_hash 7
+storeEntityValue,libexpat,Top-1 + bb_hash 50
+internalEntityProcessor,libexpat,Top-25 + bb_hash 6

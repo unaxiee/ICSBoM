@@ -1,8 +1,9 @@
-CVE-2022-43680,2.4.9,2.5.0,libexpat,parserCreate,parserCreate
-CVE-2023-52426,2.4.9,2.6.0,libexpat,storeEntityValue,storeEntityValue
-CVE-2023-52426,2.4.9,2.6.0,libexpat,appendAttributeValue,appendAttributeValue
-CVE-2023-52426,2.4.9,2.6.0,libexpat,epilogProcessor,epilogProcessor
-CVE-2023-52426,2.4.9,2.6.0,libexpat,entityValueInitProcessor,entityValueInitProcessor
-CVE-2023-52426,2.4.9,2.6.0,libexpat,processXmlDecl,processXmlDecl
-CVE-2023-52426,2.4.9,2.6.0,libexpat,doCdataSection,doCdataSection
-CVE-2024-28757,2.4.9,2.6.2,libexpat,accountingGetCurrentAmplification,accountingGetCurrentAmplification
+CVE-2022-40674,2.4.7,2.4.9,libexpat,internalEntityProcessor,internalEntityProcessor
+CVE-2022-43680,2.4.7,2.5.0,libexpat,parserCreate,parserCreate
+CVE-2023-52426,2.4.7,2.6.0,libexpat,storeEntityValue,storeEntityValue
+CVE-2023-52426,2.4.7,2.6.0,libexpat,appendAttributeValue,appendAttributeValue
+CVE-2023-52426,2.4.7,2.6.0,libexpat,epilogProcessor,epilogProcessor
+CVE-2023-52426,2.4.7,2.6.0,libexpat,entityValueInitProcessor,entityValueInitProcessor
+CVE-2023-52426,2.4.7,2.6.0,libexpat,processXmlDecl,processXmlDecl
+CVE-2023-52426,2.4.7,2.6.0,libexpat,doCdataSection,doCdataSection
+CVE-2024-28757,2.4.7,2.6.2,libexpat,accountingGetCurrentAmplification,accountingGetCurrentAmplification

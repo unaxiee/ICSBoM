@@ -1,3 +1,4 @@
+CVE-2022-40674,2.4.9,internalEntityProcessor
 CVE-2022-43680,2.5.0,parserCreate
 CVE-2023-52426,2.6.0,storeEntityValue
 CVE-2023-52426,2.6.0,appendAttributeValue

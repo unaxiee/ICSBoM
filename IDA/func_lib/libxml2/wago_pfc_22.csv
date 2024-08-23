@@ -19,3 +19,14 @@ xmlSAXVersion,libxml2,xmlSAXVersion
 xmlParsePubidLiteral,libxml2,xmlParsePubidLiteral
 xmlParseCDSect,libxml2,xmlParseCDSect
 xmlParsePI,libxml2,xmlParsePI
+xmlBufAdd,libxml2,xmlBufAdd
+xmlBufferCreateSize,libxml2,xmlBufferCreateSize
+xmlBufferCCat,libxml2,xmlBufferCCat
+xmlBufCreateSize,libxml2,xmlBufCreateSize
+xmlBufferAdd,libxml2,xmlBufferAdd
+xmlBufferGrow,libxml2,xmlBufferGrow
+xmlBufGrowInternal,libxml2,xmlBufGrowInternal
+xmlBufferCreateStatic,libxml2,xmlBufferCreateStatic
+xmlBufResize,libxml2,xmlBufResize
+xmlBufCCat,libxml2,xmlBufCCat
+xmlBufferResize,libxml2,xmlBufferResize

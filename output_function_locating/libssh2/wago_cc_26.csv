@@ -1,12 +1,3 @@
-kex_agree_mac,libssh2,Top-50 + bb_hash 4 (not max)
-_libssh2_packet_ask,libssh2,Top-100 + bb_hash 0 (tie)
 _libssh2_packet_add,libssh2,Top-25 + bb_hash 44
-_libssh2_transport_send,libssh2,Not Found
-_libssh2_kex_exchange,libssh2,Top-50 + bb_hash 6 (not max)
-kex_agree_crypt,libssh2,Top-50 + bb_hash 4 (not max)
-_libssh2_packet_require,libssh2,Top-25 + bb_hash 1 (not max)
-kex_agree_hostkey,libssh2,Top-100 + bb_hash 1 (not max)
-kex_agree_comp,libssh2,Top-100 + bb_hash 4 (not max)
-libssh2_session_init_ex,libssh2,Top-50 + bb_hash 0 (tie)
 kex_agree_instr,libssh2,Top-150 + bb_hash 1 (not max)
 _libssh2_transport_read,libssh2,Not Found

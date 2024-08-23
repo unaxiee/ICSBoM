@@ -6,7 +6,7 @@ xmlDictComputeFastKey,libxml2,xmlDictComputeFastKey
 xmlBufAdd,libxml2,xmlBufAdd
 xmlBufferCreateSize,libxml2,xmlBufferCreateSize
 xmlBufferCCat,libxml2,xmlBufferCCat
-parseAndPrintFile,libxml2,parseAndPrintFile
+parseAndPrintFile,xmllint,parseAndPrintFile
 xmlStringLenDecodeEntities,libxml2,xmlStringLenDecodeEntities
 htmlAttrDumpOutput,libxml2,htmlAttrDumpOutput
 xmlParseComment,libxml2,xmlParseComment
@@ -33,7 +33,7 @@ xmlParseNmtoken,libxml2,xmlParseNmtoken
 xmlCtxtUseOptionsInternal,libxml2,xmlCtxtUseOptionsInternal
 xmlEncodeEntitiesInternal,libxml2,xmlEncodeEntitiesInternal
 xmlSchemaPreRun,libxml2,xmlSchemaPreRun
-xmlHTMLEncodeSend,libxml2,xmlHTMLEncodeSend
+xmlHTMLEncodeSend,xmllint,xmlHTMLEncodeSend
 xmlBufResize,libxml2,xmlBufResize
 xmlFreeEntity,libxml2,xmlFreeEntity
 xmlSAXVersion,libxml2,xmlSAXVersion

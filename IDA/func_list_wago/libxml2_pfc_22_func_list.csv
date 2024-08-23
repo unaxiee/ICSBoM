@@ -1,3 +1,14 @@
+CVE-2022-29824,2.9.14,xmlBufCreateSize
+CVE-2022-29824,2.9.14,xmlBufGrowInternal
+CVE-2022-29824,2.9.14,xmlBufResize
+CVE-2022-29824,2.9.14,xmlBufAdd
+CVE-2022-29824,2.9.14,xmlBufCCat
+CVE-2022-29824,2.9.14,xmlBufferCreateSize
+CVE-2022-29824,2.9.14,xmlBufferCreateStatic
+CVE-2022-29824,2.9.14,xmlBufferGrow
+CVE-2022-29824,2.9.14,xmlBufferResize
+CVE-2022-29824,2.9.14,xmlBufferAdd
+CVE-2022-29824,2.9.14,xmlBufferCCat
 CVE-2022-40303,2.10.3,xmlParseName
 CVE-2022-40303,2.10.3,xmlParseNCName
 CVE-2022-40303,2.10.3,xmlParseStringName

@@ -1,2 +1,23 @@
-XML_GetBuffer,libexpat,Top-1 + bb_hash 25
-XML_ExternalEntityParserCreate,libexpat,Top-25 + bb_hash 6 (not max)
+XML_GetBuffer,libexpat,Top-50 + bb_hash 23
+appendAttributeValue,libexpat,Top-1 + bb_hash 88
+doProlog,libexpat,Top-1 + bb_hash 290
+parserCreate,libexpat,Top-25 + bb_hash 7
+little2_prologTok,libexpat,Top-25 + bb_hash 437 (not max)
+doCdataSection,libexpat,Top-25 + bb_hash 62
+getElementType,libexpat,Top-1 + bb_hash 2
+XML_ExternalEntityParserCreate,libexpat,Top-1 + bb_hash 1
+lookup,libexpat,Top-25 + bb_hash 8
+addBinding,libexpat,Top-1 + bb_hash 5
+entityValueInitProcessor,libexpat,Top-1 + bb_hash 6
+storeRawNames,libexpat,Top-1 + bb_hash 2
+defineAttribute,libexpat,Top-100 + bb_hash 1 (not max)
+big2_prologTok,libexpat,Top-25 + bb_hash 437 (not max)
+storeAtts,libexpat,Top-1 + bb_hash 44
+storeEntityValue,libexpat,Top-1 + bb_hash 53
+epilogProcessor,libexpat,Top-25 + bb_hash 46
+build_node,libexpat,Top-1 + bb_hash 0
+processXmlDecl,libexpat,Top-25 + bb_hash 24
+normal_prologTok,libexpat,Top-1 + bb_hash 966
+XML_ParserCreate,libexpat,Too few basic blocks
+nextScaffoldPart,libexpat,Top-1 + bb_hash 2
+internalEntityProcessor,libexpat,Top-25 + bb_hash 4
