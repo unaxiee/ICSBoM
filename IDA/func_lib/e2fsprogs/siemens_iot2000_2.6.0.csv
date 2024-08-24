@@ -1,8 +1,8 @@
 function,lib,name
 ext2fs_extent_delete,libext2fs,ext2fs_extent_delete
-fill_dir_block,e2fsck,fill_dir_block
-ext2fs_extent_get,libext2fs,ext2fs_extent_get
-quota_compare_and_update,e2fsck,quota_compare_and_update
-v2_init_io,e2fsck,v2_init_io
-report_tree,e2fsck,report_tree
 qtree_scan_dquots,e2fsck,qtree_scan_dquots
+ext2fs_extent_get,libext2fs,ext2fs_extent_get
+fill_dir_block,e2fsck,fill_dir_block
+report_tree,e2fsck,report_tree
+v2_init_io,e2fsck,v2_init_io
+quota_compare_and_update,e2fsck,quota_compare_and_update

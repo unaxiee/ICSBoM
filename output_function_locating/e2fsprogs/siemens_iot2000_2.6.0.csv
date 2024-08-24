@@ -1,7 +1,7 @@
-ext2fs_extent_delete,libext2fs,Top-25 + bb_hash 5
-fill_dir_block,e2fsck,Top-25 + bb_hash 5
-ext2fs_extent_get,libext2fs,Top-25 + bb_hash 26
-quota_compare_and_update,e2fsck,Top-25 + bb_hash 2 (not max)
-v2_init_io,e2fsck,Top-1 + bb_hash 3
+ext2fs_extent_delete,libext2fs,Top-50 + bb_hash 6 (not max)
+qtree_scan_dquots,e2fsck,Top-1 + bb_hash 1
+ext2fs_extent_get,libext2fs,Top-25 + bb_hash 14
+fill_dir_block,e2fsck,Top-25 + bb_hash 4
 report_tree,e2fsck,Top-25 + bb_hash 1 (tie)
-qtree_scan_dquots,e2fsck,Top-25 + bb_hash 1 (tie)
+v2_init_io,e2fsck,Top-25 + bb_hash 2 (tie)
+quota_compare_and_update,e2fsck,Top-100 + bb_hash 1 (tie)

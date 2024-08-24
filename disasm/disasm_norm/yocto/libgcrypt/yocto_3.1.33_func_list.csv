@@ -1,4 +1,8 @@
 CVE-2019-12904,1.8.5,1.9.0,libgcrypt,ghash_internal,ghash_internal
+CVE-2019-12904,1.8.5,1.9.0,libgcrypt,prefetch_enc,prefetch_enc
+CVE-2019-12904,1.8.5,1.9.0,libgcrypt,prefetch_dec,prefetch_dec
+CVE-2019-12904,1.8.5,1.9.0,libgcrypt,do_encrypt,do_encrypt
+CVE-2019-12904,1.8.5,1.9.0,libgcrypt,do_decrypt,do_decrypt
 CVE-2021-3345,1.8.5,1.9.1,libgcrypt,_gcry_md_block_write,_gcry_md_block_write
 CVE-2021-33560,1.8.5,1.9.3,libgcrypt,decrypt,decrypt
 CVE-2021-40528,1.8.5,1.9.4,libgcrypt,sign_0,sign_0
