@@ -1,0 +1,34 @@
+Curl_disconnect,libcurl,Top-1 + bb_hash 15
+Curl_http_output_auth,libcurl,Top-25 + bb_hash 15
+Curl_ssl_config_matches,libcurl,Not Found
+curl_share_cleanup,libcurl,Top-50 + bb_hash 9
+smtp_done,libcurl,Top-100 + bb_hash 10
+Curl_vsetopt,libcurl,Top-1 + bb_hash 1015
+Curl_cert_hostcheck,libcurl,Top-25 + bb_hash 8
+ftp_disconnect,libcurl,Top-1 + bb_hash 2
+Curl_http_body,libcurl,Top-50 + bb_hash 1 (tie)
+conn_free,libcurl,Top-1 + bb_hash 0
+Curl_init_CONNECT,libcurl,Too few basic blocks
+Curl_retry_request,libcurl,Top-1 + bb_hash 6
+Curl_follow,libcurl,Top-25 + bb_hash 18
+Curl_connect,libcurl,Top-1 + bb_hash 189
+ftp_setup_connection,libcurl,Top-50 + bb_hash 5
+Curl_add_custom_headers,libcurl,Top-25 + bb_hash 46
+Curl_conncache_add_conn,libcurl,Top-25 + bb_hash 2
+Curl_build_unencoding_stack,libcurl,Top-50 + bb_hash 18
+ftp_parse_url_path,libcurl,Top-1 + bb_hash 25
+ossl_connect_step1,libcurl,Top-1 + bb_hash 142
+Curl_http_header,libcurl,Top-25 + bb_hash 24
+Curl_http_host,libcurl,Top-50 + bb_hash 12
+ftp_done,libcurl,Top-25 + bb_hash 31
+Curl_resolv_timeout,libcurl,Top-25 + bb_hash 1 (not max)
+Curl_close,libcurl,Top-25 + bb_hash 6
+Curl_pretransfer,libcurl,Top-1 + bb_hash 13
+ssh_statemach_act,libcurl,Top-1 + bb_hash 182
+ftp_state_prepare_transfer,libcurl,Top-1 + bb_hash 12
+Curl_connect_done,libcurl,Top-100 + bb_hash 2
+curl_share_setopt,libcurl,Top-1 + bb_hash 29
+Curl_getworkingpath,libcurl,Top-1 + bb_hash 11
+curl_easy_duphandle,libcurl,Top-25 + bb_hash 1 (not max)
+Curl_http_method,libcurl,Top-1 + bb_hash 13
+ftp_do_more,libcurl,Top-1 + bb_hash 27
