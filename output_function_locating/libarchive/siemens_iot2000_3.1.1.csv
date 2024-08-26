@@ -1,3 +1,6 @@
+archive_write_disk_set_acls,libarchive,Top-25 + bb_hash 4
 archive_read_format_zip_read_data,libarchive,Top-25 + bb_hash 46
+_archive_write_disk_close,libarchive,Top-150 + bb_hash 18
+create_dir,libarchive,Top-25 + bb_hash 21
 __archive_write_allocate_filter,libarchive,Top-1 + bb_hash 0
 process_head_file,libarchive,Top-1 + bb_hash 65

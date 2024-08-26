@@ -5,6 +5,6 @@ CVE-2019-12904,1.8.5,1.9.0,libgcrypt,do_encrypt,do_encrypt
 CVE-2019-12904,1.8.5,1.9.0,libgcrypt,do_decrypt,do_decrypt
 CVE-2021-3345,1.8.5,1.9.1,libgcrypt,_gcry_md_block_write,_gcry_md_block_write
 CVE-2021-33560,1.8.5,1.9.3,libgcrypt,decrypt,decrypt
-CVE-2021-40528,1.8.5,1.9.4,libgcrypt,sign,sign
+CVE-2021-40528,1.8.5,1.9.4,libgcrypt,sign_0,sign_0
 CVE-2021-40528,1.8.5,1.9.4,libgcrypt,gen_k,gen_k
-CVE-2021-40528,1.8.5,1.9.4,libgcrypt,do_encrypt,do_encrypt
+CVE-2021-40528,1.8.5,1.9.4,libgcrypt,do_encrypt_3,do_encrypt_3

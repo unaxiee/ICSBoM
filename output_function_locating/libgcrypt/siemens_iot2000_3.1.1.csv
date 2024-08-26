@@ -1,7 +1,10 @@
-ghash_internal,libgcrypt,Top-25 + bb_hash 3 (not max)
-decrypt,libgcrypt,Top-50 + bb_hash 0 (tie)
-prefetch_enc,libgcrypt,Top-350 + bb_hash 0 (tie)
-_gcry_md_block_write,libgcrypt,Top-25 + bb_hash 12
-prefetch_dec,libgcrypt,Top-350 + bb_hash 0 (tie)
-gen_k,libgcrypt,Top-25 + bb_hash 15
+sign_0,libgcrypt,Top-25 + bb_hash 0 (tie)
 do_decrypt,libgcrypt,Top-25 + bb_hash 1
+ghash_internal,libgcrypt,Top-25 + bb_hash 3 (not max)
+do_encrypt,libgcrypt,Top-25 + bb_hash 0 (tie)
+prefetch_dec,libgcrypt,Top-350 + bb_hash 0 (tie)
+prefetch_enc,libgcrypt,Top-350 + bb_hash 0 (tie)
+decrypt,libgcrypt,Top-50 + bb_hash 0 (tie)
+gen_k,libgcrypt,Top-25 + bb_hash 15
+_gcry_md_block_write,libgcrypt,Top-25 + bb_hash 12
+do_encrypt_3,libgcrypt,Top-25 + bb_hash 0 (tie)

@@ -1,6 +1,1 @@
-["CVE-2019-15161", "daemon_msg_findallif_req", "1.9.1", "E no vulnerable and patched version"]
-["CVE-2019-15162", "daemon_AuthUserPwd", "1.9.1", "E no vulnerable and patched version"]
-["CVE-2019-15163", "daemon_AuthUserPwd", "1.9.1", "E no vulnerable and patched version"]
-["CVE-2019-15164", "daemon_serviceloop", "1.9.1", "E no vulnerable and patched version"]
-["CVE-2019-15164", "is_url", "1.9.1", "E no vulnerable and patched version"]
-["CVE-2019-15165", "pcap_ng_check_header", "1.9.1", "V 0.39974783386601426/0.3529407054887713 vul-tar:35/43 patch-tar:37/47"]
+["CVE-2019-15165", "pcap_ng_check_header", "1.9.1", "V 0.39974783386601465/0.3529407054887714 vul-tar:35/43 patch-tar:37/47"]
