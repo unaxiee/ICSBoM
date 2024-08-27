@@ -1,29 +1,43 @@
-Curl_init_CONNECT,libcurl,Top-1 + bb_hash 1
-Curl_vsetopt,libcurl,Top-25 + bb_hash 21
-Curl_ssl_config_matches,libcurl,Top-25 + bb_hash 7
-ftp_setup_connection,libcurl,Top-25 + bb_hash 2
-multi_done,libcurl,Top-1 + bb_hash 14
-Curl_retry_request,libcurl,Top-25 + bb_hash 6
-conn_is_conn,libcurl,Top-1 + bb_hash 2
-ftp_parse_url_path,libcurl,Top-1 + bb_hash 27
-Curl_follow,libcurl,Top-100 + bb_hash 5 (not max)
-Curl_http_output_auth,libcurl,Top-100 + bb_hash 15
-ftp_do,libcurl,Top-25 + bb_hash 42
-curl_multi_remove_handle,libcurl,Top-1 + bb_hash 20
-Curl_build_unencoding_stack,libcurl,Top-1 + bb_hash 11
-Curl_resolv_timeout,libcurl,Top-1 + bb_hash 2
-Curl_connect,libcurl,Top-1 + bb_hash 131
-ftp_disconnect,libcurl,Top-1 + bb_hash 8
-ftp_done,libcurl,Top-25 + bb_hash 52
 curl_easy_duphandle,libcurl,Top-1 + bb_hash 10
-conn_free,libcurl,Top-1 + bb_hash 6
-Curl_add_custom_headers,libcurl,Top-1 + bb_hash 42
-Curl_free_primary_ssl_config,libcurl,Top-25 + bb_hash 0 (tie)
-curl_multi_add_handle,libcurl,Top-1 + bb_hash 12
-Curl_open,libcurl,Top-1 + bb_hash 3
-Curl_getconnectinfo,libcurl,Top-1 + bb_hash 11
-Curl_init_userdefined,libcurl,Top-25 + bb_hash 0 (tie)
 Curl_clone_primary_ssl_config,libcurl,Top-1 + bb_hash 22
+Curl_resolv_timeout,libcurl,Top-1 + bb_hash 2
+getparameter,curl,Top-1 + bb_hash 493
+conn_is_conn,libcurl,Top-1 + bb_hash 2
+Curl_ssl_config_matches,libcurl,Top-25 + bb_hash 7
+Curl_cookie_cleanup,libcurl,Top-1 + bb_hash 5
 ftp_state_prepare_transfer,libcurl,Top-25 + bb_hash 9
-Curl_cookie_add,libcurl,Top-1 + bb_hash 108
+tool_header_cb,curl,Top-25 + bb_hash 37
+Curl_retry_request,libcurl,Top-25 + bb_hash 6
+file_connect,libcurl,Top-100 + bb_hash 3 (tie)
+Curl_vsetopt,libcurl,Top-25 + bb_hash 21
+conn_free,libcurl,Top-1 + bb_hash 6
+Curl_free_primary_ssl_config,libcurl,Top-25 + bb_hash 0 (tie)
+Curl_ssl_addsessionid,libcurl,Top-25 + bb_hash 20
+Curl_ssl_getsessionid,libcurl,Top-1 + bb_hash 11
+tool_version_info,curl,Top-25 + bb_hash 8
+create_transfer,curl,Top-1 + bb_hash 368
+Curl_follow,libcurl,Top-50 + bb_hash 3 (tie)
+ftp_done,libcurl,Top-25 + bb_hash 52
+Curl_flush_cookies,libcurl,Top-25 + bb_hash 26
+post_per_transfer,curl,Top-25 + bb_hash 55
+curl_multi_remove_handle,libcurl,Top-1 + bb_hash 20
+Curl_http_output_auth,libcurl,Top-100 + bb_hash 15
+curl_multi_add_handle,libcurl,Top-1 + bb_hash 12
+Curl_cookie_init,libcurl,Top-1 + bb_hash 13
+Curl_connect,libcurl,Top-1 + bb_hash 131
+Curl_getconnectinfo,libcurl,Top-1 + bb_hash 11
+Curl_open,libcurl,Top-1 + bb_hash 3
+Curl_conncache_find_bundle,libcurl,Top-100 + bb_hash 6
 ftp_do_more,libcurl,Top-1 + bb_hash 30
+Curl_cookie_add,libcurl,Top-1 + bb_hash 108
+ftp_do,libcurl,Top-25 + bb_hash 42
+Curl_init_userdefined,libcurl,Top-25 + bb_hash 0 (tie)
+Curl_build_unencoding_stack,libcurl,Top-1 + bb_hash 11
+config_init,curl,Top-1 + bb_hash 0
+ftp_setup_connection,libcurl,Top-25 + bb_hash 2
+ftp_disconnect,libcurl,Top-1 + bb_hash 8
+multi_done,libcurl,Top-1 + bb_hash 14
+ftp_parse_url_path,libcurl,Top-1 + bb_hash 27
+file_do,libcurl,Top-25 + bb_hash 10 (not max)
+Curl_add_custom_headers,libcurl,Top-1 + bb_hash 42
+Curl_init_CONNECT,libcurl,Top-1 + bb_hash 1

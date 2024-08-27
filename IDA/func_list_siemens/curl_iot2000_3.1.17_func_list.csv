@@ -32,7 +32,6 @@ CVE-2023-27535,8.0.0,ftp_setup_connection
 CVE-2023-27534,8.0.0,Curl_getworkingpath
 CVE-2023-27533,8.0.0,check_telnet_options
 CVE-2023-23916,7.88.0,Curl_build_unencoding_stack
-CVE-2022-43552,7.87.0,smb_done
 CVE-2022-43552,7.87.0,telnet_done
 CVE-2022-32221,7.86.0,Curl_vsetopt
 CVE-2022-35252,7.85.0,Curl_cookie_add
@@ -41,10 +40,10 @@ CVE-2022-32208,7.84.0,krb5_decode
 CVE-2022-32207,7.84.0,Curl_flush_cookies
 CVE-2022-32207,7.84.0,Curl_fopen
 CVE-2022-32206,7.84.0,Curl_build_unencoding_stack
-CVE-2022-27782,7.83.1,ConnectionExists
+CVE-2022-27782,7.83.1,Curl_connect
 CVE-2022-27781,7.83.1,display_conn_info
 CVE-2022-27776,7.83.0,Curl_http_host
-CVE-2022-27776,7.83.0,Curl_allow_auth_to_host
+CVE-2022-27776,7.83.0,allow_auth_to_host
 CVE-2022-27776,7.83.0,Curl_add_custom_headers
 CVE-2022-27776,7.83.0,Curl_http_output_auth
 CVE-2022-27775,7.83.0,Curl_conncache_find_bundle
@@ -52,6 +51,8 @@ CVE-2022-27775,7.83.0,Curl_conncache_add_conn
 CVE-2022-27774,7.83.0,Curl_allow_auth_to_host
 CVE-2022-27774,7.83.0,Curl_add_custom_headers
 CVE-2022-27774,7.83.0,Curl_http_output_auth
+CVE-2022-27774,7.83.0,ossl_connect_step1
+CVE-2022-27774,7.83.0,allow_auth_to_host
 CVE-2022-22576,7.83.0,Curl_connect
 CVE-2022-22576,7.83.0,Curl_ssl_config_matches
 CVE-2022-22576,7.83.0,Curl_safecmp
@@ -66,6 +67,7 @@ CVE-2021-22924,7.78.0,Curl_free_primary_ssl_config
 CVE-2021-22924,7.78.0,Curl_clone_primary_ssl_config
 CVE-2021-22924,7.78.0,Curl_ssl_config_matches
 CVE-2021-22924,7.78.0,safecmp
+CVE-2021-22924,7.78.0,gtls_connect_step3
 CVE-2021-22923,7.78.0,getparameter
 CVE-2021-22923,7.78.0,tool_version_info
 CVE-2021-22923,7.78.0,post_per_transfer
@@ -79,6 +81,7 @@ CVE-2021-22897,7.77.0,schannel_connect_step1
 CVE-2021-22897,7.77.0,set_ssl_ciphers
 CVE-2021-22890,7.76.0,Curl_ssl_addsessionid
 CVE-2021-22890,7.76.0,Curl_ssl_getsessionid
+CVE-2021-22890,7.76.0,gtls_connect_step3
 CVE-2021-22876,7.76.0,Curl_follow
 CVE-2020-8286,7.74.0,servercert
 CVE-2020-8285,7.74.0,ftp_do
