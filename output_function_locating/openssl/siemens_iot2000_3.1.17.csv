@@ -1,11 +1,11 @@
-BIO_new_NDEF,libcrypto,Top-800 + bb_hash 3 (tie)
-rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 14
-level_find_node,libcrypto,Top-100 + bb_hash 1 (not max)
-ndef_suffix,libcrypto,Top-250 + bb_hash 5
-DH_check,libcrypto,Top-550 + bb_hash 14
-PEM_read_bio_ex,libcrypto,Top-50 + bb_hash 20
-OBJ_obj2txt,libcrypto,Top-100 + bb_hash 25
-check_policy,libcrypto,Top-25 + bb_hash 9
-X509_policy_check,libcrypto,Top-25 + bb_hash 23
 level_add_node,libcrypto,Top-1 + bb_hash 10
-GENERAL_NAME_cmp,libcrypto,Top-450 + bb_hash 11
+check_policy,libcrypto,Top-25 + bb_hash 9
+GENERAL_NAME_cmp,libcrypto,Top-350 + bb_hash 11
+PEM_read_bio_ex,libcrypto,Top-50 + bb_hash 20
+level_find_node,libcrypto,Top-25 + bb_hash 1 (not max)
+DH_check,libcrypto,Top-500 + bb_hash 14
+ndef_suffix,libcrypto,Top-200 + bb_hash 5
+BIO_new_NDEF,libcrypto,Top-600 + bb_hash 3 (tie)
+OBJ_obj2txt,libcrypto,Top-100 + bb_hash 25
+X509_policy_check,libcrypto,Top-25 + bb_hash 23
+rsa_ossl_private_decrypt,libcrypto,Top-25 + bb_hash 14
