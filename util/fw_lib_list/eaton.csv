@@ -1,0 +1,4 @@
+eaton,pdu,3.2.3,openssl,1.1.1u
+eaton,pdu,3.2.3,curl,8.1.0
+eaton,network,1.0.4,openssl,1.1.1u
+eaton,network,1.0.4,curl,8.1.0

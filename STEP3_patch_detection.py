@@ -1,5 +1,6 @@
 import networkx as nx
 import editdistance
+from jarowinkler import *
 import csv
 from math import *
 import json
@@ -315,12 +316,15 @@ def matching(vp_vpt, vp_function, tar_vpt, tar_function):
 	score_1 = 0
 	for item1 in source_trace_list:
 		max_score = 0
+		# item1 = ''.join(item1)
 		len1 = len(item1)
 		for item2 in match_trace_list:
+			# item2 = ''.join(item2)
 			len2 = len(item2)
 			len_max = max(len1, len2)
 			dist = editdistance.eval(item1, item2)
 			value = float(len_max - dist) / float(len_max)
+			# value = jarowinkler_similarity(item1, item2)
 			if value > max_score:
 				max_score = value
 		score_1 += max_score

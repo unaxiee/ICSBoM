@@ -1,7 +1,6 @@
 import re
 from pymongo import MongoClient
 from Levenshtein import ratio
-from util import config
 
 
 # Similarity between two x.y.z versions

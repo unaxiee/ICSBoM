@@ -1,14 +1,17 @@
-Firmware Pre-processing
-1. Run 'preprocess.py' to extract all files from given firmware, collect file metadata, and identify TPCs as well as their versions.
+1. Firmware Pre-processing & TPC and Version Identification
+Run 'STEP0_firmware_preprocessing.py' to extract firmware files, collect file metadata, and identify TPCs as well as their versions.
 
-Target Function Locating
-1. Run 'disasm/parse_hash.py' to generate fuzzy as well as crypto hash values for assembly. The inputs are from 'disasm/disasm_raw' and outputs are stored in 'disasm/disasm_hash'.
-2. Run 'locate.py' to locate target functions in target binary given reference binary and results are stored in 'output_function_locating'.
+2. CVE Database Lookup
+Run 'STEP1_vulnerability_searching.py' to collect all vulnerabilities associated with given TPCs of specific versions.
 
-Security Patch Detection
-1. Run 'disasm/parse_disasm.py' to normalize assembly. The inputs are from 'disasm/disasm_raw' and outputs are stored in 'disasm/disasm_norm'.
-2. Run 'detect.py' to detect security patches by comparing the triplet of target, vulnerabvle, and patched functions and results are stored in 'output_patch_detection'.
+3. Target Function Locating
+Run 'STEP2_function_locating.py' to normalize assembly instructions, generate fuzzy hash values for functions and crypto hash values for basic blocks contained in each function, and locate target functions in firmware-extracted stripped binaries.
+Results are stored in 'output_function_locating/'.
 
-All input arguments can be adjusted in 'util/config.py'
+4. Security Patch Detection
+Run 'STEP3_patch_detection.py' to determine if each vulnerability exists or the security patch has been backported.
+Results are stored in 'output_patch_detection/'.
 
-All extracted executable files from firmware and reference TPCs can be found in https://drive.google.com/file/d/1nxyFCAq7pmhsuFnH_JHPQZFZPDuo6BJK/view?usp=drive_link
+All input arguments can be modified in 'util/config.py'. Step 1 requires firmware name and path. Steps 2 through 4 require vendor name, and all scripts take in corresponding csv file in 'util/fw_lib_list' as input.
+
+All firmware-extracted target binaries and built reference binaries can be found in https://drive.google.com/file/d/1vQ5dv9CgVoh28GbZjrylH3WNVPzY_WHF/view?usp=sharing
