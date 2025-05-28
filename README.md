@@ -1,7 +1,7 @@
 0. Setup
 If using a venv set up a compatible python version
 ```
-py -3.11 -m venv .venv
+py -3.12 -m venv .venv
 # activate venv depending on OS
 pip install -r requirements.txt
 # if you get the error "      ValueError: 'editdistance/bycython.pyx' doesn't match any files"
