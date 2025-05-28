@@ -1,0 +1,83 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.log
+
+# === Virtual Environments ===
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# === Jupyter Notebooks Checkpoints ===
+.ipynb_checkpoints
+
+# === IDEs & Editors ===
+
+# VSCode
+.vscode/
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# Eclipse
+.project
+.pydevproject
+.metadata/
+*.tmp
+*.bak
+*.swp
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+*.atom
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Thonny
+.thonny/
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Testing ===
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+.cache
+pytest_cache/
+nosetests.xml
+test-results/
+
+# === MyPy, Pyre, Pytype, Pylint ===
+.mypy_cache/
+.dmypy.json
+.pytype/
+.pyre/
+.pylint.d/
+
+# === Environments / dotenv ===
+.env
+.env.*
+*.env
