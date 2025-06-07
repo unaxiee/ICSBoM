@@ -25,7 +25,7 @@ def version_distance(ver_a: str, ver_b: str) -> int:
     return 10000 * abs(version_a['major'] - version_b['major']) + 100 * abs(version_a['minor'] - version_b['minor']) + abs(version_a['patch'] - version_b['patch'])
 
 
-# Resolve version number using AUR sources
+# Resolve version number using AUR archive and internet archive sources
 def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
     """Given a filename and a list of candidate version strings in "x.y.z" format, 
     this function uses package_repo_scraper to get versions for the most likely 
