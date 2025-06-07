@@ -1,5 +1,5 @@
-# Python version requirement: = 3.12
 dnspython==2.4.2
+docker==7.1.0
 editdistance==0.6.2
 et-xmlfile==1.1.0
 Levenshtein==0.25.1
@@ -13,6 +13,7 @@ pymongo==4.6.0
 python-dateutil==2.8.2
 python-Levenshtein==0.25.1
 python-magic==0.4.27
+python-magic-bin==0.4.14
 pytz==2023.3.post1
 rapidfuzz==3.8.1
 six==1.16.0
