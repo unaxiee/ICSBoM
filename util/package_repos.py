@@ -1,6 +1,7 @@
 import re
 from pymongo import MongoClient
 from Levenshtein import ratio
+from util.package_repo_scraper import get_filename_versions
 
 
 # Similarity between two x.y.z versions
@@ -27,7 +28,7 @@ def version_distance(ver_a: str, ver_b: str) -> int:
 # Resolve version number using AUR sources
 def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
     """Given a filename and a list of candidate version strings in "x.y.z" format, 
-    this function queries the local Arch repositories database for the most likely 
+    this function uses package_repo_scraper to get versions for the most likely 
     version string candidate.
     This helps in the event that we have multiple candidate version strings when 
     inspecting a binary's strings
@@ -35,17 +36,10 @@ def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
     Args:
         filename (str): Binary or library file name.
         candidate_versions (list[str]): List of candidate string versions in "x.y.z" format
-        session (optional): Optional requests session object to speed things up.
 
     Returns:
         str: Closest candidate string.
     """
-
-    # MongoDB client, database and collections
-    db_client = MongoClient('localhost', 27017)
-    pack_db = db_client['arch_armv7']
-    coll_core = pack_db['core']
-    coll_extra = pack_db['extra']
 
     # Remove anything trailing .so
     if '.so' in filename:
@@ -58,50 +52,40 @@ def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
     }
 
     # Progressively abstract filename to generalize query
-    filenames = set([filename, filename.split('.so')[0], filename.split('.so')[0].split('-')[0]])
-    
+    filenames = {filename, filename.split('.so')[0], filename.split('.so')[0].split('-')[0]}
+
     # Iterate over possible queries
     for filename in filenames:
-        # Form query
-        p_query = {
-            'NAME': {
-                '$regex': f'.*{filename}.*',
-            }
-        }
+        # Get versions using package_repo_scraper
+        version_map = get_filename_versions(filename)
 
-        # Query the core database first. If there are no matches, then check the extra repository
-        p_matches = [match for match in coll_core.find(p_query, {'NAME': 1, 'VERSION': 1, '_id': 0})]
-        if len(p_matches) == 0:
-            p_matches = [match for match in coll_extra.find(p_query, {'NAME': 1, 'VERSION': 1, '_id': 0})]
-            # If there are still no results, skip this filename
-            if len(p_matches) == 0:
-                continue
+        # If no results, skip this filename
+        if not version_map:
+            continue
 
-        # Iterate over packages in the query results
-        for query_package in p_matches:
-            # Get the match package version
-            match_version = query_package["VERSION"]
-            if not re.search(r"(\d+(\.\d+){1,2})", match_version):
-                continue
-            # Distances dictionary list
-            cand_dicts = []
-            # Iterate over candidate versions and calculate distance
-            for cand_version in candidate_versions:
-                cand_dicts.append({'version': cand_version, 'distance': version_distance(cand_version, match_version)})
-            # Sort dictionary by distance
-            sorted_candidates_list = sorted(cand_dicts, key=lambda c: c['distance'])
-            # Keep best match if lower than current final result
-            if final_version['distance'] > sorted_candidates_list[0]['distance']:
-                final_version = {
-                    'version': sorted_candidates_list[0]['version'],
-                    'distance': sorted_candidates_list[0]['distance']
-                }
+        # Iterate over packages in the results
+        for _, versions in version_map.items():
+            for match_version in versions:
+                if not re.search(r"(\d+(\.\d+){1,2})", match_version):
+                    continue
+                # Distances dictionary list
+                cand_dicts = []
+                # Iterate over candidate versions and calculate distance
+                for cand_version in candidate_versions:
+                    cand_dicts.append({'version': cand_version, 'distance': version_distance(cand_version, match_version)})
+                # Sort dictionary by distance
+                sorted_candidates_list = sorted(cand_dicts, key=lambda c: c['distance'])
+                # Keep best match if lower than current final result
+                if final_version['distance'] > sorted_candidates_list[0]['distance']:
+                    final_version = {
+                        'version': sorted_candidates_list[0]['version'],
+                        'distance': sorted_candidates_list[0]['distance']
+                    }
 
-    return final_version['version']
+    return str(final_version['version'])
 
 
-def match_binary_to_package(p_query_name:str):
-
+def match_binary_to_package(p_query_name: str):
     # MongoDB client, database and collections
     db_client = MongoClient('localhost', 27017)
     pack_db = db_client['arch_armv7']
@@ -116,7 +100,7 @@ def match_binary_to_package(p_query_name:str):
             ]
         }
     }
-    
+
     # Choose fields to return
     p_queryf = {'NAME': 1, '_id': 0}
 
@@ -128,13 +112,12 @@ def match_binary_to_package(p_query_name:str):
     # If there are no results, skip this binary
     if len(p_matches) == 0:
         return None
-    
+
     # Sort matches by ascending Levenshtein string distance (package name, binary name)
     p_matches.sort(key=lambda x: ratio(x["NAME"], p_query_name))
 
     # Return package name of package with highest Levenshtein similarity to binary
     return p_matches[-1]["NAME"]
-
 
 # Resolve version number using AUR sources
 # def version_res_arch(filename: str, candidate_versions: list[str], session=None) -> str:
@@ -171,10 +154,10 @@ def match_binary_to_package(p_query_name:str):
 
 #     # Progressively abstract filename to generalize query
 #     filenames = set([filename, filename.split('.so')[0], filename.split('.so')[0].split('-')[0]])
-    
+
 #     # Iterate over possible queries
 #     for filename in filenames:
-        
+
 #         # Query the Arch repositories API for similar packages
 #         req_json = session.get(query_addr.format(filename), headers=config.REQ_HEADERS).json()
 
@@ -197,7 +180,7 @@ def match_binary_to_package(p_query_name:str):
 #                 # Iterate over candidate versions and calculate distance
 #                 for cand_version in candidate_versions:
 #                     cand_dicts.append({'version': cand_version, 'distance': version_distance(cand_version, match_version)})
-                
+
 #                 # Sort dictionary by distance
 #                 sorted_candidates_list = sorted(cand_dicts, key=lambda c: c['distance'])
 #                 # print(sorted_candidates_list)
