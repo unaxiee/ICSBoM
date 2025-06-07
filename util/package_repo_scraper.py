@@ -102,6 +102,13 @@ def is_cache_expired(path: str, max_age_days: int = 30) -> bool:
     age_seconds = time.time() - created_time
     return age_seconds > max_age_days * 86400
 
+def gen_directory_key(url: str) -> (str, str):
+    domain = url.split("/")[2].replace(".", "_")
+    subdir = f"http_{domain}" if url.startswith("http") else f"api_{domain}"
+    dir_path = os.path.join(CACHE_DIR, subdir)
+    key = hashlib.sha256(url.encode()).hexdigest()
+    return dir_path, key
+
 def fetch_parsed_cache(url: str, ext: str = ".json.gz") -> Set[str]:
     """Fetch parsed data from cache for a given URL.
 
@@ -112,10 +119,7 @@ def fetch_parsed_cache(url: str, ext: str = ".json.gz") -> Set[str]:
     Returns:
         Set[str]: Set of parsed data if cache exists and is not expired, None otherwise
     """
-    domain = url.split("/")[2].replace(".", "_")
-    subdir = f"http_{domain}" if url.startswith("http") else f"api_{domain}"
-    dir_path = os.path.join(CACHE_DIR, subdir)
-    key = hashlib.sha256(url.encode()).hexdigest()
+    dir_path, key = gen_directory_key(url)
     cache_path = os.path.join(dir_path, f"{key}{ext}")
     if os.path.exists(cache_path) and not is_cache_expired(cache_path):
         with gzip.open(cache_path, "rt", encoding="utf-8") as f:
@@ -130,11 +134,8 @@ def store_parsed_cache(url: str, data: Set[str], ext: str = ".json.gz") -> None:
         data (Set[str]): Set of parsed data to store
         ext (str, optional): File extension for the cache file. Defaults to ".json.gz".
     """
-    domain = url.split("/")[2].replace(".", "_")
-    subdir = f"http_{domain}" if url.startswith("http") else f"api_{domain}"
-    dir_path = os.path.join(CACHE_DIR, subdir)
+    dir_path, key = gen_directory_key(url)
     os.makedirs(dir_path, exist_ok=True)
-    key = hashlib.sha256(url.encode()).hexdigest()
     cache_path = os.path.join(dir_path, f"{key}{ext}")
     with gzip.open(cache_path, "wt", encoding="utf-8") as f:
         json.dump(list(data), f)
@@ -184,10 +185,7 @@ async def fetch_url_raw(url: str) -> str:
     Returns:
         str: Raw HTML content as string, or empty string if all fetch attempts fail
     """
-    domain = url.split("/")[2].replace(".", "_")
-    subdir = f"http_{domain}" if url.startswith("http") else f"api_{domain}"
-    dir_path = os.path.join(CACHE_DIR, subdir)
-    key = hashlib.sha256(url.encode()).hexdigest()
+    dir_path, key = gen_directory_key(url)
     cache_path = os.path.join(dir_path, f"{key}.html.gz")
     if os.path.exists(cache_path) and not is_cache_expired(cache_path):
         with gzip.open(cache_path, "rt", encoding="utf-8") as f:
