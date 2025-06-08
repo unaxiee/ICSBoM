@@ -6,12 +6,12 @@ The test_cache.tar file is extracted into this directory to provide pre-populate
 for MySQL-related packages, ensuring consistent test results without network requests.
 """
 
-import os
+from pathlib import Path
 import pytest
 import shutil
 import tempfile
 import tarfile
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 from util import package_repo_scraper
 
@@ -27,28 +27,29 @@ def test_cache_dir():
     4. Yields the tests/testcache directory for use in tests
     5. Cleans up the tests/testcache directory after tests are complete
     """
-    test_cache_tar = os.path.join(os.path.dirname(__file__), os.path.dirname(__file__) + "/test_cache.tar")
-    test_cache_dir = os.path.join(os.path.dirname(__file__), os.path.dirname(__file__) + "/test_cache/")
+    base_dir = Path(__file__).parent
+    test_cache_tar = base_dir / "test_cache.tar"
+    test_cache_dir = base_dir / "test_cache"
 
     # Create the testcache directory if it doesn't exist
-    os.makedirs(test_cache_dir, exist_ok=True)
+    test_cache_dir.mkdir(parents=True, exist_ok=True)
 
     # Patch the CACHE_DIR variable before extracting the test cache
     # This ensures that any cache operations during extraction use the test cache directory
-    with patch.object(package_repo_scraper, 'CACHE_DIR', test_cache_dir):
+    with patch.object(package_repo_scraper, 'CACHE_DIR', str(test_cache_dir)):
         # Extract test_cache.tar into the tests/testcache directory if needed
-        if os.path.exists(test_cache_tar):
+        if test_cache_tar.exists():
             with tarfile.open(test_cache_tar, "r") as tar:
-                tar.extractall(path=os.path.dirname(__file__), filter="data")
-            print(f"Extracted test cache to {os.path.dirname(__file__)}")
+                tar.extractall(path=base_dir, filter="data")
+            print(f"Extracted test cache to {base_dir}")
         else:
             print(f"Warning: test_cache.tar not found at {test_cache_tar}")
 
         # Continue with the patched CACHE_DIR
-        yield test_cache_dir
+        yield str(test_cache_dir)
 
         # Clean up the test cache directory after tests are complete
-        if os.path.exists(test_cache_dir):
+        if test_cache_dir.exists():
             shutil.rmtree(test_cache_dir)
             print(f"Cleaned up test cache directory: {test_cache_dir}")
 
