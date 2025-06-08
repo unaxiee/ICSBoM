@@ -41,3 +41,31 @@ def test_special_filenames():
     result = parse_archlinux_files([db_tar_path])
     found = any(os.path.basename(f) in SPECIAL_FILENAMES for files in result.values() for f in files)
     assert found, "At least one known executable-style filename should be included"
+
+def test_basename_and_full_path_included():
+    result = parse_archlinux_files([db_tar_path])
+    found_basenames = set()
+    found_fullpaths = set()
+
+    for files in result.values():
+        for f in files:
+            if '/' in f:
+                found_fullpaths.add(f)
+            else:
+                found_basenames.add(f)
+
+    # These are the synthetic files added in /usr/bin/
+    expected_filenames = {
+        'test_program.go',
+        'test_program.java',
+        'test_program.js',
+        'test_program.lua',
+        'test_program.pl',
+    }
+
+    # Check that both the full path and the basename are present
+    missing_basenames = expected_filenames - found_basenames
+    missing_fullpaths = {f"/usr/bin/{name}" for name in expected_filenames} - found_fullpaths
+
+    assert not missing_basenames, f"Missing basenames: {missing_basenames}"
+    assert not missing_fullpaths, f"Missing full paths: {missing_fullpaths}"

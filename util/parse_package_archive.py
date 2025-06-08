@@ -54,7 +54,7 @@ def parse_archlinux_files(tar_paths: List[PurePath]) -> Dict[str, Set[str]]:
         tar_paths (List[str]): List of tarball paths to parse.
 
     Returns:
-        Dict[str, Set[str]]: Mapping of package names to sets of filtered file paths.
+        Dict[str, Set[str]]: Mapping of package names to sets of both full paths and basenames.
     """
     packages: Dict[str, Set[str]] = defaultdict(set)
 
@@ -63,8 +63,6 @@ def parse_archlinux_files(tar_paths: List[PurePath]) -> Dict[str, Set[str]]:
             members = {m.name: m for m in tar.getmembers()}
 
             for member_name in members:
-                # only start from the desc file to find the correct package name
-                # the files is read in the same dir
                 if not member_name.endswith('/desc'):
                     continue
 
@@ -87,6 +85,9 @@ def parse_archlinux_files(tar_paths: List[PurePath]) -> Dict[str, Set[str]]:
                     continue
 
                 files_lines = files_member.read().decode('utf-8').splitlines()
-                packages[package_name].update(extract_files(files_lines))
+
+                for path in extract_files(files_lines):
+                    packages[package_name].add(path)
+                    packages[package_name].add(PurePath(path).name)
 
     return packages
