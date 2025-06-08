@@ -8,7 +8,7 @@ from util.PackageDB import PackageDB
 def test_packagedb_cache(tmp_path):
     tar_path = Path(__file__).resolve().parent / "test_packagedb_cache.tar"
     with tarfile.open(tar_path, "r") as tar:
-        tar.extractall(tmp_path)
+        tar.extractall(tmp_path, filter="data")
     yield tmp_path
     shutil.rmtree(tmp_path)
 
