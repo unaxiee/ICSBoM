@@ -2,6 +2,7 @@ import re
 from Levenshtein import ratio
 from util.package_repo_scraper import get_filename_versions
 from util.PackageDB import PackageDB
+from util import config
 
 # Persistent PackageDB instance for reuse
 _package_db = None
@@ -91,7 +92,11 @@ def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
 def match_binary_to_package(p_query_name: str):
     global _package_db
     if _package_db is None:
-        _package_db = PackageDB()
+        _package_db = PackageDB(
+            urls=config.PACKAGE_DB_URLS,
+            local_paths=config.PACKAGE_DB_LOCAL_PATHS,
+            cache_dir=config.PACKAGE_DB_CACHE_DIR
+        )
 
     # Search for filenames containing the query name
     matching_filenames = _package_db.search_substring(p_query_name)

@@ -34,3 +34,11 @@ test_lib = 'openssl'
 test_fw_ver = ''
 # Test compiler
 test_compiler = ''
+
+# For PackageDB
+# URLs to download package tarballs from
+PACKAGE_DB_URLS = []
+# Local paths to existing package tarballs
+PACKAGE_DB_LOCAL_PATHS = []
+# Directory to store the pickle cache
+PACKAGE_DB_CACHE_DIR = ".packagedb_cache"
