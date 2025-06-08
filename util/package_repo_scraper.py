@@ -22,6 +22,7 @@ from internetarchive import ArchiveSession, Search
 from typing import Set, Dict, List
 from urllib.parse import quote
 from tqdm.asyncio import tqdm as atqdm
+from tqdm import tqdm
 
 CACHE_DIR = os.path.join(os.getcwd(), ".cache")
 if os.path.isdir(CACHE_DIR):
@@ -301,7 +302,15 @@ def get_filename_versions(filename: str) -> Dict[str, Set[str]]:
             identifier = result["identifier"]
             tasks.append(fetch_archive_org_filenames(identifier))
             tasks.append(fetch_archlinux_org_filenames(identifier))
-        fetch_results = await atqdm.gather(*tasks)
+        fetch_results = await atqdm.gather(*tasks, desc="package resolution", position=tqdm._get_free_pos(), leave=False)
+        results = list(
+            tqdm(
+                zip(results, fetch_results),
+                desc="version parsing",
+                position=tqdm._get_free_pos(),
+                leave=False,
+            )
+        )
         version_map: Dict[str, Set[str]] = {}
         i = 0
         for result in results:

@@ -104,7 +104,7 @@ print(f"[i] Step 4: Identifying packages using pattern hinting and repository re
 print("[i] Using local DB-backed resolution for speed. Switch to online method for potentially better accuracy.")
 found_repo_counter = 0
 found_rand_counter = 0
-for binary in tqdm(binaries):
+for binary in tqdm(binaries, desc = "Step 4" ):
     if "version" in binary.keys():
         continue
     bin_name = binary["name"]
