@@ -1,7 +1,11 @@
 import re
-from pymongo import MongoClient
 from Levenshtein import ratio
 from util.package_repo_scraper import get_filename_versions
+from util.PackageDB import PackageDB
+from util import config
+
+# Persistent PackageDB instance for reuse
+_package_db = None
 
 
 # Similarity between two x.y.z versions
@@ -86,31 +90,30 @@ def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
 
 
 def match_binary_to_package(p_query_name: str):
-    # MongoDB client, database and collections
-    db_client = MongoClient('localhost', 27017)
-    pack_db = db_client['arch_armv7']
-    coll_core = pack_db['core']
-    coll_extra = pack_db['extra']
+    global _package_db
+    if _package_db is None:
+        _package_db = PackageDB(
+            urls=config.PACKAGE_DB_URLS,
+            local_paths=config.PACKAGE_DB_LOCAL_PATHS,
+            cache_dir=config.PACKAGE_DB_CACHE_DIR
+        )
 
-    # Form query for finding file in packages DB
-    p_query = {
-        'FILES': {
-            '$in': [
-                re.compile(f'.*/{p_query_name}[^/]*')
-            ]
-        }
-    }
-
-    # Choose fields to return
-    p_queryf = {'NAME': 1, '_id': 0}
-
-    # Get matches
-    # Query the core database first. If there are no matches, then check the extra repository
-    p_matches = [match for match in coll_core.find(p_query, p_queryf)]
-    p_matches.extend([match for match in coll_extra.find(p_query, p_queryf)])
+    # Search for filenames containing the query name
+    matching_filenames = _package_db.search_substring(p_query_name)
 
     # If there are no results, skip this binary
-    if len(p_matches) == 0:
+    if not matching_filenames:
+        return None
+
+    # Get package names for each matching filename
+    p_matches = []
+    for filename in matching_filenames:
+        package_name = _package_db.lookup_exact(filename)
+        if package_name:
+            p_matches.append({"NAME": package_name})
+
+    # If there are no package matches, return None
+    if not p_matches:
         return None
 
     # Sort matches by ascending Levenshtein string distance (package name, binary name)
