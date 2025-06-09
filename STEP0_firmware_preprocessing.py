@@ -1,3 +1,4 @@
+from pathlib import PurePath
 from util import config
 import os
 from util.binwalk import binwalk_unpack_fw
@@ -8,7 +9,17 @@ from util.binary_signatures import bin_mime_signs, bin_direct_version, bin_indir
 import subprocess
 import re
 from util.package_repos import version_res_arch_local, match_binary_to_package
+from util.PackageDB import PackageDB
 import pickle
+from util import cache_logging
+import shutil
+import sys
+
+package_db = PackageDB(
+    urls=config.PACKAGE_DB_URLS,
+    local_paths=config.PACKAGE_DB_LOCAL_PATHS,
+    cache_dir=config.PACKAGE_DB_CACHE_DIR
+)
 
 
 # ======== Step 1: Unpack firmware ========
@@ -42,6 +53,7 @@ print("[i] Step 2: Locating and calculating metadata for binaries of interest.")
 paths = glob(f"{config.FW_DIR}/{OUT_DIR}/**", recursive=True)
 print(f"[i] Scanning {len(paths)} files and directories.")
 binaries = []
+
 for path in tqdm(paths):
     if os.path.isdir(path):
         continue
@@ -50,16 +62,23 @@ for path in tqdm(paths):
         if magic.from_file(path, mime=True) in bin_mime_signs:
             file_metadata = dict()
             file_metadata['path'] = path
-            file_metadata['name'] = path.split('/')[-1]
+            file_metadata['name'] = PurePath(path).name
             binaries.append(file_metadata)
-    except:
-        print(f"[e] Reading {path} fails.")
+    except Exception as e:
+        print(f"[e] Reading {path} failed: {e}")
         continue
+
 print(f"[i] Found {len(binaries)} executable files.")
 if len(binaries) == 0:
     print("[i] Exiting.")
     exit(1)
 
+strings_executable = shutil.which("strings")
+
+if not strings_executable:
+    print("[e] ERROR: Could not find the 'strings' executable in the system PATH.")
+    print("[i] Please ensure it is installed and its location is added to your PATH environment variable.")
+    sys.exit(1)
 
 # ==== Step 3: Identify binary versions using regex signatures ====
 print("[i] Step 3: Running signature based version identification.")
@@ -82,12 +101,12 @@ for binary in tqdm(binaries):
     for bin_key, bin_dict in bin_indirect_version.items():
         # Get name pattern
         if 'lib' in bin_key:
-            pattern = f"^{bin_key}.*\.so.*"
+            pattern = f"^{bin_key}.*\\.so.*"
         else:
             pattern = f"^{bin_key}$"
         # Check if pattern matches the binary name, and try to identify the version
         if re.search(pattern, bin_name):
-            binary_str = subprocess.run(["strings", binary["path"]], capture_output=True).stdout
+            binary_str = subprocess.run([strings_executable, binary["path"]], capture_output=True).stdout
             version = re.search(str.encode(bin_dict['version']), binary_str)
             if version:
                 version = version.group(1).decode("utf-8")
@@ -98,13 +117,17 @@ for binary in tqdm(binaries):
                 break
 print(f"[i] Located {found_sign_counter} versions using signatures.")
 
+# Force initialization of the package database before step 4
+print("[i] Initializing package database...")
+package_db.initialize()
+print("[i] Package database initialized.")
 
 # ==== Step 4: Identify binary versions using repo resolution ====
 print(f"[i] Step 4: Identifying packages using pattern hinting and repository resolution.")
 print("[i] Using local DB-backed resolution for speed. Switch to online method for potentially better accuracy.")
 found_repo_counter = 0
 found_rand_counter = 0
-for binary in tqdm(binaries):
+for binary in tqdm(binaries, desc = "Step 4" ):
     if "version" in binary.keys():
         continue
     bin_name = binary["name"]
@@ -166,13 +189,17 @@ for binary in tqdm(binaries):
     # Form query for finding file in packages DB
     p_query_name = re.escape(binary["name"])
     # Get matches by querying DB
-    pkg_name = match_binary_to_package(p_query_name)
+    pkg_name = match_binary_to_package(p_query_name, package_db)
     if pkg_name:
         # Assign package name of package with highest Levenshtein similarity to binary
         binary["package_name"] = pkg_name
         # Add package to set of packages that we need to investigate
         bin_packages.update({pkg_name})
 
+
+if config.LOG_CACHE_PERFORMANCE:
+    print("\n[i] Cache Statistics:")
+    cache_logging.print_stats()
 
 # Save temporary results
 with open(f"util/fw_pkl/{config.FW_NAME.rsplit('.', 1)[0]}.pkl", 'wb') as f:

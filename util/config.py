@@ -6,7 +6,6 @@ FW_NAME = 'PDU.img'
 # FW_DIR = '../wago/firmware'
 # FW_DIR = '../siemens/firmware'
 FW_DIR = '../firmware/Eaton'
-
 # Binwalk log name
 BW_LOG_NAME = "binwalk_log.txt"
 
@@ -37,8 +36,18 @@ test_compiler = ''
 
 # For PackageDB
 # URLs to download package tarballs from
-PACKAGE_DB_URLS = []
+PACKAGE_DB_URLS = ["https://mirror.csclub.uwaterloo.ca/archlinux/core/os/x86_64/core.files.tar.gz",
+                   "https://mirror.csclub.uwaterloo.ca/archlinux/core/os/x86_64/core.db.tar.gz",
+                   "https://mirror.csclub.uwaterloo.ca/archlinux/extra/os/x86_64/extra.files.tar.gz",
+                   "https://mirror.csclub.uwaterloo.ca/archlinux/extra/os/x86_64/extra.db.tar.gz"]
 # Local paths to existing package tarballs
 PACKAGE_DB_LOCAL_PATHS = []
+
+# http cache
+WWW_CACHE_DIR = ".cache"
+
 # Directory to store the pickle cache
 PACKAGE_DB_CACHE_DIR = ".packagedb_cache"
+
+# Enable or disable cache performance logging
+LOG_CACHE_PERFORMANCE = False

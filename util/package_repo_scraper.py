@@ -22,12 +22,12 @@ from internetarchive import ArchiveSession, Search
 from typing import Set, Dict, List
 from urllib.parse import quote
 from tqdm.asyncio import tqdm as atqdm
+from tqdm import tqdm
+from util import cache_logging, config
 
-CACHE_DIR = os.path.join(os.getcwd(), ".cache")
+CACHE_DIR = os.path.join(os.getcwd(), config.WWW_CACHE_DIR)
 if os.path.isdir(CACHE_DIR):
-    print(f"[debug] Using cache directory: {CACHE_DIR}")
-else:
-    print(f"[debug] Cache directory does not exist: {CACHE_DIR}")
+    print(f"Using cache directory: {CACHE_DIR}")
 
 ARCH_SUFFIX_RE = re.compile(
     r"-(x86_64|i686|any|aarch64|armv7h|armv6h|pentium4|riscv64|ppc64le|s390x|loongarch64)$"
@@ -123,7 +123,11 @@ def fetch_parsed_cache(url: str, ext: str = ".json.gz") -> Set[str]:
     cache_path = os.path.join(dir_path, f"{key}{ext}")
     if os.path.exists(cache_path) and not is_cache_expired(cache_path):
         with gzip.open(cache_path, "rt", encoding="utf-8") as f:
+            if config.LOG_CACHE_PERFORMANCE:
+                cache_logging.record_hit("package_repo_parsed")
             return set(json.load(f))
+    if config.LOG_CACHE_PERFORMANCE:
+        cache_logging.record_miss("package_repo_parsed")
     return None
 
 def store_parsed_cache(url: str, data: Set[str], ext: str = ".json.gz") -> None:
@@ -155,7 +159,11 @@ def fetch_archive_search_cache(query: str) -> List[Dict]:
     cache_path = os.path.join(dir_path, f"{key}.json.gz")
     if os.path.exists(cache_path) and not is_cache_expired(cache_path):
         with gzip.open(cache_path, "rt", encoding="utf-8") as f:
+            if config.LOG_CACHE_PERFORMANCE:
+                cache_logging.record_hit("package_repo_search")
             return json.load(f)
+    if config.LOG_CACHE_PERFORMANCE:
+        cache_logging.record_miss("package_repo_search")
     return None
 
 def store_archive_search_cache(query: str, data: List[Dict]) -> None:
@@ -189,7 +197,11 @@ async def fetch_url_raw(url: str) -> str:
     cache_path = os.path.join(dir_path, f"{key}.html.gz")
     if os.path.exists(cache_path) and not is_cache_expired(cache_path):
         with gzip.open(cache_path, "rt", encoding="utf-8") as f:
+            if config.LOG_CACHE_PERFORMANCE:
+                cache_logging.record_hit("package_repo_url")
             return f.read()
+    if config.LOG_CACHE_PERFORMANCE:
+        cache_logging.record_miss("package_repo_url")
     for attempt in range(3):
         try:
             async with httpx.AsyncClient() as client:
@@ -301,11 +313,19 @@ def get_filename_versions(filename: str) -> Dict[str, Set[str]]:
             identifier = result["identifier"]
             tasks.append(fetch_archive_org_filenames(identifier))
             tasks.append(fetch_archlinux_org_filenames(identifier))
-        fetch_results = await atqdm.gather(*tasks)
+        fetch_results = await atqdm.gather(*tasks, desc="package resolution", position=tqdm._get_free_pos(), leave=False)
+        results = list(
+            tqdm(
+                zip(results, fetch_results),
+                desc="version parsing",
+                position=tqdm._get_free_pos(),
+                leave=False,
+            )
+        )
         version_map: Dict[str, Set[str]] = {}
         i = 0
         for result in results:
-            raw_identifier = result["identifier"]
+            raw_identifier = result[0]["identifier"]
             identifier = raw_identifier.replace("archlinux_pkg_", "").lower()
             variants = generate_prefix_variants(identifier)
             versions = set()
