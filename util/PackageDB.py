@@ -3,9 +3,11 @@ import requests
 import shutil
 import pickle
 import hashlib
+import threading
 from pathlib import Path, PurePath
 from typing import List, Dict, Optional
 from util.parse_package_archive import parse_archlinux_files
+from util import cache_logging, config
 
 
 class PackageDB:
@@ -14,6 +16,7 @@ class PackageDB:
     Supports persistent caching via pickled object based on input hash.
     Lazy-loads the dataset only on first use.
     """
+    _lock = threading.Lock()
 
     def __init__(self, urls: Optional[List[str]] = None, local_paths: Optional[List[str]] = None,
                  cache_dir: Optional[Path] = None):
@@ -44,24 +47,34 @@ class PackageDB:
         if self._loaded:
             return
 
-        self._loaded = True
-        cache_key = self._compute_cache_key()
-        self.cache_dir.mkdir(exist_ok=True)
-        cache_path = self.cache_dir / f"{cache_key}.pkl"
+        with self._lock:
+            if self._loaded:
+                return
+            self._loaded = True
+            cache_key = self._compute_cache_key()
+            self.cache_dir.mkdir(exist_ok=True)
+            cache_path = self.cache_dir / f"{cache_key}.pkl"
 
-        if cache_path.exists():
-            with open(cache_path, "rb") as f:
-                data = pickle.load(f)
-                self.filename_to_package = data["filename_to_package"]
-                self.filenames = data["filenames"]
-            return  #
-        self._initialize()
+            if cache_path.exists():
+                with open(cache_path, "rb") as f:
+                    data = pickle.load(f)
+                    self.filename_to_package = data["filename_to_package"]
+                    self.filenames = data["filenames"]
+                # Record cache hit
+                if config.LOG_CACHE_PERFORMANCE:
+                    cache_logging.record_hit("packagedb")
+                return
 
-        with open(cache_path, "wb") as f:
-            pickle.dump({
-                "filename_to_package": self.filename_to_package,
-                "filenames": self.filenames
-            }, f)
+            # Record cache miss
+            if config.LOG_CACHE_PERFORMANCE:
+                cache_logging.record_miss("packagedb")
+            self._initialize()
+
+            with open(cache_path, "wb") as f:
+                pickle.dump({
+                    "filename_to_package": self.filename_to_package,
+                    "filenames": self.filenames
+                }, f)
 
     def _initialize(self):
         """Download tarballs and build filename mappings."""
@@ -91,6 +104,12 @@ class PackageDB:
         """Return list of filenames that contain the given substring."""
         self._load_or_initialize()
         return [s for s in self.filenames if needle in s]
+
+    def initialize(self):
+        """Force initialization of the database."""
+        self._load_or_initialize()
+        return self
+
 
     def __del__(self):
         """Cleanup temporary directory when the object is destroyed."""
