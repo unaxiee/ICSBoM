@@ -89,17 +89,19 @@ def version_res_arch_local(filename: str, candidate_versions: list[str]) -> str:
     return str(final_version['version'])
 
 
-def match_binary_to_package(p_query_name: str):
-    global _package_db
-    if _package_db is None:
-        _package_db = PackageDB(
-            urls=config.PACKAGE_DB_URLS,
-            local_paths=config.PACKAGE_DB_LOCAL_PATHS,
-            cache_dir=config.PACKAGE_DB_CACHE_DIR
-        )
+def match_binary_to_package(p_query_name: str, package_db=None):
+    if package_db is None:
+        global _package_db
+        if _package_db is None:
+            _package_db = PackageDB(
+                urls=config.PACKAGE_DB_URLS,
+                local_paths=config.PACKAGE_DB_LOCAL_PATHS,
+                cache_dir=config.PACKAGE_DB_CACHE_DIR
+            )
+        package_db = _package_db
 
     # Search for filenames containing the query name
-    matching_filenames = _package_db.search_substring(p_query_name)
+    matching_filenames = package_db.search_substring(p_query_name)
 
     # If there are no results, skip this binary
     if not matching_filenames:
@@ -108,7 +110,7 @@ def match_binary_to_package(p_query_name: str):
     # Get package names for each matching filename
     p_matches = []
     for filename in matching_filenames:
-        package_name = _package_db.lookup_exact(filename)
+        package_name = package_db.lookup_exact(filename)
         if package_name:
             p_matches.append({"NAME": package_name})
 
