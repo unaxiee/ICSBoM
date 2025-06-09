@@ -84,3 +84,6 @@ test-results/
 
 # === Firmware Directory ====
 .firmware/
+
+#== Cache Directory ====
+.cache/
