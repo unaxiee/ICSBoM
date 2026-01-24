@@ -1,0 +1,7 @@
+xmlStaticCopyNodeList,libxml2,Top-1 + bb_hash 10
+xmlDetectSAX2,libxml2,Top-100 + bb_hash 9
+xmlSAXVersion,libxml2,Top-25 + bb_hash 4
+xmlDictComputeFastKey,libxml2,Top-1 + bb_hash 25
+xmlCtxtUseOptionsInternal,libxml2,Top-1 + bb_hash 8
+xmlTextReaderRead,libxml2,Top-1 + bb_hash 187
+xmlSchemaFixupComplexType,libxml2,Top-1 + bb_hash 202

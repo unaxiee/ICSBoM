@@ -1,0 +1,13 @@
+CVE-2024-4741,3.0.14,SSL_free_buffers
+CVE-2024-4741,3.0.14,RECORD_LAYER_data_present
+CVE-2024-4603,3.0.14,dsa_precheck_params
+CVE-2024-4603,3.0.14,ossl_dsa_check_params
+CVE-2024-4603,3.0.14,ossl_dsa_check_pub_key
+CVE-2024-4603,3.0.14,ossl_dsa_check_pub_key_partial
+CVE-2024-4603,3.0.14,ossl_dsa_check_priv_key
+CVE-2024-4603,3.0.14,ossl_dsa_check_pairwise
+CVE-2024-2511,3.0.14,ssl_update_cache
+CVE-2024-2511,3.0.14,SSL_SESSION_dup
+CVE-2024-2511,3.0.14,ssl_session_dup
+CVE-2024-2511,3.0.14,ssl_session_dup_intern
+CVE-2024-2511,3.0.14,tls_construct_server_hello

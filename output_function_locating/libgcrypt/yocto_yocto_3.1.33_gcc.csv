@@ -1,0 +1,10 @@
+_gcry_md_block_write,libgcrypt,Top-25 + bb_hash 3 (tie)
+sign_0,libgcrypt,Top-25 + bb_hash 0 (tie)
+decrypt,libgcrypt,Top-50 + bb_hash 0 (tie)
+prefetch_dec,libgcrypt,Too few basic blocks
+ghash_internal,libgcrypt,Top-25 + bb_hash 1
+prefetch_enc,libgcrypt,Too few basic blocks
+gen_k,libgcrypt,Top-1 + bb_hash 22
+do_decrypt,libgcrypt,Not Found
+do_encrypt,libgcrypt,Too few basic blocks
+do_encrypt_2,libgcrypt,Top-1 + bb_hash 0

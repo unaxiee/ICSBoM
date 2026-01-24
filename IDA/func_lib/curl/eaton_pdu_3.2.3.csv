@@ -1,0 +1,2 @@
+function,lib,name
+curl_easy_duphandle,libcurl,curl_easy_duphandle

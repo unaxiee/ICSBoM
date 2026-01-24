@@ -1,0 +1,10 @@
+function,lib,name
+pkcs7_decrypt_rinfo,libcrypto,not match
+PKCS7_dataInit,libcrypto,PKCS7_dataInit
+chacha20_poly1305_ctrl,libcrypto,not match
+ec_mul_consttime,libcrypto,not match
+CMS_RecipientInfo_decrypt,libcrypto,CMS_RecipientInfo_decrypt
+EC_GROUP_set_generator,libcrypto,EC_GROUP_set_generator
+dsa_sign_setup_no_digest,libcrypto,not match
+PKCS7_dataDecode,libcrypto,PKCS7_dataDecode
+CMS_decrypt,libcrypto,CMS_decrypt

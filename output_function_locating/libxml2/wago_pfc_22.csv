@@ -1,0 +1,30 @@
+xmlDetectSAX2,libxml2,Top-1 + bb_hash 9
+xmlParseName,libxml2,Top-1 + bb_hash 60
+xmlDictComputeFastKey,libxml2,Top-1 + bb_hash 23
+xmlParseComment,libxml2,Top-25 + bb_hash 74
+xmlSchemaFixupComplexType,libxml2,Top-1 + bb_hash 134
+xmlParseAttValueInternal,libxml2,Top-25 + bb_hash 85
+xmlParseEntityValue,libxml2,Top-1 + bb_hash 24
+xmlTextReaderRead,libxml2,Top-1 + bb_hash 129
+xmlParseStringName,libxml2,Top-25 + bb_hash 4
+xmlParseSystemLiteral,libxml2,Top-25 + bb_hash 9 (not max)
+xmlCreateEntity,libxml2,Top-1 + bb_hash 5
+xmlParseNCName,libxml2,Top-50 + bb_hash 6 (not max)
+xmlParseNmtoken,libxml2,Top-1 + bb_hash 28
+xmlCtxtUseOptionsInternal,libxml2,Top-1 + bb_hash 5
+xmlFreeEntity,libxml2,Top-1 + bb_hash 33
+xmlStaticCopyNodeList,libxml2,Top-1 + bb_hash 10
+xmlSAXVersion,libxml2,Top-25 + bb_hash 3
+xmlParsePubidLiteral,libxml2,Top-25 + bb_hash 17
+xmlParseCDSect,libxml2,Top-1 + bb_hash 22
+xmlParsePI,libxml2,Top-1 + bb_hash 54
+xmlBufAdd,libxml2,Top-50 + bb_hash 5
+xmlBufferCreateSize,libxml2,Top-100 + bb_hash 4
+xmlBufferCCat,libxml2,Top-25 + bb_hash 7
+xmlBufCreateSize,libxml2,Top-350 + bb_hash 3 (tie)
+xmlBufferAdd,libxml2,Top-1 + bb_hash 9
+xmlBufferGrow,libxml2,Top-50 + bb_hash 2
+xmlBufGrowInternal,libxml2,Top-50 + bb_hash 3
+xmlBufResize,libxml2,Top-1 + bb_hash 24
+xmlBufCCat,libxml2,Top-1 + bb_hash 6
+xmlBufferResize,libxml2,Top-1 + bb_hash 32

@@ -1,0 +1,16 @@
+archive_write_disk_set_acls,libarchive,Too few basic blocks
+__archive_write_allocate_filter,libarchive,Top-1 + bb_hash 0
+archive_wstring_append_from_mbs,libarchive,Top-100 + bb_hash 3
+parse_codes,libarchive,Top-1 + bb_hash 24
+read_header,libarchive,Top-25 + bb_hash 67
+archive_acl_from_text_l,libarchive,Top-1 + bb_hash 184
+archive_read_format_zip_cleanup,libarchive,Top-1 + bb_hash 7
+archive_string_append_from_wcs,libarchive,Top-150 + bb_hash 1 (not max)
+get_uncompressed_data,libarchive,Top-25 + bb_hash 10
+parse_rockridge,libarchive,Top-25 + bb_hash 88
+rar_read_ahead,libarchive,Top-25 + bb_hash 1 (tie)
+create_dir,libarchive,Top-1 + bb_hash 14
+archive_read_format_rar_read_data,libarchive,Top-25 + bb_hash 19
+strncat_from_utf8_libarchive2,libarchive,Top-100 + bb_hash 3
+_warc_read,libarchive,Top-25 + bb_hash 2
+_archive_write_disk_close,libarchive,Top-25 + bb_hash 8

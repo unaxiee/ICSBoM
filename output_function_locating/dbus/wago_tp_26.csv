@@ -1,0 +1,5 @@
+bus_transaction_send_from_driver,dbus-daemon,Top-100 + bb_hash 11
+byteswap_body_helper,libdbus,Top-1 + bb_hash 51
+_dbus_connection_get_next_client_serial,libdbus,Top-1 + bb_hash 3
+_dbus_validate_signature_with_reason,libdbus,Top-1 + bb_hash 69
+validate_body_helper,libdbus,Top-1 + bb_hash 149

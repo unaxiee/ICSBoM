@@ -1,0 +1,12 @@
+usage,tput,Top-1 + bb_hash 4
+guess_tparm_type,tic,Top-25 + bb_hash 7
+main,tput,Top-1 + bb_hash 9
+tparm,libtinfo,Top-25 + bb_hash 124 (tie)
+_nc_parse_entry,libtic,Not Found
+tput_cmd,tput,Not Found
+_nc_read_termtype,libtinfo,Top-1 + bb_hash 10
+tparm_type,tic,Top-25 + bb_hash 0 (tie)
+tgoto,libtinfo,Top-25 + bb_hash 0 (tie)
+_nc_tiparm,libtinfo,Top-25 + bb_hash 125 (not max)
+tiparm,libtinfo,Top-1 + bb_hash 124
+check_1_infotocap,tic,Top-1 + bb_hash 31

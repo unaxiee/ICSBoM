@@ -1,0 +1,14 @@
+function,lib,name
+usage,tput,usage
+guess_tparm_type,tic,guess_tparm_type
+main,tput,main
+tparm,libtinfo,tparm
+_nc_parse_entry,libtic,_nc_parse_entry
+check_string_caps,libtinfo,check_string_caps
+tput_cmd,tput,tput_cmd
+_nc_read_termtype,libtinfo,_nc_read_termtype
+tparm_type,tic,tparm_type
+tgoto,libtinfo,tgoto
+_nc_tiparm,libtinfo,_nc_tiparm
+tiparm,libtinfo,tiparm
+check_1_infotocap,tic,check_1_infotocap

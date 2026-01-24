@@ -1,0 +1,15 @@
+usage,tput,Top-1 + bb_hash 13
+guess_tparm_type,tic,Top-1 + bb_hash 9
+main,tput,Top-1 + bb_hash 15
+tparm,libtinfo,Top-25 + bb_hash 137 (not max)
+_nc_parse_entry,libtic,Top-1 + bb_hash 68
+tput_cmd,tput,Not Found
+_nc_read_termtype,libtinfo,Top-1 + bb_hash 19
+tparm_type,tic,Top-25 + bb_hash 2
+tgoto,libtinfo,Too few basic blocks
+_nc_tiparm,libtinfo,Top-1 + bb_hash 164
+_nc_save_str,libtic,Top-1 + bb_hash 0
+tiparm,libtinfo,Top-25 + bb_hash 138 (not max)
+_nc_init_entry,libtic,Top-1 + bb_hash 3
+check_1_infotocap,tic,Top-1 + bb_hash 23
+convert_strings,libtinfo,Top-25 + bb_hash 6

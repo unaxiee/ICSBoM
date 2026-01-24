@@ -1,0 +1,11 @@
+CVE-2019-19221,3.4.0,3.4.1,libarchive,archive_wstring_append_from_mbs,archive_wstring_append_from_mbs
+CVE-2020-21674,3.4.0,3.4.1,libarchive,archive_string_append_from_wcs,archive_string_append_from_wcs
+CVE-2020-21674,3.4.0,3.4.1,libarchive,strncat_from_utf8_libarchive2,strncat_from_utf8_libarchive2
+CVE-2020-9308,3.4.0,3.4.2,libarchive,process_base_block,process_base_block
+CVE-2021-23177,3.4.0,3.5.2,libarchive,archive_write_disk_set_acls,archive_write_disk_set_acls
+CVE-2021-31566,3.4.0,3.5.2,libarchive,_archive_write_disk_close,_archive_write_disk_close
+CVE-2021-31566,3.4.0,3.5.2,libarchive,create_dir,create_dir
+CVE-2021-31566,3.4.0,3.5.2,libarchive,current_fixup,current_fixup
+CVE-2022-26280,3.4.0,3.6.1,libarchive,archive_read_format_zip_read_data,archive_read_format_zip_read_data
+CVE-2022-36227,3.4.0,3.6.2,libarchive,__archive_write_allocate_filter,__archive_write_allocate_filter
+CVE-2022-36227,3.4.0,3.6.2,libarchive,archive_write_open2,archive_write_open2

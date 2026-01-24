@@ -1,0 +1,8 @@
+function,lib,name
+xmlStaticCopyNodeList,libxml2,xmlStaticCopyNodeList
+xmlDetectSAX2,libxml2,xmlDetectSAX2
+xmlSAXVersion,libxml2,xmlSAXVersion
+xmlDictComputeFastKey,libxml2,xmlDictComputeFastKey
+xmlCtxtUseOptionsInternal,libxml2,xmlCtxtUseOptionsInternal
+xmlTextReaderRead,libxml2,xmlTextReaderRead
+xmlSchemaFixupComplexType,libxml2,xmlSchemaFixupComplexType

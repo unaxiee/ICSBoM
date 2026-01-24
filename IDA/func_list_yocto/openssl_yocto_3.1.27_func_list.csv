@@ -1,0 +1,7 @@
+CVE-2023-3817,1.1.1v,DH_check
+CVE-2023-3446,1.1.1v,DH_check
+CVE-2023-2650,1.1.1u,OBJ_obj2txt
+CVE-2023-0465,1.1.1u,check_policy
+CVE-2023-0464,1.1.1u,level_find_node
+CVE-2023-0464,1.1.1u,level_add_node
+CVE-2023-0464,1.1.1u,X509_policy_check

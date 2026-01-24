@@ -1,0 +1,3 @@
+CVE-2021-46828,1.2.6,1.3.3,libtirpc,svc_open_fds,svc_open_fds
+CVE-2021-46828,1.2.6,1.3.3,libtirpc,__svc_destroy_idle,__svc_destroy_idle
+CVE-2021-46828,1.2.6,1.3.3,libtirpc,rendezvous_request,rendezvous_request

@@ -1,0 +1,8 @@
+function,lib,name
+doCdataSection,libexpat,doCdataSection
+storeEntityValue,libexpat,storeEntityValue
+epilogProcessor,libexpat,epilogProcessor
+accountingGetCurrentAmplification,libexpat,accountingGetCurrentAmplification
+entityValueInitProcessor,libexpat,entityValueInitProcessor
+appendAttributeValue,libexpat,appendAttributeValue
+processXmlDecl,libexpat,processXmlDecl

@@ -1,0 +1,13 @@
+libssh2_session_init_ex,libssh2,Top-25 + bb_hash 0 (tie)
+_libssh2_packet_add,libssh2,Top-1 + bb_hash 65
+kex_agree_mac,libssh2,Top-25 + bb_hash 6
+_libssh2_kex_exchange,libssh2,Top-1 + bb_hash 70
+kex_agree_instr,libssh2,Top-1 + bb_hash 2
+_libssh2_transport_send,libssh2,Top-1 + bb_hash 24
+_libssh2_transport_read,libssh2,Top-1 + bb_hash 48
+kex_agree_hostkey,libssh2,Top-25 + bb_hash 13
+kex_agree_crypt,libssh2,Top-25 + bb_hash 6
+kex_agree_comp,libssh2,Top-1 + bb_hash 8
+libssh2_session_disconnect_ex,libssh2,Top-1 + bb_hash 16
+_libssh2_packet_require,libssh2,Top-1 + bb_hash 10
+_libssh2_packet_ask,libssh2,Top-25 + bb_hash 2

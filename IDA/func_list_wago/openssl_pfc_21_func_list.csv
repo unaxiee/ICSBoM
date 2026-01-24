@@ -1,0 +1,14 @@
+CVE-2023-3817,1.1.1v,DH_check
+CVE-2023-3446,1.1.1v,DH_check
+CVE-2023-2650,1.1.1u,OBJ_obj2txt
+CVE-2023-0465,1.1.1u,check_policy
+CVE-2023-0464,1.1.1u,level_find_node
+CVE-2023-0464,1.1.1u,level_add_node
+CVE-2023-0464,1.1.1u,X509_policy_check
+CVE-2023-0286,1.1.1t,GENERAL_NAME_cmp
+CVE-2023-0215,1.1.1t,ndef_suffix
+CVE-2023-0215,1.1.1t,BIO_new_NDEF
+CVE-2022-4450,1.1.1t,PEM_read_bio_ex
+CVE-2022-4304,1.1.1t,rsa_ossl_private_decrypt
+CVE-2022-4304,1.1.1t,ossl_bn_rsa_do_unblind
+CVE-2022-0778,1.1.1n,BN_mod_sqrt

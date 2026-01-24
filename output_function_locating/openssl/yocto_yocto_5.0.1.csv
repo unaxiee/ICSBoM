@@ -1,0 +1,10 @@
+tls_free_buffers,libssl,Top-1 + bb_hash 21
+ssl_update_cache,libssl,Top-1 + bb_hash 20
+ossl_dsa_check_pub_key_partial,libcrypto,Top-25 + bb_hash 3 (tie)
+ossl_dsa_check_params,libcrypto,Top-1 + bb_hash 3
+ossl_dsa_check_pub_key,libcrypto,Top-1 + bb_hash 3
+ssl_session_dup,libssl,Not Found
+tls_construct_server_hello,libssl,Top-1 + bb_hash 32
+ossl_dsa_check_priv_key,libcrypto,Top-1 + bb_hash 3
+SSL_SESSION_dup,libssl,Too few basic blocks
+ossl_dsa_check_pairwise,libcrypto,Top-1 + bb_hash 11

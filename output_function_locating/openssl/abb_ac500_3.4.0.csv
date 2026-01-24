@@ -1,0 +1,5 @@
+EC_GROUP_set_generator,libcrypto,Top-300 + bb_hash 3 (tie)
+PKCS7_dataDecode,libcrypto,Top-25 + bb_hash 10
+PKCS7_dataInit,libcrypto,Top-1 + bb_hash 10
+CMS_decrypt,libcrypto,Top-250 + bb_hash 7 (tie)
+CMS_RecipientInfo_decrypt,libcrypto,Top-100 + bb_hash 4

@@ -1,0 +1,14 @@
+usage,tput,Top-1 + bb_hash 1
+main,tput,Top-1 + bb_hash 35
+tparm,libtinfo,Top-1 + bb_hash 4
+_nc_parse_entry,libtic,Top-1 + bb_hash 172
+tput_cmd,tput,Top-1 + bb_hash 41
+_nc_read_termtype,libtinfo,Top-1 + bb_hash 57
+tparm_type,tic,Top-25 + bb_hash 1
+cvtchar,libtic,Top-1 + bb_hash 27
+tgoto,libtinfo,Not Found
+_nc_save_str,libtic,Not Found
+tiparm,libtinfo,Top-25 + bb_hash 3 (tie)
+_nc_init_entry,libtic,Not Found
+check_1_infotocap,tic,Top-1 + bb_hash 26
+convert_strings,libtinfo,Top-1 + bb_hash 13
