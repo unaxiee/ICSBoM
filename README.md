@@ -13,5 +13,3 @@ Run 'STEP3_patch_detection.py' to determine if each vulnerability exists or the 
 Results are stored in 'output_patch_detection/'.
 
 All input arguments can be modified in 'util/config.py'. Step 1 requires firmware name and path. Steps 2 through 4 require vendor name, and all scripts take in corresponding csv file in 'util/fw_lib_list' as input.
-
-All firmware-extracted target binaries and built reference binaries can be found in https://drive.google.com/file/d/1vQ5dv9CgVoh28GbZjrylH3WNVPzY_WHF/view?usp=sharing
